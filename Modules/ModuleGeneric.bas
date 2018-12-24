@@ -1965,7 +1965,7 @@ Function MainSaveRecord(SelectedDB, Table, Status, FormTitle, IndexField, CodeTo
             End If
         End If
         For lngFieldNo = 0 To UBound(Fields)
-            Debug.Print .Fields(lngFieldNo + 1).Name & " " & Fields(lngFieldNo)
+            'Debug.Print .Fields(lngFieldNo + 1).Name & " " & Fields(lngFieldNo)
             .Fields(lngFieldNo + 1).Value = Trim(Fields(lngFieldNo))
         Next
         .Update

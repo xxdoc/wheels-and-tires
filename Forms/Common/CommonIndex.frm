@@ -3,7 +3,7 @@ Object = "{396F7AC0-A0DD-11D3-93EC-00C0DFE7442A}#1.0#0"; "ImageList.ocx"
 Object = "{839D0F5D-B7D7-41B7-A3B4-85D69300B8C1}#98.0#0"; "iGrid300_10Tec.ocx"
 Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "Buttons.ocx"
 Begin VB.Form CommonIndex 
-   BackColor       =   &H0000FFFF&
+   BackColor       =   &H000080FF&
    BorderStyle     =   1  'Fixed Single
    ClientHeight    =   8415
    ClientLeft      =   15
@@ -19,7 +19,7 @@ Begin VB.Form CommonIndex
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame frmButtonFrame 
-      BackColor       =   &H0000FFFF&
+      BackColor       =   &H000080FF&
       BorderStyle     =   0  'None
       Height          =   840
       Left            =   75
@@ -130,7 +130,7 @@ Begin VB.Form CommonIndex
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00000000&
+      ForeColor       =   &H00FFFFFF&
       Height          =   630
       Left            =   300
       TabIndex        =   1
@@ -175,6 +175,8 @@ End Sub
 
 Private Function AbortProcedure()
     
+    On Error GoTo ErrTrap
+    
     Dim lngCol As Long
     
     If cmdButton(1).Enabled Then
@@ -184,6 +186,12 @@ Private Function AbortProcedure()
     End If
     
     Me.Hide
+    
+    Exit Function
+    
+ErrTrap:
+    Me.Hide
+    Exit Function
     
 End Function
 

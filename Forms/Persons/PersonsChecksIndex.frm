@@ -1149,7 +1149,7 @@ Private Sub cmdButton_Click(Index As Integer)
                 txtOppositeTable.text, _
                 txtOppositeRefersTo.text
         Case 2
-            PrintRecords Me, "Print", False, ""
+            PrintRecords Me, "Print", False, "PrinterPrintsReportsID"
         Case 3
             PrintRecords Me, "CreatePDF", True, "PrinterPrintsReportsID"
         Case 4
@@ -1463,7 +1463,7 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
             cmdButton_Click 1
         Case vbKeyP And CtrlDown = 4 And cmdButton(2).Enabled
             cmdButton_Click 2
-        Case vbKeyP And CtrlDown = 5 And cmdButton(3).Enabled
+        Case vbKeyP And CtrlDown = 8 And cmdButton(3).Enabled
             cmdButton_Click 3
         Case vbKeyEscape
             If cmdButton(4).Enabled Then cmdButton_Click 4: Exit Function
