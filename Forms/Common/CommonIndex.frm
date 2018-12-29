@@ -18,6 +18,27 @@ Begin VB.Form CommonIndex
    ScaleWidth      =   3090
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox chkShowInactiveRecords 
+      Alignment       =   1  'Right Justify
+      Appearance      =   0  'Flat
+      BackColor       =   &H000080FF&
+      Caption         =   "Εμφάνιση ανενεργών εγγραφών"
+      BeginProperty Font 
+         Name            =   "Ubuntu Condensed"
+         Size            =   11.25
+         Charset         =   161
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   315
+      Left            =   -450
+      TabIndex        =   5
+      Top             =   300
+      Width           =   3015
+   End
    Begin VB.Frame frmButtonFrame 
       BackColor       =   &H000080FF&
       BorderStyle     =   0  'None
@@ -154,6 +175,12 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Private Sub chkShowInactiveRecords_Click()
+
+    ToggleInactiveRecords
+
+End Sub
+
 Private Sub cmdButton_Click(Index As Integer)
 
     Select Case Index
@@ -197,11 +224,17 @@ End Function
 
 Private Function CheckFunctionKeys(KeyCode, Shift)
     
+    Dim CtrlDown
+    
+    CtrlDown = Shift + vbCtrlMask
+    
     Select Case KeyCode
         Case vbKeyReturn
             cmdButton_Click 0
         Case vbKeyEscape
             cmdButton_Click 1
+        Case vbKeyA And CtrlDown = 4 And chkShowInactiveRecords.Visible
+            chkShowInactiveRecords.Value = IIf(chkShowInactiveRecords.Value = 0, 1, 0)
     End Select
     
 End Function
@@ -236,3 +269,15 @@ Private Sub grdGrid_KeyPress(KeyAscii As Integer)
     If KeyAscii = vbKeyReturn Then Me.Hide
 
 End Sub
+
+Private Function ToggleInactiveRecords()
+
+    Dim lngRow As Long
+    
+    For lngRow = 1 To grdGrid.RowCount
+        If grdGrid.CellFont(lngRow, 1).Italic Then
+            grdGrid.RowVisible(lngRow) = Not grdGrid.RowVisible(lngRow)
+        End If
+    Next lngRow
+
+End Function

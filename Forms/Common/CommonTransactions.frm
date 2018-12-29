@@ -6,7 +6,7 @@ Object = "{FFE4AEB4-0D55-4004-ADF2-3C1C84D17A72}#1.0#0"; "userControls.ocx"
 Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "Buttons.ocx"
 Begin VB.Form CommonTransactions 
    Appearance      =   0  'Flat
-   BackColor       =   &H00E0E0E0&
+   BackColor       =   &H00C0C0C0&
    BorderStyle     =   0  'None
    ClientHeight    =   12105
    ClientLeft      =   15
@@ -3954,7 +3954,7 @@ Private Sub cmdIndex_Click(Index As Integer)
             If txtPersonDescription.text = "" Then Exit Sub
             Set tmpRecordset = CheckForMatch("CommonDB", txtPersonDescription.text, txtTable.text, IIf(IsNumeric(txtPersonDescription.text), "TaxNo", "Description"), "String", 1, 2)
             If tmpRecordset.RecordCount > 0 Then
-                tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 3, 0, 1, 2, "ID", "Περιγραφή", "Α.Φ.Μ.", 0, 50, 15, 1, 0, 1)
+                tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 4, 0, 1, 2, 13, "ID", "Περιγραφή", "Α.Φ.Μ.", "Ε", 0, 50, 15, 0, 1, 0, 1, 1, "Persons")
             End If
             If tmpTableData.strCode <> "" Then
                 FindPersonDetails tmpTableData.strCode
@@ -4095,7 +4095,9 @@ Private Sub Form_Load()
     
     Dim lngRow As Long
     
-    AddColumnsToGrid grdCommonTransactions, 44, GetSetting(strAppTitle, "Layout Strings", "grdCommonTransactions"), "05NCNXCategoryID,04YCNCategoryShortDescription,04NCNXItemID,50YLNItemDescription,40NLNManufacturerDescription,10YRIQty,10YRFXUnitPrice,10NRFTotalNetPreDiscount,10YRFXDiscPercent,10YRFXDiscAmount,05YCNDiscAllow,10NRFTotalNetPostDiscount,10NRFXVATPercent,10NRFVATAmount,10" & IIf(txtRefersTo.text = "1", "N", "Y") & "RFTotalGross,10NRIXLastQty", "ID Κατ,Κατ,ID Είδους,Είδος,Κατασκευαστής,Ποσότητα,Τιμή  μονάδος,Σύνολο,Ποσοστό έκπτωσης,Ποσό έκπτωσης,ΣΕ,Υπόλοιπο,Ποσοστό ΦΠΑ,Ποσό ΦΠΑ,Σύνολο,Τρέχουσα  ποσότητα"
+    AddColumnsToGrid grdCommonTransactions, 44, GetSetting(strAppTitle, "Layout Strings", "grdCommonTransactions"), _
+        "05NCNXCategoryID,04YCNCategoryShortDescription,04NCNXItemID,50YLNItemDescription,40NLNManufacturerDescription,10YRIQty,10YRFXUnitPrice,10NRFTotalNetPreDiscount,10YRFXDiscPercent,10YRFXDiscAmount,05YCNDiscAllow,10NRFTotalNetPostDiscount,10NRFXVATPercent,10NRFVATAmount,10" & IIf(txtRefersTo.text = "1", "N", "Y") & "RFTotalGross,10NRIXLastQty", _
+        "ID Κατ,Κατ,ID Είδους,Είδος,Κατασκευαστής,Ποσότητα,Τιμή  μονάδος,Σύνολο,Ποσοστό έκπτωσης,Ποσό έκπτωσης,ΣΕ,Υπόλοιπο,Ποσοστό ΦΠΑ,Ποσό ΦΠΑ,Σύνολο,Τρέχουσα  ποσότητα"
     
     SetUpGrid lstIconList, grdCommonTransactions
     PositionControls Me, True, grdCommonTransactions: ColorizeControls Me, True
@@ -4180,9 +4182,12 @@ Private Sub grdCommonTransactions_AfterCommitEdit(ByVal lRow As Long, ByVal lCol
                     0, 0, 0, 40, 50, 40, 0, 0, 10, 0, 0, _
                     0, 0, 0, 0, 0, 0, 0, 2, 2, 1, 1, "Items")
                 If tmpTableData.strCode = "" Then
-                    grdCommonTransactions.CellValue(lRow, "ItemID") = ""
-                    grdCommonTransactions.CellValue(lRow, "ItemDescription") = ""
-                    grdCommonTransactions.CellValue(lRow, "ManufacturerDescription") = ""
+                    FillCellWithSomething grdCommonTransactions, "", grdCommonTransactions.CurRow, "3,4,5,11"
+                    FillCellWithSomething grdCommonTransactions, "0", grdCommonTransactions.CurRow, "13,16"
+                    ColorizeRowsWhenItemIsNotGiven lRow
+                    'grdCommonTransactions.CellValue(lRow, "ItemID") = ""
+                    'grdCommonTransactions.CellValue(lRow, "ItemDescription") = ""
+                    'grdCommonTransactions.CellValue(lRow, "ManufacturerDescription") = ""
                 Else
                     grdCommonTransactions.CellValue(lRow, "ItemID") = tmpTableData.strCode
                     grdCommonTransactions.CellValue(lRow, "ItemDescription") = tmpTableData.strFourField
