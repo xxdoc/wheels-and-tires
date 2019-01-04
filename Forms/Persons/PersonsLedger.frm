@@ -46,7 +46,7 @@ Begin VB.Form PersonsLedger
          BarPictureMode  =   0
          BackPictureMode =   0
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
+            Name            =   "Arial"
             Size            =   8.25
             Charset         =   161
             Weight          =   400
@@ -212,7 +212,7 @@ Begin VB.Form PersonsLedger
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   &H00FFFFFF&
-            Height          =   315
+            Height          =   255
             Index           =   1
             Left            =   450
             TabIndex        =   45
@@ -910,7 +910,7 @@ Begin VB.Form PersonsLedger
             ButtonStyle     =   2
             Caption         =   ""
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Ubuntu Condensed"
+               Name            =   "Arial"
                Size            =   9.75
                Charset         =   161
                Weight          =   400
@@ -1107,7 +1107,7 @@ Begin VB.Form PersonsLedger
          Caption         =   "Σύνολα πάνε εδώ"
          BeginProperty Font 
             Name            =   "Ubuntu Condensed"
-            Size            =   12
+            Size            =   9.75
             Charset         =   161
             Weight          =   400
             Underline       =   0   'False
@@ -1171,7 +1171,7 @@ Begin VB.Form PersonsLedger
             Name            =   "Ubuntu Condensed"
             Size            =   30
             Charset         =   161
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
@@ -1181,7 +1181,7 @@ Begin VB.Form PersonsLedger
          Left            =   75
          TabIndex        =   12
          Top             =   75
-         Width           =   6060
+         Width           =   5730
       End
       Begin VB.Label lblCriteria 
          Alignment       =   1  'Right Justify
@@ -1246,8 +1246,8 @@ Private Function CalculatePreviousPeriod(myRecordset As Recordset)
         With myRecordset
             Do While !InvoiceIssueDate < CDate(mskIssueFrom.text)
                 FillArray curPrevious, _
-                    CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID), _
-                    CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID)
+                    CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, !InvoiceRefersToID), _
+                    CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, !InvoiceRefersToID)
                 UpdateProgressBar Me
                 .MoveNext
                 DoEvents
@@ -1442,30 +1442,30 @@ End Function
 
 Private Function SendTheEmail()
 
-    Dim oSmtp As New EASendMailObjLib.Mail
+    'Dim oSmtp As New EASendMailObjLib.Mail
     
-    With oSmtp
-        .LicenseCode = "TryIt"
-        .FromAddr = strSender
-        .AddRecipientEx txtEmail.text, 0
-        .Subject = "ΚΡΟΤΣΗΣ ΕΠΕ - ΚΑΡΤΕΛΑ ΛΟΓΑΡΙΑΣΜΟΥ"
-        .BodyText = ""
-        If .AddAttachment(strReportsPathName & "UnicodeFile.pdf") <> 0 Then
-            SendTheEmail = False
-            DisplayErrorMessage True, "Το αρχείο δεν βρέθηκε"
-        Else
-            .ServerAddr = strServer
-            .username = strUserName
-            .password = strPassword
-            .SSL_init
-            If .SendMail() <> 0 Then
-                SendTheEmail = False
-                DisplayErrorMessage True, "Το email δεν στάλθηκε"
-            Else
-                SendTheEmail = True
-            End If
-        End If
-    End With
+    'With oSmtp
+    '    .LicenseCode = "TryIt"
+    '    .FromAddr = strSender
+    '    .AddRecipientEx txtEmail.text, 0
+    '    .Subject = "ΚΡΟΤΣΗΣ ΕΠΕ - ΚΑΡΤΕΛΑ ΛΟΓΑΡΙΑΣΜΟΥ"
+    '    .BodyText = ""
+    '    If .AddAttachment(strReportsPathName & "UnicodeFile.pdf") <> 0 Then
+    '        SendTheEmail = False
+    '        DisplayErrorMessage True, "Το αρχείο δεν βρέθηκε"
+    '    Else
+    '        .ServerAddr = strServer
+    '        .username = strUserName
+    '        .password = strPassword
+    '        .SSL_init
+    '        If .SendMail() <> 0 Then
+    '            SendTheEmail = False
+    '            DisplayErrorMessage True, "Το email δεν στάλθηκε"
+    '        Else
+    '            SendTheEmail = True
+    '        End If
+    '    End If
+    'End With
     
 End Function
 
@@ -1833,8 +1833,8 @@ Private Function RefreshList()
                 grdPersonsLedger.CellValue(lngRow, "InvoiceIssueDate") = !InvoiceIssueDate
                 grdPersonsLedger.CellValue(lngRow, "Plates") = !InvoicePlates
                 grdPersonsLedger.CellValue(lngRow, "DeliveryPointDescription") = !DeliveryPointDescription
-                grdPersonsLedger.CellValue(lngRow, "Debit") = CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID)
-                grdPersonsLedger.CellValue(lngRow, "Credit") = CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID)
+                grdPersonsLedger.CellValue(lngRow, "Debit") = CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, !InvoiceRefersToID)
+                grdPersonsLedger.CellValue(lngRow, "Credit") = CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, !InvoiceRefersToID)
                 FillArray curPeriod, _
                     grdPersonsLedger.CellValue(lngRow, "Debit"), _
                     grdPersonsLedger.CellValue(lngRow, "Credit"), _

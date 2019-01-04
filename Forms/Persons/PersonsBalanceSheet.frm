@@ -880,8 +880,8 @@ Private Function CalculatePreviousPeriod(myID, myRecordset As Recordset)
         With myRecordset
             Do While !InvoiceIssueDate < CDate(mskIssueFrom.text) And myID = !InvoicePersonID
                 FillArray curPrevious, _
-                    CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID), _
-                    CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID)
+                    CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text), _
+                    CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text)
                 UpdateProgressBar Me
                 .MoveNext
                 DoEvents
@@ -1206,8 +1206,8 @@ Private Function RefreshList()
                     If Not blnProcessing Then Exit Do
                 Else
                     FillArray curPeriod, _
-                        CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID), _
-                        CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID)
+                        CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text), _
+                        CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text)
                     UpdateProgressBar Me
                     rstRecordset.MoveNext
                     DoEvents

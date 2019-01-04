@@ -1328,7 +1328,7 @@ Private Function RefreshList()
                 grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionB") = FindPersonDescription(txtOppositeTable.text, "ID", !CheckIssuedByID) 'Εκδότης πληρωτέας
             End If
             If txtRefersTo.text = "4" And !CheckNo <> "" Then
-                Set tmpRecordset = NewCheckForMatch("CommonDB", "CheckNo, Description", "(Checks", "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) INNER JOIN Suppliers ON Invoices.InvoicePersonID = Suppliers.ID", "CheckNo = '" & !CheckNo & "' AND CheckRefersToID = 3", "") 'Κάτοχος εισπρακτέας
+                Set tmpRecordset = NewCheckForMatch("CommonDB", "CheckNo, Description", "(Checks", "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) INNER JOIN Suppliers ON Invoices.InvoicePersonID = Suppliers.ID", "CheckNo = '" & !CheckNo & "' AND CheckRefersToID = 3", "", "") 'Κάτοχος εισπρακτέας
                 If Not tmpRecordset.EOF Then
                     grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionB") = tmpRecordset!Description
                 End If
@@ -1418,7 +1418,7 @@ Private Function FindPersonDescription(myTable, myFieldName, myFieldValue)
 
     Dim tmpRecordset As Recordset
 
-    Set tmpRecordset = NewCheckForMatch("CommonDB", "InvoiceTrnID, Description", "Invoices", "INNER JOIN " & myTable & " ON Invoices.InvoicePersonID = " & myTable & ".ID", myFieldName & " = " & myFieldValue, "")
+    Set tmpRecordset = NewCheckForMatch("CommonDB", "InvoiceTrnID, Description", "Invoices", "INNER JOIN " & myTable & " ON Invoices.InvoicePersonID = " & myTable & ".ID", myFieldName & " = " & myFieldValue, "", "")
     
     If tmpRecordset.RecordCount = 1 Then
         FindPersonDescription = tmpRecordset!Description

@@ -1641,7 +1641,7 @@ Private Sub grdItemsTransactions_AfterCommitEdit(ByVal lRow As Long, ByVal lCol 
                 Set tmpRecordset = NewCheckForMatch("CommonDB", "ItemID, ItemCategoryID, ItemManufacturerID, CategoryDescription, ManufacturerDescription, ItemDescription, CategoryShortDescription, ItemVATPercent, ItemBalance, ItemActive ", _
                     "((Items", _
                     "INNER JOIN Categories ON Items.ItemCategoryID = Categories.CategoryID) " & _
-                    "INNER JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) ", strItemDescription, "CategoryDescription, ManufacturerDescription, ItemDescription")
+                    "INNER JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) ", strItemDescription, "", "CategoryDescription, ManufacturerDescription, ItemDescription")
                 tmpTableData = DisplayIndex(tmpRecordset, True, True, "Ευρετήριο", 10, 0, 1, 2, 3, 5, 4, 6, 7, 8, 9, "ID", "ID Κατηγορίας", "ID Κατασκευαστή", "Κατηγορία", "Περιγραφή", "Κατασκευαστής", "Συντ. κατηγορίας", "Φ.Π.Α.", "Υπόλοιπο", "Ε", 0, 0, 0, 40, 50, 40, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, "Items")
                 
                 'Set tmpRecordset = NewCheckForMatch("CommonDB", "ItemID, ItemCategoryID, ItemManufacturerID, CategoryDescription, ManufacturerDescription, ItemDescription, CategoryShortDescription, ItemVATPercent", _

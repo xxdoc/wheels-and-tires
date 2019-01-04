@@ -927,8 +927,8 @@ Private Function CalculatePreviousPeriod(myID, myRecordset As Recordset)
         With myRecordset
             Do While !InvoiceIssueDate < CDate(mskIssueFrom.text) And myID = !ItemID
                 FillArray curPrevious, _
-                    CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, ""), _
-                    CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "")
+                    CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, "", ""), _
+                    CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "", "")
                 UpdateProgressBar Me
                 .MoveNext
                 DoEvents
@@ -1265,10 +1265,10 @@ Private Function RefreshList()
                     If Not blnProcessing Then Exit Do
                 Else
                     FillArray curPeriod, _
-                        CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, ""), _
-                        CalculateDebitCreditAndBalance("Debit", "Items", !TotalNetPostDiscount, "", "", !CodeInventoryValue, ""), _
-                        CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, ""), _
-                        CalculateDebitCreditAndBalance("Credit", "Items", !TotalNetPostDiscount, "", "", !CodeInventoryValue, "")
+                        CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, "", ""), _
+                        CalculateDebitCreditAndBalance("Debit", "Items", !TotalNetPostDiscount, "", "", !CodeInventoryValue, "", ""), _
+                        CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "", ""), _
+                        CalculateDebitCreditAndBalance("Credit", "Items", !TotalNetPostDiscount, "", "", !CodeInventoryValue, "", "")
                     UpdateProgressBar Me
                     rstRecordset.MoveNext
                     DoEvents

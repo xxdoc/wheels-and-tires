@@ -1041,10 +1041,10 @@ Private Function CalculatePreviousPeriod(myRecordset As Recordset)
         With myRecordset
             Do While !InvoiceIssueDate < CDate(mskIssueFrom.text)
                 FillArray curPrevious, _
-                    CalculateDebitCreditAndBalance("Debit", "Items", !Qty, !CodeCustomers, !CodeSuppliers, !CodeInventoryQty, 0), _
-                    CalculateDebitCreditAndBalance("Debit", "Items", !TotalNetPostDiscount, !CodeCustomers, !CodeSuppliers, !CodeInventoryValue, 0), _
-                    CalculateDebitCreditAndBalance("Credit", "Items", !Qty, !CodeCustomers, !CodeSuppliers, !CodeInventoryQty, 0), _
-                    CalculateDebitCreditAndBalance("Credit", "Items", !TotalNetPostDiscount, !CodeCustomers, !CodeSuppliers, !CodeInventoryValue, 0)
+                    CalculateDebitCreditAndBalance("Debit", "Items", !Qty, !CodeCustomers, !CodeSuppliers, !CodeInventoryQty, 0, ""), _
+                    CalculateDebitCreditAndBalance("Debit", "Items", !TotalNetPostDiscount, !CodeCustomers, !CodeSuppliers, !CodeInventoryValue, 0, ""), _
+                    CalculateDebitCreditAndBalance("Credit", "Items", !Qty, !CodeCustomers, !CodeSuppliers, !CodeInventoryQty, 0, ""), _
+                    CalculateDebitCreditAndBalance("Credit", "Items", !TotalNetPostDiscount, !CodeCustomers, !CodeSuppliers, !CodeInventoryValue, 0, "")
                 UpdateProgressBar Me
                 .MoveNext
                 DoEvents
@@ -1427,10 +1427,10 @@ Private Function RefreshList()
             grdItemsLedger.CellValue(lngRow, "CodeDescription") = !CodeDescription
             grdItemsLedger.CellValue(lngRow, "InvoiceNo") = !InvoiceNo
             grdItemsLedger.CellValue(lngRow, "PersonDescription") = FindPersonDescription(!InvoiceRefersToID, !InvoicePersonID)
-            grdItemsLedger.CellValue(lngRow, "QtyIn") = CalculateDebitCreditAndBalance("Debit", "Items", !Qty, !CodeCustomers, !CodeSuppliers, !CodeInventoryQty, 0)
-            grdItemsLedger.CellValue(lngRow, "ValueIn") = CalculateDebitCreditAndBalance("Debit", "Items", !TotalNetPostDiscount, !CodeCustomers, !CodeSuppliers, !CodeInventoryValue, 0)
-            grdItemsLedger.CellValue(lngRow, "QtyOut") = CalculateDebitCreditAndBalance("Credit", "Items", !Qty, !CodeCustomers, !CodeSuppliers, !CodeInventoryQty, 0)
-            grdItemsLedger.CellValue(lngRow, "ValueOut") = CalculateDebitCreditAndBalance("Credit", "Items", !TotalNetPostDiscount, !CodeCustomers, !CodeSuppliers, !CodeInventoryValue, 0)
+            grdItemsLedger.CellValue(lngRow, "QtyIn") = CalculateDebitCreditAndBalance("Debit", "Items", !Qty, !CodeCustomers, !CodeSuppliers, !CodeInventoryQty, 0, "")
+            grdItemsLedger.CellValue(lngRow, "ValueIn") = CalculateDebitCreditAndBalance("Debit", "Items", !TotalNetPostDiscount, !CodeCustomers, !CodeSuppliers, !CodeInventoryValue, 0, "")
+            grdItemsLedger.CellValue(lngRow, "QtyOut") = CalculateDebitCreditAndBalance("Credit", "Items", !Qty, !CodeCustomers, !CodeSuppliers, !CodeInventoryQty, 0, "")
+            grdItemsLedger.CellValue(lngRow, "ValueOut") = CalculateDebitCreditAndBalance("Credit", "Items", !TotalNetPostDiscount, !CodeCustomers, !CodeSuppliers, !CodeInventoryValue, 0, "")
             '///
             FillArray curPeriod, _
                 grdItemsLedger.CellValue(lngRow, "QtyIn"), _
@@ -1520,7 +1520,7 @@ Private Sub cmdIndex_Click(Index As Integer)
                 "((Items", _
                 "INNER JOIN Categories ON Items.ItemCategoryID = Categories.CategoryID) " & _
                 "INNER JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) ", _
-                "Left(ItemQuickDescription, " & Len(txtItemDescription.text) & ") = '" & txtItemDescription.text & "'" & strCategoryCriteria & "" & strManufacturerCriteria, "CategoryDescription, ManufacturerDescription, ItemDescription")
+                "Left(ItemQuickDescription, " & Len(txtItemDescription.text) & ") = '" & txtItemDescription.text & "'" & strCategoryCriteria & "" & strManufacturerCriteria, "", "CategoryDescription, ManufacturerDescription, ItemDescription")
             tmpTableData = DisplayIndex(tmpRecordset, True, True, "Ευρετήριο", 7, 0, 1, 2, 3, 4, 5, 6, "ID", "ID Κατηγορίας", "ID Κατασκευαστή", "Κατηγορία", "Κατασκευαστής", "Περιγραφή", "Συντ. κατηγορίας", 0, 0, 0, 40, 40, 50, 0, 1, 0, 0, 0, 0, 0, 0)
             If tmpTableData.strCode <> "" Then
                 txtItemID.text = tmpTableData.strCode

@@ -434,7 +434,7 @@ Function FormatAsSelection(myFormat)
 
 End Function
 
-Function NewCheckForMatch(DBToUse, myGivenFields, myTable, myJoins, myCriteria, myOrderColumns) As Recordset
+Function NewCheckForMatch(DBToUse, myGivenFields, myTable, myJoins, myCriteria, myGroupByColumns, myOrderColumns) As Recordset
 
     On Error GoTo ErrTrap
     
@@ -453,7 +453,7 @@ Function NewCheckForMatch(DBToUse, myGivenFields, myTable, myJoins, myCriteria, 
         myCriteria = "1 = 1"
     End If
     
-    strSQL = "SELECT " & IIf(myGivenFields = "", "*", myGivenFields) & " FROM " & myTable & " " & myJoins & IIf(myCriteria <> "", " WHERE " & myCriteria, "") & IIf(myOrderColumns <> "", " ORDER BY " & myOrderColumns, "")
+    strSQL = "SELECT " & IIf(myGivenFields = "", "*", myGivenFields) & " FROM " & myTable & " " & myJoins & IIf(myCriteria <> "", " WHERE " & myCriteria, "") & IIf(myGroupByColumns <> "", myGroupByColumns, "") & IIf(myOrderColumns <> "", " ORDER BY " & myOrderColumns, "")
     
     TempQuery.SQL = strSQL
     
@@ -1650,7 +1650,7 @@ Function DisplayIndex(tmpRecordset, blnShowList, blnIncludeOneRecordCount, strTi
                     .chkShowInactiveRecords.Visible = False
                     
                     If tmpArguments(UBound(tmpArguments)) = "Persons" Then
-                        lngActiveColumn = 4
+                        lngActiveColumn = tmpGroupElements
                         .chkShowInactiveRecords.Visible = True
                         GoSub DisplayOnlyActiveItems
                     End If

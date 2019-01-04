@@ -562,7 +562,7 @@ Begin VB.Form PersonsTransactions
       Width           =   10215
       Begin UserControls.newFloat mskTotal 
          Height          =   465
-         Left            =   7725
+         Left            =   7425
          TabIndex        =   16
          TabStop         =   0   'False
          Top             =   6225
@@ -757,7 +757,7 @@ Begin VB.Form PersonsTransactions
          FillColor       =   &H00008000&
          Height          =   840
          Index           =   4
-         Left            =   7275
+         Left            =   6975
          Top             =   6375
          Visible         =   0   'False
          Width           =   465
@@ -894,7 +894,7 @@ Begin VB.Form PersonsTransactions
          ForeColor       =   &H00FFFFFF&
          Height          =   315
          Index           =   5
-         Left            =   6750
+         Left            =   6450
          TabIndex        =   20
          Top             =   6300
          Width           =   540
@@ -1889,7 +1889,7 @@ Private Sub grdPersonsTransactionsChecks_AfterCommitEdit(ByVal lRow As Long, ByV
                     "INNER JOIN Banks ON Checks.CheckBankID = Banks.BankID) " & _
                     "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) " & _
                     "INNER JOIN " & txtOppositeTable.text & " ON Invoices.InvoicePersonID = " & txtOppositeTable.text & ".ID", _
-                    "CheckRefersToID = " & Val(txtRefersTo.text) + 1 & " AND InStr(CheckNo,'" & grdPersonsTransactionsChecks.CellValue(lRow, lCol) & "')", "")
+                    "CheckRefersToID = " & Val(txtRefersTo.text) + 1 & " AND InStr(CheckNo,'" & grdPersonsTransactionsChecks.CellValue(lRow, lCol) & "')", "", "")
                 If tmpRecordset.RecordCount >= 1 Then
                     tmpTableData = DisplayIndex(tmpRecordset, True, True, "Ευρετήριο", 7, 0, 1, 2, 3, 4, 5, 6, "BankID", "Τράπεζα", "IssuedByID", "Επωνυμία πελάτη", "Νο αξιογράφου", "Λήξη", "Ποσό", 0, 40, 0, 50, 15, 10, 10, 1, 0, 1, 0, 0, 1, 2)
                     If tmpTableData.strCode <> "" Then

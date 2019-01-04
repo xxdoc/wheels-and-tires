@@ -38,9 +38,9 @@ Begin VB.Form CommonTransactions
          Enabled         =   0   'False
          ForeColor       =   &H80000008&
          Height          =   10065
-         Left            =   13350
+         Left            =   13050
          TabIndex        =   10
-         Top             =   675
+         Top             =   1350
          Width           =   4515
          Begin VB.TextBox Text21 
             Appearance      =   0  'Flat
@@ -2313,7 +2313,7 @@ Begin VB.Form CommonTransactions
          BackStyle       =   0  'Transparent
          Caption         =   "ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ - ΤΙΜΟΛΟΓΙΟ ΠΩΛΗΣΗΣ"
          BeginProperty Font 
-            Name            =   "Arial Narrow"
+            Name            =   "Segoe UI"
             Size            =   14.25
             Charset         =   161
             Weight          =   400
@@ -2322,11 +2322,11 @@ Begin VB.Form CommonTransactions
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00FFFF00&
-         Height          =   315
-         Left            =   9750
+         Height          =   390
+         Left            =   6600
          TabIndex        =   71
-         Top             =   300
-         Width           =   8115
+         Top             =   225
+         Width           =   11265
       End
       Begin VB.Label lblSimple 
          BackColor       =   &H000080FF&
@@ -2841,7 +2841,7 @@ Private Function FindPersonDetails(lngPersonID)
     Set tmpRecordset = NewCheckForMatch("CommonDB", "ID, Description, TaxNo, Profession, Address, City, Phones, VATStateID, TaxOfficeDescription, CountryShortDescription", _
         "((" & txtTable.text, _
         "INNER JOIN TaxOffices ON " & txtTable.text & ".TaxOfficeID = TaxOffices.TaxOfficeID) " & _
-        "INNER JOIN Countries ON " & txtTable.text & ".CountryID = Countries.CountryID)", "ID = " & lngPersonID, "ID")
+        "INNER JOIN Countries ON " & txtTable.text & ".CountryID = Countries.CountryID)", "ID = " & lngPersonID, "", "ID")
     
     If tmpRecordset.RecordCount = 1 Then
         txtInvoicePersonID.text = tmpRecordset!ID
@@ -3947,14 +3947,30 @@ Private Sub cmdIndex_Click(Index As Integer)
     
     Dim tmpTableData As typTableData
     Dim tmpRecordset As Recordset
+    Dim strFieldQuery As String
     
     Select Case Index
         Case 0
             'Συναλλασόμενος
             If txtPersonDescription.text = "" Then Exit Sub
-            Set tmpRecordset = CheckForMatch("CommonDB", txtPersonDescription.text, txtTable.text, IIf(IsNumeric(txtPersonDescription.text), "TaxNo", "Description"), "String", 1, 2)
-            If tmpRecordset.RecordCount > 0 Then
-                tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 4, 0, 1, 2, 13, "ID", "Περιγραφή", "Α.Φ.Μ.", "Ε", 0, 50, 15, 0, 1, 0, 1, 1, "Persons")
+            'Αν έχω δώσει δύο αστεράκια και είμαι στις πωλήσεις
+            If Left(txtPersonDescription.text, 2) = "**" And txtRefersTo.text = "2" Then
+                'Αναζήτηση με βάση τις πινακίδες
+                strFieldQuery = "Invoices.InvoiceRefersToID = 2 AND InStr(Invoices.InvoicePlates,'" & Mid(txtPersonDescription.text, 3, Len(txtPersonDescription.text)) & "')"
+                Set tmpRecordset = NewCheckForMatch("CommonDB", "Customers.ID, Customers.Description, Customers.TaxNo, Invoices.InvoicePlates, Customers.Active", _
+                    "Invoices", _
+                    "INNER JOIN Customers ON Invoices.InvoicePersonID = Customers.ID", strFieldQuery, "GROUP BY Customers.ID, Customers.Description,Customers.TaxNo, Customers.Active, Invoices.InvoicePlates", "Invoices.InvoicePlates")
+                If tmpRecordset.RecordCount > 0 Then
+                    tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 5, 0, 1, 2, 3, 4, "ID", "Επωνυμία", "Α.Φ.Μ.", "Αρ. κυκλοφορίας", "Ε", 0, 50, 15, 15, 0, 1, 0, 1, 1, 1, "Persons")
+                    txtInvoicePlates.text = tmpTableData.strThreeField
+                End If
+            End If
+            'Αναζήτηση με επωνυμία ή περιγραφή όπως πάντα!
+            If Left(txtPersonDescription.text, 2) <> "**" Then
+                Set tmpRecordset = CheckForMatch("CommonDB", txtPersonDescription.text, txtTable.text, IIf(IsNumeric(txtPersonDescription.text), "TaxNo", "Description"), "String", 1, 2)
+                If tmpRecordset.RecordCount > 0 Then
+                    tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 4, 0, 1, 2, 13, "ID", "Περιγραφή", "Α.Φ.Μ.", "Ε", 0, 50, 15, 0, 1, 0, 1, 1, "Persons")
+                End If
             End If
             If tmpTableData.strCode <> "" Then
                 FindPersonDetails tmpTableData.strCode
@@ -4175,7 +4191,7 @@ Private Sub grdCommonTransactions_AfterCommitEdit(ByVal lRow As Long, ByVal lCol
                 Set tmpRecordset = NewCheckForMatch("CommonDB", "ItemID, ItemCategoryID, ItemManufacturerID, CategoryDescription, ManufacturerDescription, ItemDescription, CategoryShortDescription, ItemVATPercent, ItemBalance, ItemActive, CategoryCheckBalance ", _
                     "((Items", _
                     "INNER JOIN Categories ON Items.ItemCategoryID = Categories.CategoryID) " & _
-                    "INNER JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) ", strItemDescription, "CategoryDescription, ManufacturerDescription, ItemDescription")
+                    "INNER JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) ", strItemDescription, "", "CategoryDescription, ManufacturerDescription, ItemDescription")
                 tmpTableData = DisplayIndex(tmpRecordset, True, True, "Ευρετήριο", _
                     11, 0, 1, 2, 3, 5, 4, 6, 7, 8, 9, 10, _
                     "ID", "ID Κατηγορίας", "ID Κατασκευαστή", "Κατηγορία", "Περιγραφή", "Κατασκευαστής", "Συντ. κατηγορίας", "Φ.Π.Α.", "Υπόλοιπο", "", "Ε", _
@@ -4564,7 +4580,7 @@ Private Sub grdCommonTransactions_KeyDown(KeyCode As Integer, Shift As Integer, 
                     Set tmpRecordset = NewCheckForMatch("CommonDB", "ItemID, ItemCategoryID, ItemManufacturerID, CategoryDescription, ManufacturerDescription, ItemDescription, CategoryShortDescription, ItemVATPercent", _
                     "((Items", _
                     "INNER JOIN Categories ON Items.ItemCategoryID = Categories.CategoryID) " & _
-                    "INNER JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) ", "ItemID = " & lngItemID, "CategoryDescription, ManufacturerDescription, ItemDescription")
+                    "INNER JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) ", "ItemID = " & lngItemID, "", "CategoryDescription, ManufacturerDescription, ItemDescription")
                     tmpTableData = DisplayIndex(tmpRecordset, False, False, "Ευρετήριο", 8, 0, 1, 2, 3, 5, 4, 6, 7, "ID", "ID Κατηγορίας", "ID Κατασκευαστή", "Κατηγορία", "Περιγραφή", "Κατασκευαστής", "Συντ. κατηγορίας", "Φ.Π.Α.", 0, 0, 0, 40, 50, 40, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
                     If tmpTableData.strCode <> "" Then
                         grdCommonTransactions.CellValue(lngRow, "ItemID") = tmpTableData.strCode
@@ -4955,7 +4971,7 @@ End Sub
 
 Private Sub txtPersonDescription_Change()
 
-    If txtPersonDescription.text = "" Then ClearFields txtInvoicePersonID, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, txtVATStateID
+    If txtPersonDescription.text = "" Then ClearFields txtInvoicePersonID, txtInvoicePlates, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, txtVATStateID
 
 End Sub
 

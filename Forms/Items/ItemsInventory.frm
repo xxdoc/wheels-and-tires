@@ -2363,11 +2363,10 @@ Private Function CalculatePeriod(myID, myRecordset As Recordset)
     With myRecordset
         Do While !InvoiceIssueDate <= CDate(mskIssueTo.text) And myID = !ItemID
             FillArray curCurrentQty, _
-                CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, ""), _
-                CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "")
-            
+                CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, "", ""), _
+                CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "", "")
             UpdateLastCost myRecordset
-            
+
             UpdateProgressBar Me
             .MoveNext
             DoEvents
