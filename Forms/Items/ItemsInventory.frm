@@ -2363,11 +2363,10 @@ Private Function CalculatePeriod(myID, myRecordset As Recordset)
     With myRecordset
         Do While !InvoiceIssueDate <= CDate(mskIssueTo.text) And myID = !ItemID
             FillArray curCurrentQty, _
-                CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, ""), _
-                CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "")
-            
+                CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, "", ""), _
+                CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "", "")
             UpdateLastCost myRecordset
-            
+
             UpdateProgressBar Me
             .MoveNext
             DoEvents
@@ -2484,7 +2483,7 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
             cmdButton_Click 1
         Case vbKeyP And CtrlDown = 4 And cmdButton(2).Enabled
             cmdButton_Click 2
-        Case vbKeyP And CtrlDown = 5 And cmdButton(3).Enabled
+        Case vbKeyP And CtrlDown = 8 And cmdButton(3).Enabled
             cmdButton_Click 3
         Case vbKeyEscape
             If cmdButton(5).Enabled Then cmdButton_Click 5: Exit Function

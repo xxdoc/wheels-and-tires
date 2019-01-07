@@ -880,8 +880,8 @@ Private Function CalculatePreviousPeriod(myID, myRecordset As Recordset)
         With myRecordset
             Do While !InvoiceIssueDate < CDate(mskIssueFrom.text) And myID = !InvoicePersonID
                 FillArray curPrevious, _
-                    CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID), _
-                    CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID)
+                    CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text), _
+                    CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text)
                 UpdateProgressBar Me
                 .MoveNext
                 DoEvents
@@ -1074,7 +1074,7 @@ End Function
 
 Private Function RefreshList()
 
-    On Error GoTo ErrTrap
+    'On Error GoTo ErrTrap
     
     'SQL
     Dim intIndex As Byte
@@ -1096,6 +1096,7 @@ Private Function RefreshList()
     Dim lngCol As Long
     Dim lngPersonID As Long
     Dim strPersonDescription As String
+    Dim datLastInvoiceDate As Date
     
     'Αρχικές τιμές
     ReDim curPrevious(2)
@@ -1201,16 +1202,12 @@ Private Function RefreshList()
         Do While Not .EOF
             If !InvoicePersonID = lngPersonID Then
                 If !InvoiceIssueDate < CDate(mskIssueFrom.text) Then
-                    '///
                     CalculatePreviousPeriod lngPersonID, rstRecordset
-                    '///
                     If Not blnProcessing Then Exit Do
                 Else
-                    '///
                     FillArray curPeriod, _
-                        CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID), _
-                        CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID)
-                    '///
+                        CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text), _
+                        CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text)
                     UpdateProgressBar Me
                     rstRecordset.MoveNext
                     DoEvents
@@ -1218,11 +1215,10 @@ Private Function RefreshList()
                 End If
             Else
                 If txtOptionID.text = "1" Or (txtOptionID.text = "2" And (curPrevious(2) + curPeriod(0) - curPeriod(1) <> 0)) Or (txtOptionID.text = "3" And (curPeriod(0) <> 0 Or curPeriod(1) <> 0)) Then
-                    '///
+                    GoSub StoreLastInvoiceDate
                     GoSub AddLine
                     ColorizeCells grdPersonsBalanceSheet, lngRow, "PreviousBalance", "Debit", "Credit", "Balance"
                     CalculateGrandTotals curPrevious(0), curPrevious(1), curPrevious(2), curPeriod(0), curPeriod(1), curPrevious(2) + curPeriod(0) - curPeriod(1)
-                    '///
                 End If
                 ClearVariables curPrevious(0), curPrevious(1), curPrevious(2), curPeriod(0), curPeriod(1)
                 GoSub UpdateAreas
@@ -1232,11 +1228,10 @@ Private Function RefreshList()
             If .RecordCount <> 0 Then
                 .MoveLast
                 If txtOptionID.text = "1" Or (txtOptionID.text = "2" And (curPrevious(2) + curPeriod(0) - curPeriod(1) <> 0)) Or (txtOptionID.text = "3" And (curPeriod(0) <> 0 Or curPeriod(1) <> 0)) Then
-                    '///
+                GoSub StoreLastInvoiceDate
                     GoSub AddLine
                     ColorizeCells grdPersonsBalanceSheet, lngRow, "PreviousBalance", "Debit", "Credit", "Balance"
                     CalculateGrandTotals curPrevious(0), curPrevious(1), curPrevious(2), curPeriod(0), curPeriod(1), curPrevious(2) + curPeriod(0) - curPeriod(1)
-                    '///
                 End If
             End If
         End If
@@ -1275,6 +1270,7 @@ AddLine:
         lngRow = .RowCount
         .CellValue(.RowCount, "PersonID") = lngPersonID
         .CellValue(.RowCount, "PersonDescription") = strPersonDescription
+        .CellValue(.RowCount, "LastInvoiceIssueDate") = datLastInvoiceDate
         .CellValue(.RowCount, "PreviousDebit") = curPrevious(0)
         .CellValue(.RowCount, "PreviousCredit") = curPrevious(1)
         .CellValue(.RowCount, "PreviousBalance") = curPrevious(2)
@@ -1289,9 +1285,17 @@ AddLine:
 UpdateAreas:
     lngPersonID = rstRecordset!InvoicePersonID
     strPersonDescription = rstRecordset!Description
+    datLastInvoiceDate = rstRecordset!InvoiceIssueDate
     
     Return
-
+    
+StoreLastInvoiceDate:
+    rstRecordset.MovePrevious
+    datLastInvoiceDate = rstRecordset!InvoiceIssueDate
+    rstRecordset.MoveNext
+    
+    Return
+    
 ErrTrap:
     blnError = True
     ClearFields grdPersonsBalanceSheet, frmProgress
@@ -1322,14 +1326,14 @@ Private Sub Form_Activate()
     If Me.Tag = "True" Then
         Me.Tag = "False"
         AddColumnsToGrid grdPersonsBalanceSheet, 44, GetSetting(strAppTitle, "Layout Strings", "grdPersonsBalanceSheet"), _
-            "10NCNPersonID,50NLNPersonDescription,10NRFXPreviousDebit,10NRFXPreviousCredit,10NRFXPreviousBalance,10NRFDebit,10NRFCredit,10NRFBalance,03NCNSelected", _
-            "ID,Επωνυμία,Προηγούμενη χρέωση,Προηγούμενη πίστωση,Προηγούμενο υπόλοιπο,Χρέωση,Πίστωση,Υπόλοιπο,Ε"
+            "10NCNPersonID,50NLNPersonDescription,10NCDXLastInvoiceIssueDate,10NRFXPreviousDebit,10NRFXPreviousCredit,10NRFXPreviousBalance,10NRFDebit,10NRFCredit,10NRFBalance,03NCNSelected", _
+            "ID,Επωνυμία,Τελευταία εγγραφή,Προηγούμενη χρέωση,Προηγούμενη πίστωση,Προηγούμενο υπόλοιπο,Χρέωση,Πίστωση,Υπόλοιπο,Ε"
         Me.Refresh
         frmCriteria(0).Visible = True
         mskIssueFrom.SetFocus
     End If
     
-    'AddDummyLines grdPersonsBalanceSheet, 6, 50, 13, 13, 13, 13, 13, 13, 4
+    'AddDummyLines grdPersonsBalanceSheet, 6, 50, 10, 13, 13, 13, 13, 13, 13, 4
     
 End Sub
 
@@ -1354,7 +1358,7 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
             cmdButton_Click 1
         Case vbKeyP And CtrlDown = 4 And cmdButton(2).Enabled
             cmdButton_Click 2
-        Case vbKeyP And CtrlDown = 5 And cmdButton(3).Enabled
+        Case vbKeyP And CtrlDown = 8 And cmdButton(3).Enabled
             cmdButton_Click 3
         Case vbKeyEscape
             If cmdButton(4).Enabled Then cmdButton_Click 4: Exit Function

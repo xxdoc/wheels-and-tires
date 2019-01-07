@@ -2450,7 +2450,7 @@ Private Sub cmdIndex_Click(Index As Integer)
                 "((Items", _
                 "INNER JOIN Categories ON Items.ItemCategoryID = Categories.CategoryID) " & _
                 "INNER JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) ", _
-                "Left(ItemQuickDescription, " & Len(txtItemDescription.text) & ") = '" & txtItemDescription.text & "'" & strCategoryCriteria & "", "CategoryDescription, ManufacturerDescription, ItemDescription")
+                "Left(ItemQuickDescription, " & Len(txtItemDescription.text) & ") = '" & txtItemDescription.text & "'" & strCategoryCriteria & "", "", "CategoryDescription, ManufacturerDescription, ItemDescription")
             tmpTableData = DisplayIndex(tmpRecordset, True, True, "Ευρετήριο", 7, 0, 1, 2, 3, 4, 5, 6, "ID", "ID Κατηγορίας", "ID Κατασκευαστή", "Κατηγορία", "Κατασκευαστής", "Περιγραφή", "Συντ. κατηγορίας", 0, 0, 0, 40, 40, 50, 0, 1, 0, 0, 0, 0, 0, 0)
             If tmpTableData.strCode <> "" Then
                 txtItemID.text = tmpTableData.strCode
@@ -2523,7 +2523,7 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
             cmdButton_Click 1
         Case vbKeyP And CtrlDown = 4 And cmdButton(2).Enabled
             cmdButton_Click 2
-        Case vbKeyP And CtrlDown = 5 And cmdButton(3).Enabled
+        Case vbKeyP And CtrlDown = 8 And cmdButton(3).Enabled
             cmdButton_Click 3
         Case vbKeyEscape
             If cmdButton(4).Enabled Then cmdButton_Click 4: Exit Function

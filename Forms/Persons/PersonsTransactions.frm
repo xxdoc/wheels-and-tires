@@ -20,110 +20,6 @@ Begin VB.Form PersonsTransactions
    ScaleHeight     =   13320
    ScaleWidth      =   15435
    ShowInTaskbar   =   0   'False
-   Begin VB.Frame frmFrame 
-      BackColor       =   &H00C0E0FF&
-      BorderStyle     =   0  'None
-      Height          =   7140
-      Index           =   1
-      Left            =   4275
-      TabIndex        =   27
-      Top             =   1125
-      Width           =   10215
-      Begin iGrid300_10Tec.iGrid grdPersonsTransactionsChecks 
-         Height          =   5715
-         Left            =   450
-         TabIndex        =   28
-         Top             =   450
-         Width           =   9315
-         _ExtentX        =   16431
-         _ExtentY        =   10081
-         Appearance      =   0
-         BackColor       =   14737632
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Ubuntu Condensed"
-            Size            =   9.75
-            Charset         =   161
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   -2147483631
-         FrozenColsEdgeColor=   0
-         HighlightBackColor=   12648384
-         HighlightForeColor=   0
-         HighlightForeColorNoFocus=   0
-      End
-      Begin UserControls.newFloat mskTotalChecks 
-         Height          =   465
-         Left            =   8025
-         TabIndex        =   29
-         TabStop         =   0   'False
-         Top             =   6225
-         Width           =   1440
-         _ExtentX        =   2540
-         _ExtentY        =   820
-         Enabled         =   0   'False
-         Alignment       =   1
-         ForeColor       =   0
-         Text            =   "0,00"
-         BackColor       =   4210688
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Ubuntu Condensed"
-            Size            =   12
-            Charset         =   161
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-      End
-      Begin VB.Shape shpWedge 
-         BackColor       =   &H00C0C0FF&
-         BackStyle       =   1  'Opaque
-         BorderStyle     =   0  'Transparent
-         FillColor       =   &H00008000&
-         Height          =   465
-         Index           =   7
-         Left            =   8475
-         Top             =   6675
-         Visible         =   0   'False
-         Width           =   465
-      End
-      Begin VB.Shape shpWedge 
-         BackColor       =   &H0000FFFF&
-         BackStyle       =   1  'Opaque
-         BorderStyle     =   0  'Transparent
-         FillColor       =   &H00008000&
-         Height          =   1140
-         Index           =   6
-         Left            =   7575
-         Top             =   5925
-         Visible         =   0   'False
-         Width           =   465
-      End
-      Begin VB.Label lblLabel 
-         AutoSize        =   -1  'True
-         BackColor       =   &H000080FF&
-         Caption         =   "Σύνολο"
-         BeginProperty Font 
-            Name            =   "Ubuntu Condensed"
-            Size            =   9.75
-            Charset         =   161
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FFFFFF&
-         Height          =   315
-         Index           =   0
-         Left            =   7050
-         TabIndex        =   30
-         Top             =   6300
-         Width           =   540
-      End
-   End
    Begin VB.Frame frmButtonFrame 
       BackColor       =   &H8000000A&
       BorderStyle     =   0  'None
@@ -666,7 +562,7 @@ Begin VB.Form PersonsTransactions
       Width           =   10215
       Begin UserControls.newFloat mskTotal 
          Height          =   465
-         Left            =   7725
+         Left            =   7425
          TabIndex        =   16
          TabStop         =   0   'False
          Top             =   6225
@@ -861,7 +757,7 @@ Begin VB.Form PersonsTransactions
          FillColor       =   &H00008000&
          Height          =   840
          Index           =   4
-         Left            =   7275
+         Left            =   6975
          Top             =   6375
          Visible         =   0   'False
          Width           =   465
@@ -998,7 +894,7 @@ Begin VB.Form PersonsTransactions
          ForeColor       =   &H00FFFFFF&
          Height          =   315
          Index           =   5
-         Left            =   6750
+         Left            =   6450
          TabIndex        =   20
          Top             =   6300
          Width           =   540
@@ -1087,6 +983,110 @@ Begin VB.Form PersonsTransactions
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   8388736
+   End
+   Begin VB.Frame frmFrame 
+      BackColor       =   &H00C0E0FF&
+      BorderStyle     =   0  'None
+      Height          =   7140
+      Index           =   1
+      Left            =   4275
+      TabIndex        =   27
+      Top             =   1125
+      Width           =   10215
+      Begin iGrid300_10Tec.iGrid grdPersonsTransactionsChecks 
+         Height          =   5715
+         Left            =   450
+         TabIndex        =   28
+         Top             =   450
+         Width           =   9315
+         _ExtentX        =   16431
+         _ExtentY        =   10081
+         Appearance      =   0
+         BackColor       =   14737632
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   -2147483631
+         FrozenColsEdgeColor=   0
+         HighlightBackColor=   12648384
+         HighlightForeColor=   0
+         HighlightForeColorNoFocus=   0
+      End
+      Begin UserControls.newFloat mskTotalChecks 
+         Height          =   465
+         Left            =   8025
+         TabIndex        =   29
+         TabStop         =   0   'False
+         Top             =   6225
+         Width           =   1440
+         _ExtentX        =   2540
+         _ExtentY        =   820
+         Enabled         =   0   'False
+         Alignment       =   1
+         ForeColor       =   0
+         Text            =   "0,00"
+         BackColor       =   4210688
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   12
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin VB.Shape shpWedge 
+         BackColor       =   &H00C0C0FF&
+         BackStyle       =   1  'Opaque
+         BorderStyle     =   0  'Transparent
+         FillColor       =   &H00008000&
+         Height          =   465
+         Index           =   7
+         Left            =   8475
+         Top             =   6675
+         Visible         =   0   'False
+         Width           =   465
+      End
+      Begin VB.Shape shpWedge 
+         BackColor       =   &H0000FFFF&
+         BackStyle       =   1  'Opaque
+         BorderStyle     =   0  'Transparent
+         FillColor       =   &H00008000&
+         Height          =   1140
+         Index           =   6
+         Left            =   7575
+         Top             =   5925
+         Visible         =   0   'False
+         Width           =   465
+      End
+      Begin VB.Label lblLabel 
+         AutoSize        =   -1  'True
+         BackColor       =   &H000080FF&
+         Caption         =   "Σύνολο"
+         BeginProperty Font 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Index           =   0
+         Left            =   7050
+         TabIndex        =   30
+         Top             =   6300
+         Width           =   540
+      End
    End
    Begin VB.Shape shpBridge 
       BackColor       =   &H00E0E0E0&
@@ -1889,7 +1889,7 @@ Private Sub grdPersonsTransactionsChecks_AfterCommitEdit(ByVal lRow As Long, ByV
                     "INNER JOIN Banks ON Checks.CheckBankID = Banks.BankID) " & _
                     "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) " & _
                     "INNER JOIN " & txtOppositeTable.text & " ON Invoices.InvoicePersonID = " & txtOppositeTable.text & ".ID", _
-                    "CheckRefersToID = " & Val(txtRefersTo.text) + 1 & " AND InStr(CheckNo,'" & grdPersonsTransactionsChecks.CellValue(lRow, lCol) & "')", "")
+                    "CheckRefersToID = " & Val(txtRefersTo.text) + 1 & " AND InStr(CheckNo,'" & grdPersonsTransactionsChecks.CellValue(lRow, lCol) & "')", "", "")
                 If tmpRecordset.RecordCount >= 1 Then
                     tmpTableData = DisplayIndex(tmpRecordset, True, True, "Ευρετήριο", 7, 0, 1, 2, 3, 4, 5, 6, "BankID", "Τράπεζα", "IssuedByID", "Επωνυμία πελάτη", "Νο αξιογράφου", "Λήξη", "Ποσό", 0, 40, 0, 50, 15, 10, 10, 1, 0, 1, 0, 0, 1, 2)
                     If tmpTableData.strCode <> "" Then
@@ -1978,7 +1978,7 @@ Private Sub grdPersonsTransactions_AfterCommitEdit(ByVal lRow As Long, ByVal lCo
             'Επωνυμία
             If grdPersonsTransactions.CellValue(lRow, 2) <> "" Then
                 Set tmpRecordset = CheckForMatch("CommonDB", grdPersonsTransactions.CellValue(lRow, lCol), txtTable.text, "Description", "String", 1, 2)
-                tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 3, 0, 1, 2, "ID", "Περιγραφή", "Α.Φ.Μ.", 0, 50, 10, 1, 0, 1)
+                tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 4, 0, 1, 2, 13, "ID", "Περιγραφή", "Α.Φ.Μ.", "Ε", 0, 50, 15, 0, 1, 0, 1, 1, "Persons")
                 grdPersonsTransactions.CellValue(lRow, 1) = tmpTableData.strCode
                 grdPersonsTransactions.CellValue(lRow, 2) = tmpTableData.strOneField
                 If tmpTableData.strCode <> "" Then

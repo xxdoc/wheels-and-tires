@@ -434,7 +434,7 @@ Function FormatAsSelection(myFormat)
 
 End Function
 
-Function NewCheckForMatch(DBToUse, myGivenFields, myTable, myJoins, myCriteria, myOrderColumns) As Recordset
+Function NewCheckForMatch(DBToUse, myGivenFields, myTable, myJoins, myCriteria, myGroupByColumns, myOrderColumns) As Recordset
 
     On Error GoTo ErrTrap
     
@@ -453,7 +453,7 @@ Function NewCheckForMatch(DBToUse, myGivenFields, myTable, myJoins, myCriteria, 
         myCriteria = "1 = 1"
     End If
     
-    strSQL = "SELECT " & IIf(myGivenFields = "", "*", myGivenFields) & " FROM " & myTable & " " & myJoins & IIf(myCriteria <> "", " WHERE " & myCriteria, "") & IIf(myOrderColumns <> "", " ORDER BY " & myOrderColumns, "")
+    strSQL = "SELECT " & IIf(myGivenFields = "", "*", myGivenFields) & " FROM " & myTable & " " & myJoins & IIf(myCriteria <> "", " WHERE " & myCriteria, "") & IIf(myGroupByColumns <> "", myGroupByColumns, "") & IIf(myOrderColumns <> "", " ORDER BY " & myOrderColumns, "")
     
     TempQuery.SQL = strSQL
     
@@ -1615,6 +1615,7 @@ Function DisplayIndex(tmpRecordset, blnShowList, blnIncludeOneRecordCount, strTi
     
     Dim lngRow As Long
     Dim lngCol As Long
+    Dim lngActiveColumn As Long
     
     Dim TempFields As typTableData
     
@@ -1642,11 +1643,21 @@ Function DisplayIndex(tmpRecordset, blnShowList, blnIncludeOneRecordCount, strTi
                         CommonIndex.grdGrid.Width = CommonIndex.grdGrid.Width + 90
                     Loop
                     GoSub ResizeForm
+                    GoSub PositionInactiveRecordsCheckBox
                 End If
                 With CommonIndex
                     .lblTitle.Caption = strTitle
+                    .chkShowInactiveRecords.Visible = False
+                    
+                    If tmpArguments(UBound(tmpArguments)) = "Persons" Then
+                        lngActiveColumn = tmpGroupElements
+                        .chkShowInactiveRecords.Visible = True
+                        GoSub DisplayOnlyActiveItems
+                    End If
                     
                     If tmpArguments(UBound(tmpArguments)) = "Items" Then
+                        lngActiveColumn = 10
+                        
                         GoSub DisplayOnlyWithCategoryCheckBalanceIsTrue
                         GoSub DisplayOnlyActiveItems
                         GoSub PaintWithAlternateColor
@@ -1784,7 +1795,14 @@ DisplayOnlyWithCategoryCheckBalanceIsTrue:
 DisplayOnlyActiveItems:
     
     For lngRow = 1 To CommonIndex.grdGrid.RowCount
-        CommonIndex.grdGrid.RowVisible(lngRow) = CommonIndex.grdGrid.CellValue(lngRow, 10)
+        If CommonIndex.grdGrid.RowVisible(lngRow) <> CommonIndex.grdGrid.CellValue(lngRow, lngActiveColumn) Then
+            For lngCol = 1 To CommonIndex.grdGrid.ColCount
+                CommonIndex.grdGrid.CellFont(lngRow, lngCol).Italic = True
+                CommonIndex.grdGrid.CellForeColor(lngRow, lngCol) = &HC0C0C0
+                CommonIndex.grdGrid.RowVisible(lngRow) = False
+            Next lngCol
+        End If
+        
     Next lngRow
     
     Return
@@ -1847,6 +1865,12 @@ ResizeForm:
         .Width = .shpShape.Width + 470
         .frmButtonFrame.Left = (.Width / 2) - (.frmButtonFrame.Width / 2)
     End With
+
+    Return
+    
+PositionInactiveRecordsCheckBox:
+
+    CommonIndex.chkShowInactiveRecords.Left = CommonIndex.Width - CommonIndex.chkShowInactiveRecords.Width - 320
 
     Return
 
@@ -1965,7 +1989,7 @@ Function MainSaveRecord(SelectedDB, Table, Status, FormTitle, IndexField, CodeTo
             End If
         End If
         For lngFieldNo = 0 To UBound(Fields)
-            Debug.Print .Fields(lngFieldNo + 1).Name & " " & Fields(lngFieldNo)
+            'Debug.Print .Fields(lngFieldNo + 1).Name & " " & Fields(lngFieldNo)
             .Fields(lngFieldNo + 1).Value = Trim(Fields(lngFieldNo))
         Next
         .Update

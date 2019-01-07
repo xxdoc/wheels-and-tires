@@ -927,8 +927,8 @@ Private Function CalculatePreviousPeriod(myID, myRecordset As Recordset)
         With myRecordset
             Do While !InvoiceIssueDate < CDate(mskIssueFrom.text) And myID = !ItemID
                 FillArray curPrevious, _
-                    CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, ""), _
-                    CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "")
+                    CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, "", ""), _
+                    CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "", "")
                 UpdateProgressBar Me
                 .MoveNext
                 DoEvents
@@ -1265,10 +1265,10 @@ Private Function RefreshList()
                     If Not blnProcessing Then Exit Do
                 Else
                     FillArray curPeriod, _
-                        CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, ""), _
-                        CalculateDebitCreditAndBalance("Debit", "Items", !TotalNetPostDiscount, "", "", !CodeInventoryValue, ""), _
-                        CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, ""), _
-                        CalculateDebitCreditAndBalance("Credit", "Items", !TotalNetPostDiscount, "", "", !CodeInventoryValue, "")
+                        CalculateDebitCreditAndBalance("Debit", "Items", !Qty, "", "", !CodeInventoryQty, "", ""), _
+                        CalculateDebitCreditAndBalance("Debit", "Items", !TotalNetPostDiscount, "", "", !CodeInventoryValue, "", ""), _
+                        CalculateDebitCreditAndBalance("Credit", "Items", !Qty, "", "", !CodeInventoryQty, "", ""), _
+                        CalculateDebitCreditAndBalance("Credit", "Items", !TotalNetPostDiscount, "", "", !CodeInventoryValue, "", "")
                     UpdateProgressBar Me
                     rstRecordset.MoveNext
                     DoEvents
@@ -1419,7 +1419,7 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
             cmdButton_Click 1
         Case vbKeyP And CtrlDown = 4 And cmdButton(2).Enabled
             cmdButton_Click 2
-        Case vbKeyP And CtrlDown = 5 And cmdButton(3).Enabled
+        Case vbKeyP And CtrlDown = 8 And cmdButton(3).Enabled
             cmdButton_Click 3
         Case vbKeyEscape
             If cmdButton(4).Enabled Then cmdButton_Click 4: Exit Function

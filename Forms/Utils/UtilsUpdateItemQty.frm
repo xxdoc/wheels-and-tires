@@ -308,10 +308,10 @@ UpdateItemWithQtyBalance:
     rsItems.Seek "=", lngItemID
     If Not rsItems.NoMatch Then
         If rsItems!ItemBalance <> lngQty Then
+            UpdateLogFile "Table Items Description = " & rsItems!ItemDescription & " Τρέχουσα ποσότητα: " & rsItems!ItemBalance & " - Σωστή ποσότητα: " & lngQty
             rsItems.Edit
             rsItems!ItemBalance = lngQty
             rsItems.Update
-            UpdateLogFile "Table Items ID = " & lngItemID & " Έγινε ενημέρωση ποσότητας"
         End If
     End If
     

@@ -1798,11 +1798,11 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
             cmdButton_Click 1
         Case vbKeyT And CtrlDown = 4 And cmdButton(2).Enabled
             cmdButton_Click 2
-        Case vbKeyT And CtrlDown = 5 And cmdButton(3).Enabled
+        Case vbKeyT And CtrlDown = 8 And cmdButton(3).Enabled
             cmdButton_Click 3
         Case vbKeyP And CtrlDown = 4 And cmdButton(4).Enabled
             cmdButton_Click 4
-        Case vbKeyP And CtrlDown = 5 And cmdButton(5).Enabled
+        Case vbKeyP And CtrlDown = 8 And cmdButton(5).Enabled
             cmdButton_Click 5
         Case vbKeyEscape
             If cmdButton(6).Enabled Then cmdButton_Click 6: Exit Function
