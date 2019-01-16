@@ -391,9 +391,6 @@ Function CreatePDF(myPaperSize, myOrientation, myTopMargin, myLeftMargin, myWind
             .PageSettings.Orientation = myOrientation
             .PageSettings.LeftMargin = myLeftMargin * 100
             .PageSettings.TopMargin = myTopMargin * 100
-            
-            .CodeDescription = "ΤΙΜΟΛΟΓΙΟ - ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ - ΔΟΚΙΜΗ"
-                        
         End With
     
     End If
@@ -477,9 +474,10 @@ Function PrintPDF(myPrinterName)
 
 End Function
 
-Function ShowPDF()
+Function ShowPDF(invoiceTrnID As Long)
 
-    With rptReport
+    With rptInvoiceA
+        .Tag = invoiceTrnID
         .Restart
         .Zoom = -2
         .WindowState = vbMaximized
@@ -1343,7 +1341,7 @@ Function UpdateProgressBar(frmForm)
        
 End Function
 
-Function CheckForMatch(DBToUse, myGivenField, myTable, myTableField, myFieldType, myShowInList, myOrder, Optional checkWholeField As Boolean) As Recordset
+Function CheckForMatch(DBToUse, myFieldValue, myTable, myFieldLookup, myFieldType, myShowInList, myOrder, Optional checkWholeField As Boolean) As Recordset
 
     On Error GoTo ErrTrap
     
@@ -1368,7 +1366,7 @@ Function CheckForMatch(DBToUse, myGivenField, myTable, myTableField, myFieldType
     
     Do While True
         'Αν δεν έχω δώσει τίποτα
-        If Len(myGivenField) = 0 Then
+        If Len(myFieldValue) = 0 Then
             If myShowInList <> "" Then
                 TempQuery.SQL = "SELECT * FROM " & myTable & " WHERE ShowInList = " & myShowInList & " ORDER BY " & myOrder
             Else
@@ -1380,33 +1378,33 @@ Function CheckForMatch(DBToUse, myGivenField, myTable, myTableField, myFieldType
         If myFieldType = "Numeric" Then
             TempQuery.SQL = "PARAMETERS lngCode Long; " _
             & "SELECT * FROM " & myTable & " WHERE " _
-            & "[" & myTableField & "] = " & Val(myGivenField) & " "
+            & "[" & myFieldLookup & "] = " & Val(myFieldValue) & " "
             If myShowInList <> 0 Then TempQuery.SQL = TempQuery.SQL & " AND ShowInList = " & myShowInList & " ORDER BY " & myOrder
-            TempQuery![lngCode] = Val(myGivenField)
+            TempQuery![lngCode] = Val(myFieldValue)
             Exit Do
         'Αν έχω δώσει κείμενο
         Else
-            If Left(myGivenField, 1) <> "*" Then
+            If Left(myFieldValue, 1) <> "*" Then
                 TempQuery.SQL = "PARAMETERS strDescription String; " _
                 & "SELECT * FROM " & myTable & " WHERE " _
-                & IIf(Not checkWholeField, "Left(" & myTableField & ",Len(strDescription)) = " & "'" & myGivenField & "' ", "" & myTableField & " = '" & myGivenField & "'")
+                & IIf(Not checkWholeField, "Left(" & myFieldLookup & ",Len(strDescription)) = " & "'" & myFieldValue & "' ", "" & myFieldLookup & " = '" & myFieldValue & "'")
                 If myShowInList <> 0 Then TempQuery.SQL = TempQuery.SQL & " AND ShowInList = " & myShowInList & " ORDER BY " & myOrder
-                TempQuery![strDescription] = myGivenField
+                TempQuery![strDescription] = myFieldValue
             Else
-                If Len(myGivenField) > 1 Then
+                If Len(myFieldValue) > 1 Then
                     TempQuery.SQL = "PARAMETERS strDescription String; " _
                     & "SELECT * FROM " & myTable & " WHERE " _
-                    & "InStr([" & myTableField & "], " & "'" & Right(myGivenField, Len(myGivenField) - 1) & "'" & ") "
+                    & "InStr([" & myFieldLookup & "], " & "'" & Right(myFieldValue, Len(myFieldValue) - 1) & "'" & ") "
                     If myShowInList <> 99 Then
                         TempQuery.SQL = TempQuery.SQL & " AND ShowInList = " & myShowInList & " ORDER BY " & myOrder
-                        TempQuery![strDescription] = Right(myGivenField, Len(myGivenField) - 1)
+                        TempQuery![strDescription] = Right(myFieldValue, Len(myFieldValue) - 1)
                     End If
                 Else
                     TempQuery.SQL = "PARAMETERS strDescription String; " _
                     & "SELECT * FROM " & myTable
                     If myShowInList <> 99 Then
                         TempQuery.SQL = TempQuery.SQL & " WHERE ShowInList = " & myShowInList & " ORDER BY " & myOrder
-                        TempQuery![strDescription] = myGivenField
+                        TempQuery![strDescription] = myFieldValue
                     End If
                 End If
             End If
@@ -1876,7 +1874,7 @@ PositionInactiveRecordsCheckBox:
 
 End Function
 
-Function PrintRecords(myForm As Form, myWhatToDo, myDisplayCompletionMessage, myInvoiceOrReport)
+Function PrintRecords(myForm As Form, myWhatToDo, myDisplayCompletionMessage, myInvoiceOrReport, Optional myPrinterCodeID, Optional myInvoiceTrnID)
 
     ' strCode = Ονομα
     ' strOneField = Φιλική ονομασία
@@ -1904,35 +1902,32 @@ Function PrintRecords(myForm As Form, myWhatToDo, myDisplayCompletionMessage, my
     Dim tmpRecordset As Recordset
     
     If myWhatToDo = "Print" Then
-        Set tmpRecordset = CheckForMatch("PrintersDB", 1, "Printers", myInvoiceOrReport, "Numeric", 1, 1)
-        If tmpRecordset.RecordCount > 0 Then
-            tmpTableData = DisplayIndex(tmpRecordset, True, False, "Εκτυπωτές", 15, _
-                1, 2, 3, 4, 5, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, _
-                "Ονομα", "Φιλική ονομασία", "ID Τύπου", "Ονομα γραμματοσειράς", "Μέγεθος γραμματοσειράς", "String σήμανσης", "Υψος παραστατικού", "Γραμμές παραστατικού", "Επάνω περιθώριο παραστατικού", "Κωδ. χαρτιού", "ID προσανατολισμού", "Υψος αναφορών", "Γραμμές αναφορών", "Επάνω περιθώριο αναφορών", "Αριστερο περιθώριο αναφορών", _
-                0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, _
-                0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-            With tmpTableData
-                If .strCode <> "" Then
-                    If PrinterExists(.strCode) Then
-                        If myInvoiceOrReport = "PrinterPrintsInvoicesID" Then strFileName = myForm.CreateUnicodeFile(.strTwoField, .strFiveField, Val(.strSixField), Val(.strSevenField), Val(.strEightField), 0) 'Παραστατικά - Πάντα φτιάχνω το unicode (ID τύπου εκτυπωτή, string σήμανσης = 5, ύψος = 6, αναλυτικές γραμμές = 7, επάνω περιθώριο = 8, αριστερό περιθώριο = 9)
-                        If myInvoiceOrReport = "PrinterPrintsReportsID" Then strFileName = myForm.CreateUnicodeFile(.strTwoField, "", Val(.strElevenField), Val(.strTwelveField), Val(.strThirteenField), Val(.strFourteenField)) 'Αναφορές - Πάντα φτιάχνω το unicode (string σήμανσης = "", ύψος = 11, αναλυτικές γραμμές = 12, επάνω περιθώριο = 13, αριστερό περιθώριο = 14)
-                        If .strTwoField = "1" Then
-                            strFileName = ConvertToAsciiFile(strFileName, strAsciiFile)
-                        Else
-                            CreatePDF Val(tmpTableData.strNineField), Val(tmpTableData.strTenField), Val(tmpTableData.strThirteenField), Val(tmpTableData.strFourteenField), myForm.lblTitle.Caption, tmpTableData.strThreeField, Val(tmpTableData.strFourField), myInvoiceOrReport  'Πάντα φτιάχνω το pdf
-                            If myInvoiceOrReport = "PrinterPrintsReportsID" And blnPreviewReports Then ShowPDF myInvoiceOrReport
-                            If myInvoiceOrReport = "PrinterPrintsReportsID" And Not blnPreviewReports Then PrintPDF .strCode
-                        End If
-                    Else
-                        If MyMsgBox(4, strAppTitle, strMessages(18), 1) Then
-                        End If
-                        Exit Function
-                    End If
-                End If
-            End With
+        'Αν τυπώνω το τιμολογιο, βρισκω τον εκτυπωτη
+        If Not IsNull(myPrinterCodeID) Then
+            Set tmpRecordset = CheckForMatch("PrintersDB", myPrinterCodeID, "Printers", "PrinterID", "Numeric", 1, 1)
         Else
-             DisplayMessage IIf(myInvoiceOrReport = "Report", 5, 61), 4, 1, ""
+            Set tmpRecordset = CheckForMatch("PrintersDB", 1, "Printers", myInvoiceOrReport, "Numeric", 1, 1)
         End If
+        If tmpRecordset.RecordCount = 0 Then DisplayMessage IIf(myInvoiceOrReport = "Report", 5, 61), 4, 1, "": Exit Function
+        tmpTableData = DisplayIndex(tmpRecordset, True, False, "Εκτυπωτές", 15, 1, 2, 3, 4, 5, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, "Ονομα", "Φιλική ονομασία", "ID Τύπου", "Ονομα γραμματοσειράς", "Μέγεθος γραμματοσειράς", "String σήμανσης", "Υψος παραστατικού", "Γραμμές παραστατικού", "Επάνω περιθώριο παραστατικού", "Κωδ. χαρτιού", "ID προσανατολισμού", "Υψος αναφορών", "Γραμμές αναφορών", "Επάνω περιθώριο αναφορών", "Αριστερο περιθώριο αναφορών", 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+        With tmpTableData
+            If .strCode <> "" Then
+                If PrinterExists(.strCode) Then
+                    If myInvoiceOrReport = "PrinterPrintsInvoicesID" Then strFileName = myForm.CreateUnicodeFile(.strTwoField, .strFiveField, Val(.strSixField), Val(.strSevenField), Val(.strEightField), 0) 'Παραστατικά - Πάντα φτιάχνω το unicode (ID τύπου εκτυπωτή, string σήμανσης = 5, ύψος = 6, αναλυτικές γραμμές = 7, επάνω περιθώριο = 8, αριστερό περιθώριο = 9)
+                    If myInvoiceOrReport = "PrinterPrintsReportsID" Then strFileName = myForm.CreateUnicodeFile(.strTwoField, "", Val(.strElevenField), Val(.strTwelveField), Val(.strThirteenField), Val(.strFourteenField)) 'Αναφορές - Πάντα φτιάχνω το unicode (string σήμανσης = "", ύψος = 11, αναλυτικές γραμμές = 12, επάνω περιθώριο = 13, αριστερό περιθώριο = 14)
+                    If .strTwoField = "1" Then strFileName = ConvertToAsciiFile(strFileName, strAsciiFile) 'Αν ο εκτυπωτής είναι dot matrix, μετατρέπω το unicode σε ascii
+                    If .strTwoField <> "1" Then 'Αν ο εκτυπωτής ΔΕΝ είναι dot matrix
+                        CreatePDF Val(tmpTableData.strNineField), Val(tmpTableData.strTenField), Val(tmpTableData.strThirteenField), Val(tmpTableData.strFourteenField), myForm.lblTitle.Caption, tmpTableData.strThreeField, Val(tmpTableData.strFourField), myInvoiceOrReport '
+                        If myInvoiceOrReport = "PrinterPrintsInvoicesID" Then ShowPDF (myInvoiceTrnID)
+                        If myInvoiceOrReport = "PrinterPrintsReportsID" And Not blnPreviewReports Then PrintPDF .strCode
+                    End If
+                Else
+                    If MyMsgBox(4, strAppTitle, strMessages(18), 1) Then
+                    End If
+                    Exit Function
+                End If
+            End If
+        End With
     End If
     
     If myWhatToDo = "CreatePDF" Then
