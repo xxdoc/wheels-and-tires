@@ -232,7 +232,7 @@ Function AddOneToTheLastRecord()
     
     With rsInvoices
         .MoveLast
-        AddOneToTheLastRecord = IIf(.EOF, 1, !InvoiceTrnID + 1)
+        AddOneToTheLastRecord = IIf(.EOF, 1, !invoiceTrnID + 1)
     End With
     
     rsInvoices.Close
@@ -499,6 +499,8 @@ Function LoadSettings()
         strServer = !EmailServer
         strUserName = !EmailUserName
         strPassword = !EmailPassword
+        'Τράπεζα
+        strBankAccountNo = !BankAccountNo
         'Τέλος
         .Close
     End With

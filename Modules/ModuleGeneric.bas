@@ -8,6 +8,7 @@ Global strApplicationEXEName As String
 Global arrCompanyData(10) As String
 Global arrData(13) As String
 Global arrMenu() As Integer
+Global strBankAccountNo As String
 
 'Databases
 Global strDatabaseName As String
@@ -21,14 +22,7 @@ Global dBaseTables As TableDefs
 Global TempQuery As QueryDef
 
 'Εκτυπωτές
-'Global strInitializePrinterString As String
 Global strPrinterName As String
-'Global strPrinterType As String
-'Global intPrinterReportDetailLines As Integer
-'Global intPrinterReportTopMargin As Integer
-'Global intPrinterReportLeftMargin As Integer
-'Global strPrinterFontName As String
-'Global strPrinterFontSize As String
 Global strPrinterData(5) As String
 
 'Μεταβλητές
