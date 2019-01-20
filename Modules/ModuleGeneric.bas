@@ -468,11 +468,14 @@ Function PrintPDF(myPrinterName)
 
 End Function
 
-Function ShowPDF(invoiceTrnID As Long)
+Function PrintInvoiceToLaser(myInvoiceTrnID, myPrinterName)
 
     With rptInvoiceA
-        .Tag = invoiceTrnID
+        .Tag = myInvoiceTrnID
         .Restart
+        .Printer.DeviceName = myPrinterName
+        '.PrintReport False
+        .Run False
         .Zoom = -2
         .WindowState = vbMaximized
         .Show 1
@@ -1912,7 +1915,7 @@ Function PrintRecords(myForm As Form, myWhatToDo, myDisplayCompletionMessage, my
                     If .strTwoField = "1" Then strFileName = ConvertToAsciiFile(strFileName, strAsciiFile) 'Αν ο εκτυπωτής είναι dot matrix, μετατρέπω το unicode σε ascii
                     If .strTwoField <> "1" Then 'Αν ο εκτυπωτής ΔΕΝ είναι dot matrix
                         CreatePDF Val(tmpTableData.strNineField), Val(tmpTableData.strTenField), Val(tmpTableData.strThirteenField), Val(tmpTableData.strFourteenField), myForm.lblTitle.Caption, tmpTableData.strThreeField, Val(tmpTableData.strFourField), myInvoiceOrReport '
-                        If myInvoiceOrReport = "PrinterPrintsInvoicesID" Then ShowPDF (myInvoiceTrnID)
+                        If myInvoiceOrReport = "PrinterPrintsInvoicesID" Then PrintInvoiceToLaser myInvoiceTrnID, tmpTableData.strCode
                         If myInvoiceOrReport = "PrinterPrintsReportsID" And Not blnPreviewReports Then PrintPDF .strCode
                     End If
                 Else

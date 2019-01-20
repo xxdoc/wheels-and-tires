@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {9EB8768B-CDFA-44DF-8F3E-857A8405E1DB} rptInvoiceA 
-   ClientHeight    =   10230
+   ClientHeight    =   15180
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   10560
+   ClientWidth     =   24960
    Icon            =   "rptInvoiceA.dsx":0000
    StartUpPosition =   2  'CenterScreen
-   _ExtentX        =   18627
-   _ExtentY        =   18045
+   _ExtentX        =   44027
+   _ExtentY        =   26776
    SectionData     =   "rptInvoiceA.dsx":1CCA
 End
 Attribute VB_Name = "rptInvoiceA"

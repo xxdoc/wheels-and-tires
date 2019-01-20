@@ -496,8 +496,8 @@ Begin VB.Form UtilsCodes
       TabIndex        =   18
       TabStop         =   0   'False
       Top             =   1050
-      Width           =   5115
-      _ExtentX        =   9022
+      Width           =   5715
+      _ExtentX        =   10081
       _ExtentY        =   11668
       Appearance      =   0
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1438,8 +1438,8 @@ Begin VB.Form UtilsCodes
       BackStyle       =   1  'Opaque
       BorderStyle     =   0  'Transparent
       Height          =   840
-      Left            =   14550
-      Top             =   4500
+      Left            =   15150
+      Top             =   4050
       Visible         =   0   'False
       Width           =   465
    End
@@ -1677,7 +1677,7 @@ End Function
 
 Private Function PopulateGrid()
         
-    If FillGridFromDB("CommonDB", grdUtilsCodes, "Codes", "", "", "CodeRefersTo = " & txtRefersTo.text, 3, 0, 1, 2) Then
+    If FillGridFromDB("CommonDB", grdUtilsCodes, "Codes", "", "", "CodeRefersTo = " & txtRefersTo.text, 4, 0, 1, 2, 8) Then
         grdUtilsCodes.SetFocus
         grdUtilsCodes.SetCurCell 1, 1
     End If
@@ -1911,12 +1911,12 @@ Private Sub Form_Activate()
 
     If Me.Tag = "True" Then
         Me.Tag = "False"
-        AddColumnsToGrid grdUtilsCodes, 25, GetSetting(strAppTitle, "Layout Strings", "grdUtilsCodes"), "04NCNID,04NCNShortDescription,40NLNDescription", "ID,Συντ.,Περιγραφή"
+        AddColumnsToGrid grdUtilsCodes, 25, GetSetting(strAppTitle, "Layout Strings", "grdUtilsCodes"), "04NCNID,04NCNShortDescription,40NLNDescription,04NCNBatch", "ID,Συντ.,Περιγραφή,Σειρά"
         Me.Refresh
         PopulateGrid
     End If
 
-    'AddDummyLines grdUtilsCodes, "99999", "AAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    'AddDummyLines grdUtilsCodes, 5, 5, 40, 4
 
 End Sub
 

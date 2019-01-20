@@ -664,7 +664,7 @@ Private Sub vbExplorerBar_ItemClick(itm As vbalExplorerBarLib6.cExplorerBarItem)
             End With
             
         Case "UtilsPrintInvoice"
-            ShowPDF 45751
+            PrintInvoiceToLaser 45751, ""
             
         'Εξοδος
         Case "ΕξοδοςΑλλαγήΕταιρίας"

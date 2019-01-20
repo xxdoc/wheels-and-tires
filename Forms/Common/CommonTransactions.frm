@@ -3433,7 +3433,7 @@ Private Function PrintInvoice()
     'Αν είναι χειρόγραφο, βγαίνω
     If txtCodeHandID.text = "1" Then Exit Function
     
-    If PrintRecords(Me, "Print", False, "PrinterPrintsInvoicesID", txtCodePrinterID.text, txtInvoiceTrnID.text) Then
+    If PrintRecords(Me, "Print", False, "PrinterPrintsInvoicesID", txtCodePrinterID.text, Val(txtInvoiceTrnID.text)) Then
         blnError = True
     Else
         blnError = False
@@ -3607,6 +3607,7 @@ Private Function SaveInvoice()
     If txtCodeHandID.text = "1" Or (txtCodeHandID.text = "0" And blnStatus) Then
         
         lngTrnID = IIf(txtInvoiceTrnID.text = "", AddOneToTheLastRecord, txtInvoiceTrnID.text)
+        txtInvoiceTrnID.text = lngTrnID
         txtInvoiceIsInvoiced.text = IIf(blnStatus, txtCodeTransformID.text, txtInvoiceIsInvoiced.text) 'Τιμολογημένο 0 = Δεν χρειάζεται, 1= Εκκρεμεί τιμολόγηση, 2 = Τιμολογημένο
         txtInvoiceIsPrinted.text = IIf(txtCodeHandID.text = "1", "0", "1") 'Εκτυπωμένο 0 = Οχι, 1 = Ναι (Αναλόγως το παραστατικό)
         
