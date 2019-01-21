@@ -49,6 +49,7 @@ Designer=Designers\rptInvoice.Dsr
 Form=Forms\Utils\UtilsTablesCheck.frm
 Form=Forms\Items\itemsBalanceSheet.frm
 Designer=Designers\rptReport.Dsr
+Designer=Designers\rptInvoiceA.Dsr
 IconForm="CommonLogin"
 Startup="CommonLogin"
 HelpFile=""

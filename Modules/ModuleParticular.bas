@@ -232,7 +232,7 @@ Function AddOneToTheLastRecord()
     
     With rsInvoices
         .MoveLast
-        AddOneToTheLastRecord = IIf(.EOF, 1, !InvoiceTrnID + 1)
+        AddOneToTheLastRecord = IIf(.EOF, 1, !invoiceTrnID + 1)
     End With
     
     rsInvoices.Close
@@ -499,6 +499,8 @@ Function LoadSettings()
         strServer = !EmailServer
         strUserName = !EmailUserName
         strPassword = !EmailPassword
+        'Τράπεζα
+        strBankAccountNo = !BankAccountNo
         'Τέλος
         .Close
     End With
@@ -513,7 +515,7 @@ ErrTrap:
     
 End Function
 
-Function FullNumber(tmpOldNumber)
+Public Function FullNumber(tmpOldNumber)
     
     'Local μεταβλητές
     Dim intLoop As Byte
@@ -532,103 +534,103 @@ Function FullNumber(tmpOldNumber)
     bytArrayIndex = 1
    
     aArray(1, 1) = " "
-    aArray(1, 2) = "Εκατόν "
-    aArray(1, 3) = "Διακόσια "
-    aArray(1, 4) = "Τριακόσια "
-    aArray(1, 5) = "Τετρακόσια "
-    aArray(1, 6) = "Πεντακόσια "
-    aArray(1, 7) = "Εξακόσια "
-    aArray(1, 8) = "Επτακόσια "
-    aArray(1, 9) = "Οκτακόσια "
-    aArray(1, 10) = "Εννιακόσια "
+    aArray(1, 2) = "ΕΚΑΤΟΝ "
+    aArray(1, 3) = "ΔΙΑΚΟΣΙΑ "
+    aArray(1, 4) = "ΤΡΙΑΚΟΣΙΑ "
+    aArray(1, 5) = "ΤΕΤΡΑΚΟΣΙΑ "
+    aArray(1, 6) = "ΠΕΝΤΑΚΟΣΙΑ "
+    aArray(1, 7) = "ΕΞΑΚΟΣΙΑ "
+    aArray(1, 8) = "ΕΠΤΑΚΟΣΙΑ "
+    aArray(1, 9) = "ΟΚΤΑΚΟΣΙΑ "
+    aArray(1, 10) = "ΕΝΝΙΑΚΟΣΙΑ "
     
     aArray(2, 1) = " "
-    aArray(2, 2) = "Δέκα "
-    aArray(2, 3) = "Είκοσι "
-    aArray(2, 4) = "Τριάντα "
-    aArray(2, 5) = "Σαράντα "
-    aArray(2, 6) = "Πενήντα "
-    aArray(2, 7) = "Εξήντα "
-    aArray(2, 8) = "Εβδομήντα "
-    aArray(2, 9) = "Ογδόντα "
-    aArray(2, 10) = "Ενενήντα "
+    aArray(2, 2) = "ΔΕΚΑ "
+    aArray(2, 3) = "ΕΙΚΟΣΙ "
+    aArray(2, 4) = "ΤΡΙΑΝΤΑ "
+    aArray(2, 5) = "ΣΑΡΑΝΤΑ "
+    aArray(2, 6) = "ΠΕΝΗΝΤΑ "
+    aArray(2, 7) = "ΕΞΗΝΤΑ "
+    aArray(2, 8) = "ΕΒΔΟΜΗΝΤΑ "
+    aArray(2, 9) = "ΟΓΔΟΝΤΑ "
+    aArray(2, 10) = "ΕΝΕΝΗΝΤΑ "
     
     aArray(3, 1) = " "
-    aArray(3, 2) = "Ένα "
-    aArray(3, 3) = "Δύο "
-    aArray(3, 4) = "Τρία "
-    aArray(3, 5) = "Τέσσερα "
-    aArray(3, 6) = "Πέντε "
-    aArray(3, 7) = "Έξι "
-    aArray(3, 8) = "Επτά "
-    aArray(3, 9) = "Οκτώ "
-    aArray(3, 10) = "Εννέα "
+    aArray(3, 2) = "ΕΝΑ "
+    aArray(3, 3) = "ΔΥΟ "
+    aArray(3, 4) = "ΤΡΙΑ "
+    aArray(3, 5) = "ΤΕΣΣΕΡΑ "
+    aArray(3, 6) = "ΠΕΝΤΕ "
+    aArray(3, 7) = "ΕΞΙ "
+    aArray(3, 8) = "ΕΠΤΑ "
+    aArray(3, 9) = "ΟΚΤΩ "
+    aArray(3, 10) = "ΕΝΝΕΑ "
     
     aArray(4, 1) = " "
-    aArray(4, 2) = "Εκατόν "
-    aArray(4, 3) = "Διακόσιες "
-    aArray(4, 4) = "Τριακόσιες "
-    aArray(4, 5) = "Τετρακόσιες "
-    aArray(4, 6) = "Πεντακόσιες "
-    aArray(4, 7) = "Εξακόσιες "
-    aArray(4, 8) = "Επτακόσιες "
-    aArray(4, 9) = "Οκτακόσιες "
-    aArray(4, 10) = "Εννιακόσιες "
+    aArray(4, 2) = "ΕΚΑΤΟΝ "
+    aArray(4, 3) = "ΔΙΑΚΟΣΙΕΣ "
+    aArray(4, 4) = "ΤΡΙΑΚΟΣΙΕΣ "
+    aArray(4, 5) = "ΤΕΤΡΑΚΟΣΙΕΣ "
+    aArray(4, 6) = "ΠΕΝΤΑΚΟΣΙΕΣ "
+    aArray(4, 7) = "ΕΞΑΚΟΣΙΕΣ "
+    aArray(4, 8) = "ΕΠΤΑΚΟΣΙΕΣ "
+    aArray(4, 9) = "ΟΚΤΑΚΟΣΙΕΣ "
+    aArray(4, 10) = "ΕΝΝΙΑΚΟΣΙΕΣ "
     
     aArray(5, 1) = " "
-    aArray(5, 2) = "Δέκα "
-    aArray(5, 3) = "Είκοσι "
-    aArray(5, 4) = "Τριάντα "
-    aArray(5, 5) = "Σαράντα "
-    aArray(5, 6) = "Πενήντα "
-    aArray(5, 7) = "Εξήντα "
-    aArray(5, 8) = "Εβδομήντα "
-    aArray(5, 9) = "Ογδόντα "
-    aArray(5, 10) = "Ενενήντα "
+    aArray(5, 2) = "ΔΕΚΑ "
+    aArray(5, 3) = "ΕΙΚΟΣΙ"
+    aArray(5, 4) = "ΤΡΙΑΝΤΑ "
+    aArray(5, 5) = "ΣΑΡΑΝΤΑ "
+    aArray(5, 6) = "ΠΕΝΗΝΤΑ "
+    aArray(5, 7) = "ΕΞΗΝΤΑ "
+    aArray(5, 8) = "ΕΒΔΟΜΗΝΤΑ "
+    aArray(5, 9) = "ΟΓΔΟΝΤΑ "
+    aArray(5, 10) = "ΕΝΕΝΗΝΤΑ "
     
     aArray(6, 1) = " "
-    aArray(6, 2) = "Μία "
-    aArray(6, 3) = "Δύο "
-    aArray(6, 4) = "Τρείς "
-    aArray(6, 5) = "Τέσσερις "
-    aArray(6, 6) = "Πέντε "
-    aArray(6, 7) = "Έξι "
-    aArray(6, 8) = "Επτά "
-    aArray(6, 9) = "Οκτώ "
-    aArray(6, 10) = "Εννέα "
+    aArray(6, 2) = "ΜΙΑ "
+    aArray(6, 3) = "ΔΥΟ "
+    aArray(6, 4) = "ΤΡΕΙΣ "
+    aArray(6, 5) = "ΤΕΣΣΕΡΙΣ "
+    aArray(6, 6) = "ΠΕΝΤΕ "
+    aArray(6, 7) = "ΕΞΙ "
+    aArray(6, 8) = "ΕΠΤΑ "
+    aArray(6, 9) = "ΟΚΤΩ "
+    aArray(6, 10) = "ΕΝΝΕΑ "
     
     aArray(7, 1) = " "
-    aArray(7, 2) = "Εκατόν "
-    aArray(7, 3) = "Διακόσια "
-    aArray(7, 4) = "Τριακόσια "
-    aArray(7, 5) = "Τετρακόσια "
-    aArray(7, 6) = "Πεντακόσια "
-    aArray(7, 7) = "Εξακόσια "
-    aArray(7, 8) = "Επτακόσια "
-    aArray(7, 9) = "Οκτακόσια "
-    aArray(7, 10) = "Εννιακόσια "
+    aArray(7, 2) = "ΕΚΑΤΟΝ "
+    aArray(7, 3) = "ΔΙΑΚΟΣΙΑ "
+    aArray(7, 4) = "ΤΡΙΑΚΟΣΙΑ "
+    aArray(7, 5) = "ΤΕΤΡΑΚΟΣΙΑ "
+    aArray(7, 6) = "ΠΕΝΤΑΚΟΣΙΑ "
+    aArray(7, 7) = "ΕΞΑΚΟΣΙΑ "
+    aArray(7, 8) = "ΕΠΤΑΚΟΣΙΑ "
+    aArray(7, 9) = "ΟΚΤΑΚΟΣΙΑ"
+    aArray(7, 10) = "ΕΝΝΙΑΚΟΣΙΑ "
     
     aArray(8, 1) = " "
-    aArray(8, 2) = "Δέκα "
-    aArray(8, 3) = "Είκοσι "
-    aArray(8, 4) = "Τριάντα "
-    aArray(8, 5) = "Σαράντα "
-    aArray(8, 6) = "Πενήντα "
-    aArray(8, 7) = "Εξήντα "
-    aArray(8, 8) = "Εβδομήντα "
-    aArray(8, 9) = "Ογδόντα "
-    aArray(8, 10) = "Ενενήντα "
+    aArray(8, 2) = "ΔΕΚΑ "
+    aArray(8, 3) = "ΕΙΚΟΣΙ"
+    aArray(8, 4) = "ΤΡΙΑΝΤΑ "
+    aArray(8, 5) = "ΣΑΡΑΝΤΑ "
+    aArray(8, 6) = "ΠΕΝΗΝΤΑ "
+    aArray(8, 7) = "ΕΞΗΝΤΑ "
+    aArray(8, 8) = "ΕΒΔΟΜΗΝΤΑ "
+    aArray(8, 9) = "ΟΓΔΟΝΤΑ "
+    aArray(8, 10) = "ΕΝΕΝΗΝΤΑ "
     
     aArray(9, 1) = " "
-    aArray(9, 2) = "Ένα "
-    aArray(9, 3) = "Δύο "
-    aArray(9, 4) = "Τρία "
-    aArray(9, 5) = "Τέσσερα "
-    aArray(9, 6) = "Πέντε "
-    aArray(9, 7) = "Έξι "
-    aArray(9, 8) = "Επτά "
-    aArray(9, 9) = "Οκτώ "
-    aArray(9, 10) = "Εννέα "
+    aArray(9, 2) = "ΕΝΑ "
+    aArray(9, 3) = "ΔΥΟ "
+    aArray(9, 4) = "ΤΡΙΑ "
+    aArray(9, 5) = "ΤΕΣΣΕΡΑ "
+    aArray(9, 6) = "ΠΕΝΤΕ "
+    aArray(9, 7) = "ΕΞΙ "
+    aArray(9, 8) = "ΕΠΤΑ "
+    aArray(9, 9) = "ΟΚΤΩ "
+    aArray(9, 10) = "ΕΝΝΕΑ "
     
     For intLoop = 1 To 14
         If Mid(tmpOldNumber, intLoop, 1) <> "." Then
@@ -651,74 +653,74 @@ Function FullNumber(tmpOldNumber)
     
     'Εκατομμύρια
     If aFullNumber(1) <> " " Or aFullNumber(2) <> " " Or aFullNumber(3) <> " " Then
-        If aFullNumber(2) = "Δέκα " Then
-            If aFullNumber(3) = "Ένα " Then
+        If aFullNumber(2) = "ΔΕΚΑ " Then
+            If aFullNumber(3) = "ΕΝΑ " Then
                 aFullNumber(2) = ""
-                aFullNumber(3) = "Έντεκα "
+                aFullNumber(3) = "ΕΝΤΕΚΑ "
             End If
-            If aFullNumber(3) = "Δύο " Then
+            If aFullNumber(3) = "ΔΥΟ " Then
                 aFullNumber(2) = ""
-                aFullNumber(3) = "Δώδεκα "
+                aFullNumber(3) = "ΔΩΔΕΚΑ "
             End If
         End If
     End If
     
     'Χιλιάδες
     If aFullNumber(4) <> " " Or aFullNumber(5) <> " " Or aFullNumber(6) <> " " Then
-        If aFullNumber(5) = "Δέκα " Then
-            If aFullNumber(6) = "Μία " Then
+        If aFullNumber(5) = "ΔΕΚΑ " Then
+            If aFullNumber(6) = "ΜΙΑ " Then
                 aFullNumber(5) = ""
-                aFullNumber(6) = "Έντεκα "
+                aFullNumber(6) = "ΕΝΤΕΚΑ "
             End If
-            If aFullNumber(6) = "Δύο " Then
+            If aFullNumber(6) = "ΔΥΟ " Then
                 aFullNumber(5) = ""
-                aFullNumber(6) = "Δώδεκα "
+                aFullNumber(6) = "ΔΩΔΕΚΑ "
             End If
         End If
     End If
     
     'Εκατοντάδες
     If aFullNumber(7) <> " " Or aFullNumber(8) <> " " Or aFullNumber(9) <> " " Then
-        If aFullNumber(8) = "Δέκα " Then
-            If aFullNumber(9) = "Ένα " Then
+        If aFullNumber(8) = "ΔΕΚΑ " Then
+            If aFullNumber(9) = "ΕΝΑ " Then
                 aFullNumber(8) = ""
-                aFullNumber(9) = "Έντεκα "
+                aFullNumber(9) = "ΈΝΤΕΚΑ "
             End If
-            If aFullNumber(9) = "Δύο " Then
+            If aFullNumber(9) = "ΔΥΟ " Then
                 aFullNumber(8) = ""
-                aFullNumber(9) = "Δώδεκα "
+                aFullNumber(9) = "ΔΩΔΕΚΑ "
             End If
         End If
     End If
     
     'Εκατομμύρια
     If aFullNumber(1) <> " " Or aFullNumber(2) <> " " Or aFullNumber(3) <> " " Then
-        If aFullNumber(1) = "Εκατόν " And aFullNumber(2) = " " And aFullNumber(3) = " " Then
-            aFullNumber(1) = "Εκατό "
+        If aFullNumber(1) = "ΕΚΑΤΟΝ " And aFullNumber(2) = " " And aFullNumber(3) = " " Then
+            aFullNumber(1) = "ΕΚΑΤΟ "
         End If
-        If aFullNumber(1) = " " And aFullNumber(2) = " " And aFullNumber(3) = "Ένα " Then
-            aFullNumber(3) = aFullNumber(3) + "Εκατομμύριο "
+        If aFullNumber(1) = " " And aFullNumber(2) = " " And aFullNumber(3) = "ΕΝΑ " Then
+            aFullNumber(3) = aFullNumber(3) + "ΕΚΑΤΟΜΜΥΡΙΟ "
         Else
-            aFullNumber(3) = aFullNumber(3) + "Εκατομμύρια "
+            aFullNumber(3) = aFullNumber(3) + "ΕΚΑΤΟΜΜΥΡΙΑ "
         End If
     End If
     
     'Χιλιάδες
     If aFullNumber(4) <> " " Or aFullNumber(5) <> " " Or aFullNumber(6) <> " " Then
-        If aFullNumber(4) = "Εκατόν " And aFullNumber(5) = " " And aFullNumber(6) = " " Then
-            aFullNumber(4) = "Εκατό "
+        If aFullNumber(4) = "ΕΚΑΤΟΝ " And aFullNumber(5) = " " And aFullNumber(6) = " " Then
+            aFullNumber(4) = "ΕΚΑΤΟ "
         End If
-        If aFullNumber(4) = " " And aFullNumber(5) = " " And aFullNumber(6) = "Μία " Then
-            aFullNumber(6) = "Χίλια "
+        If aFullNumber(4) = " " And aFullNumber(5) = " " And aFullNumber(6) = "ΜΙΑ " Then
+            aFullNumber(6) = "ΧΙΛΙΑ "
         End If
-        If aFullNumber(6) <> "Χίλια " Then
-            aFullNumber(6) = aFullNumber(6) + "Χιλιάδες "
+        If aFullNumber(6) <> "ΧΙΛΙΑ " Then
+            aFullNumber(6) = aFullNumber(6) + "ΧΙΛΙΑΔΕΣ "
         End If
     End If
     
     'Εκατοντάδες
-    If aFullNumber(7) = "Εκατόν " And aFullNumber(8) = " " And aFullNumber(9) = " " Then
-        aFullNumber(7) = "Εκατό "
+    If aFullNumber(7) = "ΕΚΑΤΟΝ " And aFullNumber(8) = " " And aFullNumber(9) = " " Then
+        aFullNumber(7) = "ΕΚΑΤΟ "
     End If
     
     For intLoop = 1 To 9
@@ -727,8 +729,8 @@ Function FullNumber(tmpOldNumber)
         End If
     Next intLoop
     
-    If strFullNumber = "" Then strFullNumber = "Μηδέν "
-    strFullNumber = strFullNumber + "Ευρώ "
+    If strFullNumber = "" Then strFullNumber = "ΜΗΔΕΝ "
+    strFullNumber = strFullNumber + "ΕΥΡΩ "
     
     bytArrayIndex = 8
     tmpDecNumber = Mid(strTotalGross, 11, 2)
@@ -738,7 +740,7 @@ Function FullNumber(tmpOldNumber)
         Exit Function
     End If
         
-    strFullNumber = IIf(strFullNumber <> "Μηδέν Ευρώ ", strFullNumber + "και ", "")
+    strFullNumber = IIf(strFullNumber <> "ΜΗΔΕΝ ΕΥΡΩ", strFullNumber + "ΚΑΙ ", "")
     
     For intLoop = 1 To 2
         strSubNumber = Mid(tmpDecNumber, intLoop, 1)
@@ -747,14 +749,14 @@ Function FullNumber(tmpOldNumber)
     Next intLoop
     
     If aFullNumber(1) <> " " Or aFullNumber(2) <> " " Then
-        If aFullNumber(1) = "Δέκα " Then
-            If aFullNumber(2) = "Ένα " Then
+        If aFullNumber(1) = "ΔΕΚΑ " Then
+            If aFullNumber(2) = "ΕΝΑ " Then
                 aFullNumber(1) = " "
-                aFullNumber(2) = "Έντεκα "
+                aFullNumber(2) = "ΕΝΤΕΚΑ "
             End If
-            If aFullNumber(2) = "Δύο " Then
+            If aFullNumber(2) = "ΔΥΟ " Then
                 aFullNumber(1) = " "
-                aFullNumber(2) = "Δώδεκα "
+                aFullNumber(2) = "ΔΩΔΕΚΑ "
             End If
         End If
     End If
@@ -766,9 +768,9 @@ Function FullNumber(tmpOldNumber)
     Next intLoop
     
     If tmpDecNumber = "01" Then
-        strFullNumber = strFullNumber + "Λεπτό "
+        strFullNumber = strFullNumber + "ΛΕΠΤΟ "
     Else
-        strFullNumber = strFullNumber + "Λεπτά "
+        strFullNumber = strFullNumber + "ΛΕΠΤΑ "
     End If
             
     FullNumber = strFullNumber

@@ -1339,7 +1339,6 @@ Private Function TransformInvoices()
     
     With CommonTransactions
         CustomizeGrid .grdCommonTransactions
-        'AddGridLines .grdCommonTransactions, txtRefersTo.text, intSalesInvoiceLines
         EnableFields .mskInvoiceIssueDate, .txtCodeShortDescription, .txtInvoiceNo, .txtInvoiceRemarks, .grdCommonTransactions, .cmdIndex(2), .cmdIndex(3)
         EnableFields .mskTransDiscount, .mskTotalRestAmount, .mskExtraCharges, .mskTotalVAT
         InitializeFields IIf(.txtRefersTo.text = "2", .mskInvoiceIssueDate, ""), .mskTotalQty, .mskTotalPreDiscount, .mskDiscount, .mskTransDiscount, .mskTotalRestAmount, .mskExtraCharges, .mskTotalVAT, .mskTotalGross
@@ -1668,7 +1667,7 @@ Private Function RefreshList()
             grdCommonPendingInvoices.CellValue(lngRow, "PersonDescription") = !Description
             grdCommonPendingInvoices.CellValue(lngRow, "CodeDescription") = !CodeDescription
             grdCommonPendingInvoices.CellValue(lngRow, "InvoiceNo") = !InvoiceNo
-            grdCommonPendingInvoices.CellValue(lngRow, "InvoiceTrnID") = !InvoiceTrnID
+            grdCommonPendingInvoices.CellValue(lngRow, "InvoiceTrnID") = !invoiceTrnID
             grdCommonPendingInvoices.CellValue(lngRow, "DeliveryPointID") = !InvoiceDeliveryPointID
             grdCommonPendingInvoices.CellValue(lngRow, "DeliveryPointDescription") = !DeliveryPointDescription
             grdCommonPendingInvoices.CellValue(lngRow, "PaymentWayID") = !InvoicePaymentWayID
