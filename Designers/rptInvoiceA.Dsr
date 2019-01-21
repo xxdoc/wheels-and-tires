@@ -19,6 +19,7 @@ Option Explicit
 
 Dim tmpRecordset As Recordset
 Dim strFullNumber As String
+Dim intInvoiceCount As Integer
 Dim blnError As Boolean
 
 Private Sub ActiveReport_DataInitialize()
@@ -26,6 +27,8 @@ Private Sub ActiveReport_DataInitialize()
     Set tmpRecordset = SeekInvoiceData
     
     If tmpRecordset.RecordCount = 0 Then GoTo ErrTrap
+    
+    Fields.RemoveAll
     
     Fields.Add ("CompanyTitle")
     Fields.Add ("CompanyData")
@@ -87,6 +90,8 @@ End Sub
 
 Private Sub ActiveReport_FetchData(EOF As Boolean)
 
+    On Error GoTo ErrTrap
+    
     If tmpRecordset.EOF Then
         EOF = True
         Exit Sub
@@ -147,6 +152,15 @@ Private Sub ActiveReport_FetchData(EOF As Boolean)
     EOF = False
     
     tmpRecordset.MoveNext
+    
+    Exit Sub
+    
+ErrTrap:
+    If Err.Number = 6 Then
+        Resume Next
+    Else
+        DisplayErrorMessage True, Err.Description
+    End If
     
 End Sub
 

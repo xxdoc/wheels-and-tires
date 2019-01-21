@@ -470,16 +470,24 @@ End Function
 
 Function PrintInvoiceToLaser(myInvoiceTrnID, myPrinterName)
 
-    With rptInvoiceA
-        .Tag = myInvoiceTrnID
-        .Restart
-        .Printer.DeviceName = myPrinterName
-        '.PrintReport False
-        .Run False
-        .Zoom = -2
-        .WindowState = vbMaximized
-        .Show 1
-    End With
+    Dim intLoop As Integer
+    
+    For intLoop = 1 To 2
+        rptInvoiceA.Restart
+        rptInvoiceA.Tag = myInvoiceTrnID
+        rptInvoiceA.PageSettings.Orientation = ddOLandscape
+        rptInvoiceA.PageSettings.PaperSize = 11
+        If blnPreviewReports Then
+            rptInvoiceA.Zoom = -2
+            rptInvoiceA.Printer.ColorMode = vbPRCMMonochrome
+            rptInvoiceA.WindowState = vbMaximized
+            rptInvoiceA.Show 1
+            Exit For
+        Else
+            rptInvoiceA.Printer.DeviceName = myPrinterName
+            rptInvoiceA.PrintReport False
+        End If
+    Next intLoop
 
 End Function
 
