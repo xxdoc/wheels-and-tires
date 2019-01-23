@@ -1346,6 +1346,7 @@ Private Function TransformInvoices()
         .txtInvoiceDeliveryPointID.text = IIf(txtRefersTo.text = "1", "", "1")
         .txtInvoicePlates.Enabled = IIf(txtRefersTo.text = "1", False, True)
         .UpdateArrayWithInvoicesToTransform
+        .UpdateRemarksFieldWithInvoices
         .UpdateGridWithItems
         .CalculateTotals True
         .txtRefersTo.text = txtRefersTo
@@ -1667,7 +1668,7 @@ Private Function RefreshList()
             grdCommonPendingInvoices.CellValue(lngRow, "PersonDescription") = !Description
             grdCommonPendingInvoices.CellValue(lngRow, "CodeDescription") = !CodeDescription
             grdCommonPendingInvoices.CellValue(lngRow, "InvoiceNo") = !InvoiceNo
-            grdCommonPendingInvoices.CellValue(lngRow, "InvoiceTrnID") = !invoiceTrnID
+            grdCommonPendingInvoices.CellValue(lngRow, "InvoiceTrnID") = !InvoiceTrnID
             grdCommonPendingInvoices.CellValue(lngRow, "DeliveryPointID") = !InvoiceDeliveryPointID
             grdCommonPendingInvoices.CellValue(lngRow, "DeliveryPointDescription") = !DeliveryPointDescription
             grdCommonPendingInvoices.CellValue(lngRow, "PaymentWayID") = !InvoicePaymentWayID
