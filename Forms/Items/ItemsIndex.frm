@@ -818,7 +818,7 @@ Begin VB.Form ItemsIndex
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H000080FF&
+         ForeColor       =   &H0000FF00&
          Height          =   720
          Left            =   75
          TabIndex        =   7

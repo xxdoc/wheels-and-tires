@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {9EB8768B-CDFA-44DF-8F3E-857A8405E1DB} rptInvoiceA 
-   ClientHeight    =   15180
+   ClientHeight    =   10230
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   24960
+   ClientWidth     =   18960
    Icon            =   "rptInvoiceA.dsx":0000
    StartUpPosition =   2  'CenterScreen
-   _ExtentX        =   44027
-   _ExtentY        =   26776
+   _ExtentX        =   33443
+   _ExtentY        =   18045
    SectionData     =   "rptInvoiceA.dsx":1CCA
 End
 Attribute VB_Name = "rptInvoiceA"
@@ -18,15 +18,16 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Dim tmpRecordset As Recordset
-Dim strFullNumber As String
-Dim intInvoiceCount As Integer
 Dim blnError As Boolean
+Dim strInvoiceRemarks As String
 
 Private Sub ActiveReport_DataInitialize()
 
     Set tmpRecordset = SeekInvoiceData
     
-    If tmpRecordset.RecordCount = 0 Then GoTo ErrTrap
+    If tmpRecordset.RecordCount = 0 Then
+        GoTo ErrTrap
+    End If
     
     Fields.RemoveAll
     
@@ -95,6 +96,8 @@ Private Sub ActiveReport_FetchData(EOF As Boolean)
     If tmpRecordset.EOF Then
         EOF = True
         Exit Sub
+    Else
+        strInvoiceRemarks = tmpRecordset!InvoiceRemarks
     End If
     
     With tmpRecordset
@@ -107,7 +110,6 @@ Private Sub ActiveReport_FetchData(EOF As Boolean)
         Fields("InvoiceNo") = "мО " & !InvoiceNo
         Fields("InvoiceIssueDate") = !InvoiceIssueDate
         
-        Fields("InvoiceRemarks") = !InvoiceRemarks
         Fields("InvoiceTransportReason") = !InvoiceTransportReason
         Fields("InvoiceTransportWay") = !InvoiceTransportWay
         Fields("InvoiceLoadingSite") = !InvoiceLoadingSite
@@ -198,4 +200,40 @@ Private Function SeekInvoiceData()
     Set SeekInvoiceData = rstRecordset
     
 End Function
+
+Private Function CalculateTotalPages()
+
+    Dim curNumber As Currency
+    Dim curResult As Currency
+    Dim intInteger As Integer
+    Dim intPages As Integer
+    
+    tmpRecordset.MoveLast
+    curNumber = tmpRecordset.RecordCount / 8
+    tmpRecordset.MoveFirst
+    curResult = curNumber - Int(curNumber)
+    
+    intInteger = Int(curNumber)
+    
+    If curResult <> 0 Then
+        intPages = Int(curNumber) + 1
+    Else
+        intPages = intInteger
+    End If
+    
+    CalculateTotalPages = IIf(intPages = 0, 1, intPages)
+    
+End Function
+
+Private Sub PageFooter_Format()
+
+    If Not tmpRecordset.EOF Then
+        ToggleFieldVisibility False, PaymentWayDescription, BankAccountNumber, PerVATNetAmount, PerVATPercent, PerVATAmount, InvoiceRestAmount, InvoiceVATAmount, InvoiceGrossAmount, NumberInWords
+        lblRemarks.Caption = "то паяастатийо сумевифетаи..."
+    Else
+        ToggleFieldVisibility True, PaymentWayDescription, BankAccountNumber, PerVATNetAmount, PerVATPercent, PerVATAmount, InvoiceRestAmount, InvoiceVATAmount, InvoiceGrossAmount, NumberInWords
+        lblRemarks.Caption = strInvoiceRemarks
+    End If
+
+End Sub
 

@@ -3,7 +3,7 @@ Object = "{396F7AC0-A0DD-11D3-93EC-00C0DFE7442A}#1.0#0"; "ImageList.ocx"
 Object = "{839D0F5D-B7D7-41B7-A3B4-85D69300B8C1}#98.0#0"; "iGrid300_10Tec.ocx"
 Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "Buttons.ocx"
 Begin VB.Form CommonIndex 
-   BackColor       =   &H000080FF&
+   BackColor       =   &H0080C0FF&
    BorderStyle     =   1  'Fixed Single
    ClientHeight    =   8415
    ClientLeft      =   15
@@ -21,7 +21,7 @@ Begin VB.Form CommonIndex
    Begin VB.CheckBox chkShowInactiveRecords 
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
-      BackColor       =   &H000080FF&
+      BackColor       =   &H0080C0FF&
       Caption         =   "Εμφάνιση ανενεργών εγγραφών"
       BeginProperty Font 
          Name            =   "Ubuntu Condensed"
@@ -40,7 +40,7 @@ Begin VB.Form CommonIndex
       Width           =   3015
    End
    Begin VB.Frame frmButtonFrame 
-      BackColor       =   &H000080FF&
+      BackColor       =   &H0080C0FF&
       BorderStyle     =   0  'None
       Height          =   840
       Left            =   75
@@ -72,7 +72,7 @@ Begin VB.Form CommonIndex
          EndProperty
          MousePointer    =   2
          ShowFocusRect   =   0   'False
-         BackColor       =   8438015
+         BackColor       =   16777152
       End
       Begin GurhanButtonOCX.GurhanButton cmdButton 
          Height          =   690

@@ -14,7 +14,6 @@ Global strLoadingSite As String
 Global strDestinationSite As String
 Global blnCheckTaxNo As Boolean
 Global curExtraChargesVATPercent As Currency
-Global intSalesInvoiceLines As Integer
 Global blnCheckEAFDSS As Boolean
 Global strEAFDSS As String
 Global datClosedPeriod As Date
@@ -232,7 +231,7 @@ Function AddOneToTheLastRecord()
     
     With rsInvoices
         .MoveLast
-        AddOneToTheLastRecord = IIf(.EOF, 1, !invoiceTrnID + 1)
+        AddOneToTheLastRecord = IIf(.EOF, 1, !InvoiceTrnID + 1)
     End With
     
     rsInvoices.Close
@@ -486,7 +485,6 @@ Function LoadSettings()
         strDestinationSite = !DestinationSite
         blnPrintHour = IIf(!PrintHourID = 1, True, False)
         blnPrintBalance = IIf(!PrintBalanceID = 1, True, False)
-        intSalesInvoiceLines = !SalesInvoiceLines
         'Συναλλασόμενοι
         blnCheckTaxNo = IIf(!TaxNoCheckID = 1, True, False)
         'ΕΑΦΔΣΣ

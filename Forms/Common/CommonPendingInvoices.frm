@@ -28,13 +28,13 @@ Begin VB.Form CommonPendingInvoices
       Caption         =   "Frame1"
       Height          =   1140
       Left            =   9525
-      TabIndex        =   12
+      TabIndex        =   13
       Top             =   7650
       Width           =   4065
       Begin vbalProgBarLib6.vbalProgressBar prgProgressBar 
          Height          =   615
          Left            =   150
-         TabIndex        =   13
+         TabIndex        =   14
          TabStop         =   0   'False
          Top             =   375
          Width           =   3765
@@ -72,7 +72,7 @@ Begin VB.Form CommonPendingInvoices
          ForeColor       =   &H00000000&
          Height          =   240
          Left            =   150
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   75
          Width           =   3765
       End
@@ -91,14 +91,14 @@ Begin VB.Form CommonPendingInvoices
          BorderStyle     =   0  'None
          Height          =   690
          Left            =   75
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   8850
          Width           =   11790
          Begin GurhanButtonOCX.GurhanButton cmdButton 
             Height          =   690
             Index           =   0
             Left            =   225
-            TabIndex        =   28
+            TabIndex        =   29
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -125,7 +125,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   690
             Index           =   1
             Left            =   1650
-            TabIndex        =   29
+            TabIndex        =   30
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -152,7 +152,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   690
             Index           =   7
             Left            =   10200
-            TabIndex        =   30
+            TabIndex        =   31
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -179,7 +179,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   690
             Index           =   4
             Left            =   5925
-            TabIndex        =   31
+            TabIndex        =   32
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -206,7 +206,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   690
             Index           =   6
             Left            =   8775
-            TabIndex        =   32
+            TabIndex        =   33
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -233,7 +233,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   690
             Index           =   5
             Left            =   7350
-            TabIndex        =   33
+            TabIndex        =   34
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -260,7 +260,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   690
             Index           =   2
             Left            =   3075
-            TabIndex        =   39
+            TabIndex        =   40
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -287,7 +287,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   690
             Index           =   3
             Left            =   4500
-            TabIndex        =   40
+            TabIndex        =   41
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -319,7 +319,7 @@ Begin VB.Form CommonPendingInvoices
          ForeColor       =   &H80000008&
          Height          =   2940
          Left            =   9450
-         TabIndex        =   18
+         TabIndex        =   19
          Tag             =   "Hidden"
          Top             =   4575
          Visible         =   0   'False
@@ -340,7 +340,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   48
+            TabIndex        =   49
             TabStop         =   0   'False
             Text            =   "5"
             Top             =   1575
@@ -362,7 +362,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   47
+            TabIndex        =   48
             TabStop         =   0   'False
             Text            =   "InitialRefersTo"
             Top             =   1575
@@ -384,7 +384,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   46
+            TabIndex        =   47
             TabStop         =   0   'False
             Text            =   "IsTriangular"
             Top             =   1950
@@ -406,7 +406,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   45
+            TabIndex        =   46
             TabStop         =   0   'False
             Text            =   "6"
             Top             =   1950
@@ -428,7 +428,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   44
+            TabIndex        =   45
             TabStop         =   0   'False
             Text            =   "2"
             Top             =   450
@@ -450,7 +450,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   43
+            TabIndex        =   44
             TabStop         =   0   'False
             Text            =   "DeliveryPoints.DeliveryPointID"
             Top             =   450
@@ -472,7 +472,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   37
+            TabIndex        =   38
             TabStop         =   0   'False
             Text            =   "4"
             Top             =   1200
@@ -494,7 +494,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   36
+            TabIndex        =   37
             TabStop         =   0   'False
             Text            =   "RefersTo"
             Top             =   1200
@@ -516,7 +516,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   35
+            TabIndex        =   36
             TabStop         =   0   'False
             Text            =   "3"
             Top             =   825
@@ -538,7 +538,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   34
+            TabIndex        =   35
             TabStop         =   0   'False
             Text            =   "Table"
             Top             =   825
@@ -560,7 +560,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   25
+            TabIndex        =   26
             TabStop         =   0   'False
             Text            =   "Persons.PersonID"
             Top             =   75
@@ -582,7 +582,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   24
+            TabIndex        =   25
             TabStop         =   0   'False
             Text            =   "1"
             Top             =   75
@@ -605,12 +605,33 @@ Begin VB.Form CommonPendingInvoices
       Begin VB.Frame frmCriteria 
          BackColor       =   &H00FFC0FF&
          BorderStyle     =   0  'None
-         Height          =   3615
+         Height          =   3840
          Index           =   0
          Left            =   150
-         TabIndex        =   7
-         Top             =   5100
+         TabIndex        =   8
+         Top             =   4875
          Width           =   9240
+         Begin VB.CheckBox chkCriteriaItemAnalysis 
+            Appearance      =   0  'Flat
+            BackColor       =   &H00FFC0FF&
+            Caption         =   "Ανάλυση ειδών"
+            BeginProperty Font 
+               Name            =   "Ubuntu Condensed"
+               Size            =   9.75
+               Charset         =   161
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00800080&
+            Height          =   315
+            Left            =   2175
+            TabIndex        =   7
+            Top             =   2925
+            Value           =   1  'Checked
+            Width           =   4065
+         End
          Begin UserControls.newText txtPersonDescription 
             Height          =   465
             Left            =   2175
@@ -679,7 +700,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   465
             Index           =   0
             Left            =   8400
-            TabIndex        =   23
+            TabIndex        =   24
             TabStop         =   0   'False
             Top             =   1875
             Width           =   390
@@ -771,7 +792,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   465
             Index           =   1
             Left            =   7200
-            TabIndex        =   41
+            TabIndex        =   42
             TabStop         =   0   'False
             Top             =   2400
             Width           =   390
@@ -811,7 +832,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   315
             Index           =   1
             Left            =   450
-            TabIndex        =   42
+            TabIndex        =   43
             Top             =   2475
             Width           =   1290
          End
@@ -831,7 +852,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   315
             Index           =   6
             Left            =   450
-            TabIndex        =   38
+            TabIndex        =   39
             Top             =   1425
             Width           =   1290
          End
@@ -851,7 +872,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   315
             Index           =   0
             Left            =   450
-            TabIndex        =   22
+            TabIndex        =   23
             Top             =   1950
             Width           =   1290
          End
@@ -871,7 +892,7 @@ Begin VB.Form CommonPendingInvoices
             ForeColor       =   &H0000FFFF&
             Height          =   390
             Left            =   4575
-            TabIndex        =   19
+            TabIndex        =   20
             Top             =   75
             Width           =   4515
          End
@@ -926,8 +947,8 @@ Begin VB.Form CommonPendingInvoices
             Height          =   465
             Index           =   4
             Left            =   0
-            TabIndex        =   17
-            Top             =   3150
+            TabIndex        =   18
+            Top             =   3375
             Width           =   9240
          End
          Begin VB.Label Label1 
@@ -946,7 +967,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   390
             Index           =   3
             Left            =   150
-            TabIndex        =   15
+            TabIndex        =   16
             Top             =   75
             Width           =   1665
          End
@@ -966,7 +987,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   315
             Index           =   2
             Left            =   450
-            TabIndex        =   8
+            TabIndex        =   9
             Top             =   900
             Width           =   1290
          End
@@ -985,7 +1006,7 @@ Begin VB.Form CommonPendingInvoices
             Height          =   540
             Index           =   0
             Left            =   0
-            TabIndex        =   16
+            TabIndex        =   17
             Top             =   0
             Width           =   9240
          End
@@ -993,7 +1014,7 @@ Begin VB.Form CommonPendingInvoices
       Begin iGrid300_10Tec.iGrid grdCommonPendingInvoices 
          Height          =   7290
          Left            =   75
-         TabIndex        =   9
+         TabIndex        =   10
          TabStop         =   0   'False
          Top             =   1500
          Width           =   17415
@@ -1029,7 +1050,7 @@ Begin VB.Form CommonPendingInvoices
          ForeColor       =   &H0080C0FF&
          Height          =   315
          Left            =   2550
-         TabIndex        =   26
+         TabIndex        =   27
          Top             =   525
          Width           =   14940
       End
@@ -1050,7 +1071,7 @@ Begin VB.Form CommonPendingInvoices
          ForeColor       =   &H00C0FFFF&
          Height          =   315
          Left            =   2550
-         TabIndex        =   21
+         TabIndex        =   22
          Top             =   825
          Width           =   14940
       End
@@ -1070,7 +1091,7 @@ Begin VB.Form CommonPendingInvoices
          ForeColor       =   &H00C0C000&
          Height          =   315
          Left            =   75
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   1125
          Width           =   2565
       End
@@ -1091,7 +1112,7 @@ Begin VB.Form CommonPendingInvoices
          ForeColor       =   &H000080FF&
          Height          =   765
          Left            =   75
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   75
          Width           =   6315
       End
@@ -1112,7 +1133,7 @@ Begin VB.Form CommonPendingInvoices
          ForeColor       =   &H000080FF&
          Height          =   315
          Left            =   2550
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   1125
          Width           =   14940
       End
@@ -1439,6 +1460,20 @@ Private Function UpdateWindowTitle(myRefersToID)
 
 End Function
 
+Private Sub chkCriteriaItemAnalysis_KeyDown(KeyCode As Integer, Shift As Integer)
+
+    CheckForArrows (KeyCode)
+
+End Sub
+
+
+Private Sub chkCriteriaItemAnalysis_KeyPress(KeyAscii As Integer)
+
+    ValidateInput (KeyAscii)
+
+End Sub
+
+
 Private Sub cmdButton_Click(Index As Integer)
 
     Select Case Index
@@ -1520,6 +1555,7 @@ Private Function RefreshList()
     
     'Recordsets
     Dim rstRecordset As Recordset
+    Dim rstItems As Recordset
 
     'Local μεταβλητές
     Dim lngRow As Long
@@ -1674,6 +1710,7 @@ Private Function RefreshList()
             grdCommonPendingInvoices.CellValue(lngRow, "PaymentWayID") = !InvoicePaymentWayID
             grdCommonPendingInvoices.CellValue(lngRow, "PaymentWayDescription") = !PaymentWayDescription
             grdCommonPendingInvoices.CellValue(lngRow, "InvoiceRemarks") = !InvoiceRemarks
+            If chkCriteriaItemAnalysis.Value = 1 Then GoSub FindItems
             lngRow = lngRow + 1
             lngRowCount = lngRowCount + 1
             UpdateProgressBar Me
@@ -1699,6 +1736,33 @@ Private Function RefreshList()
     
     Exit Function
     
+FindItems:
+    strSQL = "SELECT Qty, UnitPrice, TotalNetPostDiscount, ItemDescription, ManufacturerDescription, ManufacturerIsShownID " _
+        & "FROM ((InvoicesTrn " _
+        & "LEFT JOIN Items ON InvoicesTrn.ItemID = Items.ItemID) " _
+        & "LEFT JOIN Manufacturers ON Items.ItemManufacturerID = Manufacturers.ManufacturerID) " _
+        & "WHERE InvoiceTrnID = " & rstRecordset!InvoiceTrnID
+    strOrder = " ORDER BY ID"
+    TempQuery.SQL = strSQL & strOrder
+    Set rstItems = TempQuery.OpenRecordset()
+    With rstItems
+        Do While Not .EOF
+            grdCommonPendingInvoices.AddRow
+            lngRow = lngRow + 1
+            grdCommonPendingInvoices.CellFont(lngRow, "PersonDescription").Name = "Input"
+            grdCommonPendingInvoices.CellFont(lngRow, "PersonDescription").Size = "11"
+            'grdCommonPendingInvoices.CellValue(lngRow, "Qty") = !Qty
+            grdCommonPendingInvoices.CellValue(lngRow, "PersonDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & Format(!Qty, "#,##0") & " x " & Format(!TotalNetPostDiscount / !Qty, "#,##0.00") & " = " & Format(!TotalNetPostDiscount, "#,##0.00")
+            grdCommonPendingInvoices.CellTextFlags(lngRow, "PersonDescription") = igTextNoClip Or igTextLeft
+            For lngCol = 1 To grdCommonPendingInvoices.ColCount
+                grdCommonPendingInvoices.CellForeColor(lngRow, lngCol) = vbCyan
+            Next lngCol
+            .MoveNext
+        Loop
+    End With
+    
+    Return
+    
 UpdateSQLString:
     intIndex = intIndex + 1
     strParameters = IIf(intIndex > 1, strParameters & ", ", strParameters)
@@ -1710,6 +1774,7 @@ UpdateSQLString:
     Return
     
 ErrTrap:
+    If Err.Number = 6 Then Err.Description = Err.Description & " ID εγγραφής: " & rstRecordset!InvoiceID
     blnError = True
     ClearFields grdCommonPendingInvoices, frmProgress
     cmdButton(6).Caption = "Νέα αναζήτηση"
@@ -1818,7 +1883,7 @@ Private Sub Form_Load()
     SetUpGrid lstIconList, grdCommonPendingInvoices
     PositionControls Me, True, grdCommonPendingInvoices
     ColorizeControls Me, True
-    ClearFields mskIssueFrom, mskIssueTo, mskInFrom, mskInTo, txtPersonID, txtPersonDescription, txtDeliveryPointID, txtDeliveryPointDescription, lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
+    ClearFields mskIssueFrom, mskIssueTo, mskInFrom, mskInTo, txtPersonID, txtPersonDescription, txtDeliveryPointID, txtDeliveryPointDescription, lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals, chkCriteriaItemAnalysis
     UpdateButtons Me, 7, 1, 0, 0, 0, 0, 0, 0, 1
 
 End Sub

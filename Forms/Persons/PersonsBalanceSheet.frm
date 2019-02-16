@@ -1074,7 +1074,7 @@ End Function
 
 Private Function RefreshList()
 
-    'On Error GoTo ErrTrap
+    On Error GoTo ErrTrap
     
     'SQL
     Dim intIndex As Byte

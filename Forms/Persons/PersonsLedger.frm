@@ -1712,7 +1712,7 @@ Private Function RefreshList()
     
     'Αγορές, πωλήσεις, κινήσεις πελατών και προμηθευτών
     If txtRefersTo.text <> "5" Then
-        strSQL = "SELECT InvoiceID, InvoiceIssueDate, InvoiceNo, InvoiceRefersToID, InvoiceGrossAmount, InvoiceTrnID, InvoicePersonID, InvoiceInDate, InvoicePlates, PaymentWayDescription, PaymentWayCreditID, CodeDescription, CodeInventoryQty, CodeIsPhysicalThing, CodeSuppliers, CodeCustomers, DeliveryPointDescription  " _
+        strSQL = "SELECT InvoiceID, InvoiceIssueDate, InvoiceNo, InvoiceRefersToID, InvoiceGrossAmount, InvoiceTrnID, InvoicePersonID, InvoiceInDate, InvoicePlates, PaymentWayDescription, PaymentWayCreditID, CodeDescription, CodeInventoryQty, CodeIsPhysicalThingID, CodeSuppliers, CodeCustomers, DeliveryPointDescription  " _
         & "FROM (((Invoices " _
         & "INNER JOIN " & txtTable.text & " ON Invoices.InvoicePersonID = " & txtTable.text & ".ID) " _
         & "INNER JOIN Codes ON Invoices.InvoiceCodeID = Codes.CodeID) " _
@@ -1761,8 +1761,8 @@ Private Function RefreshList()
     
     'Εχω επιλέξει "Μόνο ποσότητες"
     If chkCriteriaOnlyQty.Value = 1 Then
-        strThisParameter = "lngCodeIsPhysicalThing Long"
-        strThisQuery = "Codes.CodeIsPhysicalThing =  lngCodeIsPhysicalThing"
+        strThisParameter = "lngCodeIsPhysicalThingID Long"
+        strThisQuery = "Codes.CodeIsPhysicalThingID =  lngCodeIsPhysicalThingID"
         strLogic = " AND "
         GoSub UpdateSQLString
         arrQuery(intIndex) = 1
@@ -1820,7 +1820,7 @@ Private Function RefreshList()
                 If .EOF Then Exit Do
             End If
             If .EOF Then Exit Do
-            If chkCriteriaOnlyQty = 0 Or (chkCriteriaOnlyQty = 1 And !CodeIsPhysicalThing = 1) Then
+            If chkCriteriaOnlyQty = 0 Or (chkCriteriaOnlyQty = 1 And !CodeIsPhysicalThingID = 1) Then
                 grdPersonsLedger.AddRow
                 lngRow = grdPersonsLedger.RowCount
                 blnAskedPeriodHasData = True
@@ -1884,7 +1884,7 @@ UpdateSQLString:
     Return
     
 ErrTrap:
-    blnError = True
+    If Err.Number = 6 Then Err.Description = Err.Description & " ID εγγραφής: " & rstRecordset!InvoiceID
     ClearFields grdPersonsLedger, frmProgress
     cmdButton(6).Caption = "Νέα αναζήτηση"
     DisplayErrorMessage True, Err.Description

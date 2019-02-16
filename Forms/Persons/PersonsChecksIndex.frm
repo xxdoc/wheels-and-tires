@@ -1233,7 +1233,7 @@ Private Function RefreshList()
     End With
     
     'Αξιόγραφα
-    strSQL = "SELECT CheckID, BankDescription, CheckNo, CheckExpireDate, CheckAmount,  CheckIssuedByID, CheckRefersToID, Invoices.InvoiceIssueDate, Invoices.InvoiceNo, InvoiceCodeID, InvoicePersonID, InvoiceTrnID, InvoiceID, InvoiceRefersToID, InvoiceInDate " _
+    strSQL = "SELECT CheckID, BankDescription, CheckNo, CheckExpireDate, InvoiceGrossAmount, CheckIssuedByID, CheckRefersToID, Invoices.InvoiceIssueDate, Invoices.InvoiceNo, InvoiceCodeID, InvoicePersonID, InvoiceTrnID, InvoiceID, InvoiceRefersToID, InvoiceInDate " _
     & "FROM ((Checks " _
     & "INNER JOIN Banks ON Checks.CheckBankID = Banks.BankID) " _
     & "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) "
@@ -1323,7 +1323,7 @@ Private Function RefreshList()
             grdPersonsChecksIndex.CellValue(lngRow, "CheckExpireDate") = !CheckExpireDate
             grdPersonsChecksIndex.CellValue(lngRow, "InvoiceIssueDate") = !InvoiceIssueDate
             grdPersonsChecksIndex.CellValue(lngRow, "CheckNo") = !CheckNo
-            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionA") = FindPersonDescription(txtTable.text, "InvoiceTrnID", !InvoiceTrnID) 'Κάτοχος πληρωτέας ή εκδότης εισπρακτέας
+            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionA") = FindPersonDescription(txtTable.text, "ID", !InvoicePersonID) 'Κάτοχος πληρωτέας ή εκδότης εισπρακτέας
             If !CheckIssuedByID <> 0 Then
                 grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionB") = FindPersonDescription(txtOppositeTable.text, "ID", !CheckIssuedByID) 'Εκδότης πληρωτέας
             End If
@@ -1335,7 +1335,7 @@ Private Function RefreshList()
             End If
             grdPersonsChecksIndex.CellValue(lngRow, "BankDescription") = !BankDescription
             grdPersonsChecksIndex.CellValue(lngRow, "InvoiceNo") = !InvoiceNo
-            grdPersonsChecksIndex.CellValue(lngRow, "CheckAmount") = !CheckAmount
+            grdPersonsChecksIndex.CellValue(lngRow, "CheckAmount") = !InvoiceGrossAmount
             grdPersonsChecksIndex.CellValue(lngRow, "WindowTitle") = UpdateWindowTitle(!InvoiceRefersToID)
             grdPersonsChecksIndex.CellValue(lngRow, "NextWindowTitle") = UpdateNextWindowTitle(!InvoiceRefersToID)
             '///

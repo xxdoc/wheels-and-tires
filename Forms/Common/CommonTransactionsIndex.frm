@@ -2048,7 +2048,8 @@ Private Function AbortProcedure(blnStatus)
     If blnProcessing Then blnProcessing = False: Exit Function
     
     If Not blnStatus Then
-        ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων, lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
+        ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων, frmProgress
+        ClearFields lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
         frmCriteria(0).Visible = True
         mskIssueFrom.SetFocus
         UpdateButtons Me, 5, 1, 0, 0, 0, 0, 1
@@ -2312,7 +2313,7 @@ Private Function RefreshList()
     If Not blnProcessing Then
         blnProcessing = True
         RefreshList = 0
-        ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων
+        ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων, frmProgress
     Else
         RefreshList = rstRecordset.RecordCount
         blnProcessing = False
@@ -2335,6 +2336,7 @@ UpdateSQLString:
     Return
     
 ErrTrap:
+    If Err.Number = 6 Then Err.Description = Err.Description & " ID εγγραφής: " & rstRecordset!InvoiceID
     blnError = True
     ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων, frmProgress
     cmdButton(4).Caption = "Νέα αναζήτηση"
@@ -2539,7 +2541,13 @@ Private Sub Form_Load()
     SetUpGrid lstIconList, grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων
     PositionControls Me, True, grdCommonTransactionsIndex
     ColorizeControls Me, True
-    ClearFields mskIssueFrom, mskIssueTo, mskInFrom, mskInTo, txtPersonID, txtPersonDescription, txtDeliveryPointID, txtDeliveryPointDescription, txtCategoryID, txtCategoryShortDescription, lblCategoryDescription, txtItemID, txtItemDescription, txtCodeID, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, chkCriteriaItemAnalysis, chkCriteriaChecksAnalysis, chkCriteriaZeroInvoices, chkCriteriaPrintPersonsData, lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
+    
+    ClearFields mskIssueFrom, mskIssueTo, mskInFrom, mskInTo, txtPersonDescription, txtDeliveryPointDescription, txtCategoryShortDescription, txtItemDescription, txtCodeShortDescription, txtInvoiceNo
+    ClearFields chkCriteriaItemAnalysis, chkCriteriaChecksAnalysis, chkCriteriaZeroInvoices, chkCriteriaPrintPersonsData
+    ClearFields lblCategoryDescription, lblCodeDescription
+    ClearFields txtPersonID, txtDeliveryPointID, txtCategoryID, txtItemID, txtCodeID
+    ClearFields lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
+    
     UpdateButtons Me, 5, 1, 0, 0, 0, 0, 1
 
 End Sub

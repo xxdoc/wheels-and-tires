@@ -58,6 +58,16 @@ Public Type typTableData
     strFourteenField As String
 End Type
 
+Function ToggleFieldVisibility(visibility As Boolean, ParamArray tmpFields())
+
+    Dim bytLoop As Byte
+    
+    For bytLoop = 0 To UBound(tmpFields)
+        tmpFields(bytLoop).ForeColor = IIf(visibility = True, vbBlack, vbWhite)
+    Next bytLoop
+
+End Function
+
 Function KillProcess(appName)
 
     Dim process As Object
@@ -477,12 +487,12 @@ Function PrintInvoiceToLaser(myInvoiceTrnID, myPrinterName)
         rptInvoiceA.Tag = myInvoiceTrnID
         rptInvoiceA.PageSettings.Orientation = ddOLandscape
         rptInvoiceA.PageSettings.PaperSize = 11
-        If blnPreviewReports Then
+        rptInvoiceA.lblIsOriginalOrCopy.Caption = IIf(intLoop = 1, "ΠΡΩΤΟΤΥΠΟ", "ΑΝΤΙΓΡΑΦΟ")
+        If Not blnPreviewInvoices Then
             rptInvoiceA.Zoom = -2
             rptInvoiceA.Printer.ColorMode = vbPRCMMonochrome
             rptInvoiceA.WindowState = vbMaximized
             rptInvoiceA.Show 1
-            Exit For
         Else
             rptInvoiceA.Printer.DeviceName = myPrinterName
             rptInvoiceA.PrintReport False
@@ -1908,7 +1918,7 @@ Function PrintRecords(myForm As Form, myWhatToDo, myDisplayCompletionMessage, my
     
     If myWhatToDo = "Print" Then
         'Αν τυπώνω το τιμολογιο, βρισκω τον εκτυπωτη
-        If Not IsNull(myPrinterCodeID) Then
+        If Not IsMissing(myPrinterCodeID) Then
             Set tmpRecordset = CheckForMatch("PrintersDB", myPrinterCodeID, "Printers", "PrinterID", "Numeric", 1, 1)
         Else
             Set tmpRecordset = CheckForMatch("PrintersDB", 1, "Printers", myInvoiceOrReport, "Numeric", 1, 1)
@@ -2080,6 +2090,9 @@ Function ClearFields(ParamArray tmpFields())
     Dim bytLoop As Byte
     
     For bytLoop = 0 To UBound(tmpFields)
+        If TypeOf tmpFields(bytLoop) Is Field Then
+            tmpFields(bytLoop).text = ""
+        End If
         If TypeOf tmpFields(bytLoop) Is TextBox Or TypeOf tmpFields(bytLoop) Is newText Or TypeOf tmpFields(bytLoop) Is newInteger Or TypeOf tmpFields(bytLoop) Is newFloat Or TypeOf tmpFields(bytLoop) Is newDate Then
             tmpFields(bytLoop).text = ""
         End If

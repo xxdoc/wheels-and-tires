@@ -2756,16 +2756,13 @@ Dim aInvoicesArray() As String
 
 
 
-Private Function AddOrRemoveGridLines()
+Private Function AddGridLines()
 
-    Dim lngCurrentRow As Long
-    Dim lngRowsToAddOrDelete As Long
+    Dim lngRowsToAdd As Long
     
-    lngCurrentRow = Val(mskCodeDetailLines.text) + 1 'Where to begin
-    lngRowsToAddOrDelete = grdCommonTransactions.RowCount - Val(mskCodeDetailLines.text)
+    lngRowsToAdd = Val(mskCodeDetailLines.text)
     
-    If lngRowsToAddOrDelete > 0 Then grdCommonTransactions.RemoveRow lngCurrentRow, lngRowsToAddOrDelete
-    If lngRowsToAddOrDelete < 0 Then grdCommonTransactions.AddRow , , , , , , , Abs(lngRowsToAddOrDelete)
+    grdCommonTransactions.AddRow , , , , , , , lngRowsToAdd - grdCommonTransactions.RowCount
 
 End Function
 
@@ -2949,7 +2946,7 @@ Function DoSharedStuff(myInvoiceTrnID, myWindowTitle, myTable, myRefersTo)
     FillCellWithSomething grdCommonTransactions, 0, 0, "5,6,7,8,9,10,12,13,14,15,16"
     FindInvoicesWithTrnID myInvoiceTrnID, myWindowTitle, myTable, myRefersTo
     FindItemsWithTrnID myInvoiceTrnID
-    AddOrRemoveGridLines
+    AddGridLines
     
     If txtCodeHandID.text = "1" Then
         EnableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtPaymentWayDescription, txtInvoiceRemarks, grdCommonTransactions, cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7)
@@ -3455,7 +3452,6 @@ Private Function NewRecord()
     CustomizeGrid grdCommonTransactions
     EnableTabStop grdCommonTransactions
     
-    AddGridLines grdCommonTransactions, txtRefersTo.text, intSalesInvoiceLines
     InitializeFields IIf(txtRefersTo.text = "2", mskInvoiceIssueDate, ""), mskTotalQty, mskTotalPreDiscount, mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT, mskTotalGross
     ColorizeRowsWhenItemIsNotGiven 0
     FillCellWithSomething grdCommonTransactions, 0, 0, "5,6,7,8,9,10,12,13,14,15,16"
@@ -3690,7 +3686,7 @@ Private Function SaveRecord()
     UpdateItemsWithNewBalance
     TransformInvoices
     PrintInvoice
-    
+        
     If Not blnError Then
         If txtCodeHandID.text = "1" Or (txtCodeHandID.text = "0" And blnStatus) Then CommitTrans
         ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
@@ -4145,7 +4141,7 @@ Private Sub cmdIndex_Click(Index As Integer)
             mskCodeDetailLines.text = tmpTableData.strElevenField
             txtCodeDateCheckID.text = tmpTableData.strThirteenField
             If tmpRecordset.RecordCount <> 0 And txtInvoiceCodeID.text <> "" Then
-                AddOrRemoveGridLines
+                AddGridLines
                 If txtRefersTo.text = "2" Then txtInvoiceNo.text = Val(txtCodeLastNo.text) + 1 'Αν είναι πώληση, αυξάνω τον αριθμό παραστατικού κατά 1
                 If txtCodeHandID.text = "1" Then txtInvoiceNo.Locked = False Else txtInvoiceNo.Locked = True 'Αν είναι χειρόγραφο, επιτρέπω την αλλαγή του αριθμού
                 If txtCodeDetailsID.text = "1" Then
