@@ -2762,7 +2762,9 @@ Private Function AddGridLines()
     
     lngRowsToAdd = Val(mskCodeDetailLines.text)
     
-    grdCommonTransactions.AddRow , , , , , , , lngRowsToAdd - grdCommonTransactions.RowCount
+    If lngRowsToAdd - grdCommonTransactions.RowCount <> 0 Then
+        grdCommonTransactions.AddRow , , , , , , , lngRowsToAdd - grdCommonTransactions.RowCount
+    End If
 
 End Function
 

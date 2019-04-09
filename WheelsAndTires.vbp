@@ -45,7 +45,6 @@ Form=Forms\VAT\VATBalanceSheet.frm
 Form=Forms\Common\CommonTransactionsIndex.frm
 Form=Forms\Sales\SalesIncomingVehicles.frm
 Form=Forms\Items\ItemsTransactions.frm
-Designer=Designers\rptInvoice.Dsr
 Form=Forms\Utils\UtilsTablesCheck.frm
 Form=Forms\Items\itemsBalanceSheet.frm
 Designer=Designers\rptReport.Dsr

@@ -388,7 +388,7 @@ Function CreatePDF(myPaperSize, myOrientation, myTopMargin, myLeftMargin, myWind
         strPrinterData(3) = myTopMargin
         strPrinterData(4) = myLeftMargin
         
-        With rptInvoice
+        With rptInvoiceA
             .Restart
             .Caption = ""
             .PageSettings.PaperSize = myPaperSize
@@ -488,7 +488,7 @@ Function PrintInvoiceToLaser(myInvoiceTrnID, myPrinterName)
         rptInvoiceA.PageSettings.Orientation = ddOLandscape
         rptInvoiceA.PageSettings.PaperSize = 11
         rptInvoiceA.lblIsOriginalOrCopy.Caption = IIf(intLoop = 1, "пяытотупо", "амтицяажо")
-        If Not blnPreviewInvoices Then
+        If blnPreviewInvoices Then
             rptInvoiceA.Zoom = -2
             rptInvoiceA.Printer.ColorMode = vbPRCMMonochrome
             rptInvoiceA.WindowState = vbMaximized
