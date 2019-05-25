@@ -2418,13 +2418,13 @@ Begin VB.Form CommonTransactions
          PicSizeW        =   16
       End
       Begin UserControls.newText txtInvoiceNo 
-         Height          =   465
+         Height          =   390
          Left            =   2175
          TabIndex        =   4
          Top             =   2475
          Width           =   1515
          _ExtentX        =   2672
-         _ExtentY        =   820
+         _ExtentY        =   688
          Alignment       =   2
          ForeColor       =   0
          MaxLength       =   7
@@ -3501,6 +3501,7 @@ Function CreateUnicodeFile(myPrinterType, myEAFDSSString, myInvoiceHeight, myDet
     Dim intDetailLines As Integer
     
     Open strUnicodeFile For Output As #1
+    'Open strReportsPathName & " " & "Test.txt" For Output As #1
     InitReport myPrinterType, myEAFDSSString, myInvoiceHeight
     GoSub PrintInvoiceHeadings
     
@@ -3520,9 +3521,24 @@ Function CreateUnicodeFile(myPrinterType, myEAFDSSString, myInvoiceHeight, myDet
         Next lngRow
     End With
     
-    For intDetailLines = intDetailLines To myDetailLines - 8
+    'For intDetailLines = intDetailLines To myDetailLines - 13
+    '    Print #1, ""
+    'Next intDetailLines
+    
+    'Print #1, "ΓΡΑΜΜΗ 1"
+    'Print #1, "ΓΡΑΜΜΗ 2"
+    
+    For intDetailLines = intDetailLines To myDetailLines - 12
         Print #1, ""
     Next intDetailLines
+    
+    '27+69 Bold 27+70 Cancel
+    '27+71 Double 27+72 Cancel
+    
+    Print #1, Chr(27) + Chr(71) + strInvoiceExtraRemarksA + Chr(27) + Chr(72)
+    Print #1, Chr(14) + strInvoiceExtraRemarksB + Chr(20)
+    Print #1, ""
+    Print #1, ""
     
     'If blnPrintBalance Then Print #1, Tab(35 - Len(Format(curPreviousBalance, "#,##0.00"))); Format(curPreviousBalance, "#,##0.00");
     'If blnPrintBalance Then Print #1, Tab(35 - Len(Format(curNewBalance, "#,##0.00"))); Format(curNewBalance, "#,##0.00");
@@ -3532,7 +3548,7 @@ Function CreateUnicodeFile(myPrinterType, myEAFDSSString, myInvoiceHeight, myDet
     Print #1, Tab(45); Format(mskTotalRestAmount.text, "#,##0.00"); Tab(65); CStr(curExtraChargesVATPercent); Tab(75); Format(mskTotalVAT.text, "#,##0.00"); Tab(136 - Len(Format(mskTotalRestAmount.text, "#,##0.00"))); Format(mskTotalRestAmount.text, "#,##0.00")
     Print #1, Tab(136 - Len(Format(mskTotalVAT.text, "#,##0.00"))); Format(mskTotalVAT.text, "#,##0.00")
     Print #1, ""
-    Print #1, Tab(136 - Len(Format(mskTotalGross.text, "#,##0.00"))); Format(mskTotalGross.text, "#,##0.00")
+    Print #1, Tab(136 - Len(Format(mskTotalGross.text, "#,##0.00"))); Chr(27) + Chr(71) + Format(mskTotalGross.text, "#,##0.00") + Chr(27) + Chr(72)
     
     Print #1, Space(13) & Left(txtInvoiceRemarks.text, 60)
     Print #1, FullNumber(mskTotalGross.text)
@@ -4531,7 +4547,7 @@ Sub DoCalculations(lngRow As Long)
         curDiscPerc = grdCommonTransactions.CellValue(lngRow, "DiscPercent")
     End If
     'Υπολογισμός αξίας αν δεν έχω έκπτωση
-    If grdCommonTransactions.CellValue(lngRow, "DiscAllow") = "" Then curRestAmount = curNetAmount - Val(grdCommonTransactions.CellValue(lngRow, "DiscAmount"))
+    If grdCommonTransactions.CellValue(lngRow, "DiscAllow") = "" Or IsNull(grdCommonTransactions.CellValue(lngRow, "DiscAllow")) Then curRestAmount = curNetAmount - Val(grdCommonTransactions.CellValue(lngRow, "DiscAmount"))
     'Υπολογισμός ΦΠΑ
     curVATAmount = Round(curRestAmount * CCur(grdCommonTransactions.CellValue(lngRow, "VATPercent")) / 100, 2)
     'Υπολογισμός τελικής αξίας

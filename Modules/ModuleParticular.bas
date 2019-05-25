@@ -485,6 +485,8 @@ Function LoadSettings()
         strDestinationSite = !DestinationSite
         blnPrintHour = IIf(!PrintHourID = 1, True, False)
         blnPrintBalance = IIf(!PrintBalanceID = 1, True, False)
+        strInvoiceExtraRemarksA = !InvoiceExtraRemarksA
+        strInvoiceExtraRemarksB = !InvoiceExtraRemarksB
         'Συναλλασόμενοι
         blnCheckTaxNo = IIf(!TaxNoCheckID = 1, True, False)
         'ΕΑΦΔΣΣ
@@ -728,7 +730,7 @@ Public Function FullNumber(tmpOldNumber)
     Next intLoop
     
     If strFullNumber = "" Then strFullNumber = "ΜΗΔΕΝ "
-    strFullNumber = strFullNumber + "ΕΥΡΩ "
+    strFullNumber = strFullNumber + " ΕΥΡΩ "
     
     bytArrayIndex = 8
     tmpDecNumber = Mid(strTotalGross, 11, 2)

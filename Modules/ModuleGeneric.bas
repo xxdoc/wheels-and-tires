@@ -9,6 +9,8 @@ Global arrCompanyData(10) As String
 Global arrData(13) As String
 Global arrMenu() As Integer
 Global strBankAccountNo As String
+Global strInvoiceExtraRemarksA As String
+Global strInvoiceExtraRemarksB As String
 
 'Databases
 Global strDatabaseName As String
@@ -1930,7 +1932,7 @@ Function PrintRecords(myForm As Form, myWhatToDo, myDisplayCompletionMessage, my
                 If PrinterExists(.strCode) Then
                     If myInvoiceOrReport = "PrinterPrintsInvoicesID" Then strFileName = myForm.CreateUnicodeFile(.strTwoField, .strFiveField, Val(.strSixField), Val(.strSevenField), Val(.strEightField), 0) 'Παραστατικά - Πάντα φτιάχνω το unicode (ID τύπου εκτυπωτή, string σήμανσης = 5, ύψος = 6, αναλυτικές γραμμές = 7, επάνω περιθώριο = 8, αριστερό περιθώριο = 9)
                     If myInvoiceOrReport = "PrinterPrintsReportsID" Then strFileName = myForm.CreateUnicodeFile(.strTwoField, "", Val(.strElevenField), Val(.strTwelveField), Val(.strThirteenField), Val(.strFourteenField)) 'Αναφορές - Πάντα φτιάχνω το unicode (string σήμανσης = "", ύψος = 11, αναλυτικές γραμμές = 12, επάνω περιθώριο = 13, αριστερό περιθώριο = 14)
-                    If .strTwoField = "1" Then strFileName = ConvertToAsciiFile(strFileName, strAsciiFile) 'Αν ο εκτυπωτής είναι dot matrix, μετατρέπω το unicode σε ascii
+                    If .strTwoField = "1" Then strFileName = ConvertToAsciiFile(strFileName, strAsciiFile)  'Αν ο εκτυπωτής είναι dot matrix, μετατρέπω το unicode σε ascii
                     If .strTwoField <> "1" Then 'Αν ο εκτυπωτής ΔΕΝ είναι dot matrix
                         CreatePDF Val(tmpTableData.strNineField), Val(tmpTableData.strTenField), Val(tmpTableData.strThirteenField), Val(tmpTableData.strFourteenField), myForm.lblTitle.Caption, tmpTableData.strThreeField, Val(tmpTableData.strFourField), myInvoiceOrReport '
                         If myInvoiceOrReport = "PrinterPrintsInvoicesID" Then PrintInvoiceToLaser myInvoiceTrnID, tmpTableData.strCode
@@ -1999,7 +2001,7 @@ Function MainSaveRecord(SelectedDB, Table, Status, FormTitle, IndexField, CodeTo
             End If
         End If
         For lngFieldNo = 0 To UBound(Fields)
-            'Debug.Print .Fields(lngFieldNo + 1).Name & " " & Fields(lngFieldNo)
+            Debug.Print .Fields(lngFieldNo + 1).Name & " " & Fields(lngFieldNo)
             .Fields(lngFieldNo + 1).Value = Trim(Fields(lngFieldNo))
         Next
         .Update
