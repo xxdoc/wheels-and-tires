@@ -11,14 +11,14 @@ Begin VB.Form CommonTransactions
    ClientHeight    =   12105
    ClientLeft      =   15
    ClientTop       =   0
-   ClientWidth     =   18480
+   ClientWidth     =   22080
    ControlBox      =   0   'False
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   12105
-   ScaleWidth      =   18480
+   ScaleWidth      =   22080
    ShowInTaskbar   =   0   'False
    Begin VB.Frame frmContainer 
       Appearance      =   0  'Flat
@@ -37,11 +37,55 @@ Begin VB.Form CommonTransactions
          BorderStyle     =   0  'None
          Enabled         =   0   'False
          ForeColor       =   &H80000008&
-         Height          =   11115
-         Left            =   11850
-         TabIndex        =   10
-         Top             =   75
-         Width           =   4515
+         Height          =   7590
+         Left            =   4875
+         TabIndex        =   11
+         Top             =   2850
+         Width           =   8940
+         Begin VB.TextBox Text30 
+            Appearance      =   0  'Flat
+            BackColor       =   &H00C0C0FF&
+            BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Ubuntu Condensed"
+               Size            =   9.75
+               Charset         =   161
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00000000&
+            Height          =   315
+            Left            =   75
+            TabIndex        =   118
+            TabStop         =   0   'False
+            Text            =   "Invoices.InvoicePrintExtraRemarks"
+            Top             =   3450
+            Width           =   3540
+         End
+         Begin VB.TextBox txtInvoicePrintExtraRemarksID 
+            Appearance      =   0  'Flat
+            BackColor       =   &H00C0C0FF&
+            BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Ubuntu Condensed"
+               Size            =   9.75
+               Charset         =   161
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00000000&
+            Height          =   315
+            Left            =   3675
+            TabIndex        =   117
+            TabStop         =   0   'False
+            Text            =   "9"
+            Top             =   3450
+            Width           =   780
+         End
          Begin VB.TextBox txtCodeDateCheckID 
             Appearance      =   0  'Flat
             BackColor       =   &H0000C000&
@@ -58,10 +102,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   117
+            TabIndex        =   116
             TabStop         =   0   'False
             Text            =   "15"
-            Top             =   6825
+            Top             =   7200
             Width           =   780
          End
          Begin VB.TextBox Text27 
@@ -80,10 +124,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   116
+            TabIndex        =   115
             TabStop         =   0   'False
             Text            =   "Codes.CodeDateCheckID"
-            Top             =   6825
+            Top             =   7200
             Width           =   3540
          End
          Begin VB.TextBox Text28 
@@ -102,10 +146,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   115
+            TabIndex        =   114
             TabStop         =   0   'False
             Text            =   "Codes.CodeDetailLines"
-            Top             =   6450
+            Top             =   6825
             Width           =   3540
          End
          Begin VB.TextBox mskCodeDetailLines 
@@ -124,10 +168,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   114
+            TabIndex        =   113
             TabStop         =   0   'False
             Text            =   "15"
-            Top             =   6450
+            Top             =   6825
             Width           =   780
          End
          Begin VB.TextBox txtCodePrinterID 
@@ -146,10 +190,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   113
+            TabIndex        =   112
             TabStop         =   0   'False
             Text            =   "15"
-            Top             =   6075
+            Top             =   6450
             Width           =   780
          End
          Begin VB.TextBox Text12 
@@ -168,10 +212,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   112
+            TabIndex        =   111
             TabStop         =   0   'False
             Text            =   "Codes.CodePrinterID"
-            Top             =   6075
+            Top             =   6450
             Width           =   3540
          End
          Begin VB.TextBox Text21 
@@ -190,10 +234,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   111
+            TabIndex        =   110
             TabStop         =   0   'False
             Text            =   "Codes.CodeLastDate"
-            Top             =   5700
+            Top             =   6075
             Width           =   3540
          End
          Begin VB.TextBox mskCodeLastDate 
@@ -212,10 +256,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   110
+            TabIndex        =   109
             TabStop         =   0   'False
             Text            =   "15"
-            Top             =   5700
+            Top             =   6075
             Width           =   780
          End
          Begin VB.TextBox Text25 
@@ -233,11 +277,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   75
-            TabIndex        =   109
+            Left            =   4500
+            TabIndex        =   108
             TabStop         =   0   'False
             Text            =   "Person.City"
-            Top             =   8700
+            Top             =   1575
             Width           =   3540
          End
          Begin VB.TextBox txtCity 
@@ -255,11 +299,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   108
+            Left            =   8100
+            TabIndex        =   107
             TabStop         =   0   'False
             Text            =   "21"
-            Top             =   8700
+            Top             =   1575
             Width           =   780
          End
          Begin VB.TextBox Text23 
@@ -277,11 +321,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   75
-            TabIndex        =   107
+            Left            =   4500
+            TabIndex        =   106
             TabStop         =   0   'False
             Text            =   "TaxOffices.TaxOfficeDescription"
-            Top             =   10200
+            Top             =   3075
             Width           =   3540
          End
          Begin VB.TextBox txtTaxOfficeDescription 
@@ -299,11 +343,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   106
+            Left            =   8100
+            TabIndex        =   105
             TabStop         =   0   'False
             Text            =   "25"
-            Top             =   10200
+            Top             =   3075
             Width           =   780
          End
          Begin VB.TextBox txtPhones 
@@ -321,11 +365,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   105
+            Left            =   8100
+            TabIndex        =   104
             TabStop         =   0   'False
             Text            =   "23"
-            Top             =   9450
+            Top             =   2325
             Width           =   780
          End
          Begin VB.TextBox Text26 
@@ -343,11 +387,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   75
-            TabIndex        =   104
+            Left            =   4500
+            TabIndex        =   103
             TabStop         =   0   'False
             Text            =   "Person.Phones"
-            Top             =   9450
+            Top             =   2325
             Width           =   3540
          End
          Begin VB.TextBox txtAddress 
@@ -365,11 +409,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   103
+            Left            =   8100
+            TabIndex        =   102
             TabStop         =   0   'False
             Text            =   "20"
-            Top             =   8325
+            Top             =   1200
             Width           =   780
          End
          Begin VB.TextBox Text24 
@@ -387,11 +431,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   75
-            TabIndex        =   102
+            Left            =   4500
+            TabIndex        =   101
             TabStop         =   0   'False
             Text            =   "Person.Address"
-            Top             =   8325
+            Top             =   1200
             Width           =   3540
          End
          Begin VB.TextBox txtTaxNo 
@@ -409,11 +453,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   101
+            Left            =   8100
+            TabIndex        =   100
             TabStop         =   0   'False
             Text            =   "22"
-            Top             =   9075
+            Top             =   1950
             Width           =   780
          End
          Begin VB.TextBox Text22 
@@ -431,11 +475,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   75
-            TabIndex        =   100
+            Left            =   4500
+            TabIndex        =   99
             TabStop         =   0   'False
             Text            =   "Person.TaxNo"
-            Top             =   9075
+            Top             =   1950
             Width           =   3540
          End
          Begin VB.TextBox txtVATStateID 
@@ -453,11 +497,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   99
+            Left            =   8100
+            TabIndex        =   98
             TabStop         =   0   'False
             Text            =   "24"
-            Top             =   9825
+            Top             =   2700
             Width           =   780
          End
          Begin VB.TextBox Text17 
@@ -475,11 +519,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   75
-            TabIndex        =   98
+            Left            =   4500
+            TabIndex        =   97
             TabStop         =   0   'False
             Text            =   "Person.VATStateID"
-            Top             =   9825
+            Top             =   2700
             Width           =   3540
          End
          Begin VB.TextBox txtInvoiceInTime 
@@ -498,7 +542,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   46
+            TabIndex        =   47
             TabStop         =   0   'False
             Text            =   "7"
             Top             =   2325
@@ -520,7 +564,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   45
+            TabIndex        =   46
             TabStop         =   0   'False
             Text            =   "Invoices.InvoiceInTime"
             Top             =   2325
@@ -542,7 +586,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   44
+            TabIndex        =   45
             TabStop         =   0   'False
             Text            =   "6"
             Top             =   1950
@@ -564,7 +608,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   43
+            TabIndex        =   44
             TabStop         =   0   'False
             Text            =   "Invoices.InvoiceInDate"
             Top             =   1950
@@ -585,11 +629,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00000000&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   42
+            Left            =   8100
+            TabIndex        =   43
             TabStop         =   0   'False
             Text            =   "16"
-            Top             =   7200
+            Top             =   75
             Width           =   780
          End
          Begin VB.TextBox Text1 
@@ -607,11 +651,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00000000&
             Height          =   315
-            Left            =   75
-            TabIndex        =   41
+            Left            =   4500
+            TabIndex        =   42
             TabStop         =   0   'False
             Text            =   "Table"
-            Top             =   7200
+            Top             =   75
             Width           =   3540
          End
          Begin VB.TextBox Text20 
@@ -629,11 +673,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00000000&
             Height          =   315
-            Left            =   75
-            TabIndex        =   40
+            Left            =   4500
+            TabIndex        =   41
             TabStop         =   0   'False
             Text            =   "RefersTo"
-            Top             =   7575
+            Top             =   450
             Width           =   3540
          End
          Begin VB.TextBox txtRefersTo 
@@ -651,11 +695,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00000000&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   39
+            Left            =   8100
+            TabIndex        =   40
             TabStop         =   0   'False
             Text            =   "17"
-            Top             =   7575
+            Top             =   450
             Width           =   780
          End
          Begin VB.TextBox Text3 
@@ -674,7 +718,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   38
+            TabIndex        =   39
             TabStop         =   0   'False
             Text            =   "Invoices.InvoiceCodeID"
             Top             =   825
@@ -696,7 +740,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   37
+            TabIndex        =   38
             TabStop         =   0   'False
             Text            =   "3"
             Top             =   825
@@ -718,7 +762,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   36
+            TabIndex        =   37
             TabStop         =   0   'False
             Text            =   "1"
             Top             =   75
@@ -740,7 +784,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   35
+            TabIndex        =   36
             TabStop         =   0   'False
             Text            =   "Invoices.InvoiceTrnID"
             Top             =   75
@@ -762,7 +806,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   34
+            TabIndex        =   35
             TabStop         =   0   'False
             Text            =   "2"
             Top             =   450
@@ -784,7 +828,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   33
+            TabIndex        =   34
             TabStop         =   0   'False
             Text            =   "Invoices.InvoicePersonID"
             Top             =   450
@@ -806,7 +850,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   32
+            TabIndex        =   33
             TabStop         =   0   'False
             Text            =   "Invoices.InvoiceDeliveryPointID"
             Top             =   1200
@@ -828,7 +872,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   31
+            TabIndex        =   32
             TabStop         =   0   'False
             Text            =   "4"
             Top             =   1200
@@ -850,7 +894,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   30
+            TabIndex        =   31
             TabStop         =   0   'False
             Text            =   "Invoices.InvoicePaymentWayID"
             Top             =   1575
@@ -872,7 +916,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   29
+            TabIndex        =   30
             TabStop         =   0   'False
             Text            =   "5"
             Top             =   1575
@@ -894,7 +938,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   28
+            TabIndex        =   29
             TabStop         =   0   'False
             Text            =   "8"
             Top             =   2700
@@ -916,7 +960,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   27
+            TabIndex        =   28
             TabStop         =   0   'False
             Text            =   "Invoices.InvoiceIsInvoiced"
             Top             =   2700
@@ -938,7 +982,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   3675
-            TabIndex        =   26
+            TabIndex        =   27
             TabStop         =   0   'False
             Text            =   "9"
             Top             =   3075
@@ -960,7 +1004,7 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00000000&
             Height          =   315
             Left            =   75
-            TabIndex        =   25
+            TabIndex        =   26
             TabStop         =   0   'False
             Text            =   "Invoices.InvoiceIsPrinted"
             Top             =   3075
@@ -982,10 +1026,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   24
+            TabIndex        =   25
             TabStop         =   0   'False
             Text            =   "Codes.CodeDetailsID"
-            Top             =   3450
+            Top             =   3825
             Width           =   3540
          End
          Begin VB.TextBox txtCodeDetailsID 
@@ -1004,10 +1048,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   23
+            TabIndex        =   24
             TabStop         =   0   'False
             Text            =   "10"
-            Top             =   3450
+            Top             =   3825
             Width           =   780
          End
          Begin VB.TextBox Text13 
@@ -1026,10 +1070,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   22
+            TabIndex        =   23
             TabStop         =   0   'False
             Text            =   "Codes.CodeHandID"
-            Top             =   3825
+            Top             =   4200
             Width           =   3540
          End
          Begin VB.TextBox txtCodeHandID 
@@ -1048,10 +1092,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   21
+            TabIndex        =   22
             TabStop         =   0   'False
             Text            =   "11"
-            Top             =   3825
+            Top             =   4200
             Width           =   780
          End
          Begin VB.TextBox Text14 
@@ -1069,11 +1113,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   75
-            TabIndex        =   20
+            Left            =   4500
+            TabIndex        =   21
             TabStop         =   0   'False
             Text            =   "Person.Profession"
-            Top             =   7950
+            Top             =   825
             Width           =   3540
          End
          Begin VB.TextBox txtProfession 
@@ -1091,11 +1135,11 @@ Begin VB.Form CommonTransactions
             EndProperty
             ForeColor       =   &H00FFFFFF&
             Height          =   315
-            Left            =   3675
-            TabIndex        =   19
+            Left            =   8100
+            TabIndex        =   20
             TabStop         =   0   'False
             Text            =   "19"
-            Top             =   7950
+            Top             =   825
             Width           =   780
          End
          Begin VB.TextBox txtCodeLastNo 
@@ -1114,10 +1158,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   18
+            TabIndex        =   19
             TabStop         =   0   'False
             Text            =   "12"
-            Top             =   4200
+            Top             =   4575
             Width           =   780
          End
          Begin VB.TextBox Text16 
@@ -1136,10 +1180,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   17
+            TabIndex        =   18
             TabStop         =   0   'False
             Text            =   "Codes.CodeLastNo"
-            Top             =   4200
+            Top             =   4575
             Width           =   3540
          End
          Begin VB.TextBox Text15 
@@ -1158,10 +1202,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   16
+            TabIndex        =   17
             TabStop         =   0   'False
             Text            =   "Codes.CodeInventoryQty"
-            Top             =   4575
+            Top             =   4950
             Width           =   3540
          End
          Begin VB.TextBox txtCodeInventoryQty 
@@ -1180,10 +1224,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   15
+            TabIndex        =   16
             TabStop         =   0   'False
             Text            =   "13"
-            Top             =   4575
+            Top             =   4950
             Width           =   780
          End
          Begin VB.TextBox Text18 
@@ -1202,10 +1246,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   14
+            TabIndex        =   15
             TabStop         =   0   'False
             Text            =   "Codes.CodeInventoryValue"
-            Top             =   4950
+            Top             =   5325
             Width           =   3540
          End
          Begin VB.TextBox txtCodeInventoryValue 
@@ -1224,10 +1268,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   13
+            TabIndex        =   14
             TabStop         =   0   'False
             Text            =   "14"
-            Top             =   4950
+            Top             =   5325
             Width           =   780
          End
          Begin VB.TextBox txtCodeTransformID 
@@ -1246,10 +1290,10 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   3675
-            TabIndex        =   12
+            TabIndex        =   13
             TabStop         =   0   'False
             Text            =   "15"
-            Top             =   5325
+            Top             =   5700
             Width           =   780
          End
          Begin VB.TextBox Text19 
@@ -1268,15 +1312,15 @@ Begin VB.Form CommonTransactions
             ForeColor       =   &H00FFFFFF&
             Height          =   315
             Left            =   75
-            TabIndex        =   11
+            TabIndex        =   12
             TabStop         =   0   'False
             Text            =   "Codes.CodeTransformID"
-            Top             =   5325
+            Top             =   5700
             Width           =   3540
          End
          Begin vbalIml6.vbalImageList lstIconList 
-            Left            =   75
-            Top             =   10500
+            Left            =   4500
+            Top             =   3450
             _ExtentX        =   953
             _ExtentY        =   953
             IconSizeX       =   26
@@ -1296,13 +1340,14 @@ Begin VB.Form CommonTransactions
          ForeColor       =   &H80000008&
          Height          =   765
          Left            =   450
-         TabIndex        =   89
+         TabIndex        =   88
          Top             =   8025
          Width           =   15840
          Begin UserControls.newText txtInvoiceDestinationSite 
             Height          =   465
             Left            =   11775
-            TabIndex        =   90
+            TabIndex        =   89
+            TabStop         =   0   'False
             Top             =   300
             Width           =   3765
             _ExtentX        =   6641
@@ -1325,7 +1370,8 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newText txtInvoiceTransportReason 
             Height          =   465
             Left            =   300
-            TabIndex        =   91
+            TabIndex        =   90
+            TabStop         =   0   'False
             Top             =   300
             Width           =   3765
             _ExtentX        =   6641
@@ -1348,7 +1394,8 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newText txtInvoiceTransportWay 
             Height          =   465
             Left            =   7950
-            TabIndex        =   92
+            TabIndex        =   91
+            TabStop         =   0   'False
             Top             =   300
             Width           =   3765
             _ExtentX        =   6641
@@ -1371,7 +1418,8 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newText txtInvoiceLoadingSite 
             Height          =   465
             Left            =   4125
-            TabIndex        =   93
+            TabIndex        =   92
+            TabStop         =   0   'False
             Top             =   300
             Width           =   3765
             _ExtentX        =   6641
@@ -1407,7 +1455,7 @@ Begin VB.Form CommonTransactions
             Height          =   315
             Index           =   11
             Left            =   7950
-            TabIndex        =   97
+            TabIndex        =   96
             Top             =   0
             Width           =   1365
          End
@@ -1427,7 +1475,7 @@ Begin VB.Form CommonTransactions
             Height          =   315
             Index           =   10
             Left            =   4125
-            TabIndex        =   96
+            TabIndex        =   95
             Top             =   0
             Width           =   1365
          End
@@ -1447,7 +1495,7 @@ Begin VB.Form CommonTransactions
             Height          =   315
             Index           =   9
             Left            =   11775
-            TabIndex        =   95
+            TabIndex        =   94
             Top             =   0
             Width           =   1365
          End
@@ -1467,7 +1515,7 @@ Begin VB.Form CommonTransactions
             Height          =   315
             Index           =   12
             Left            =   300
-            TabIndex        =   94
+            TabIndex        =   93
             Top             =   0
             Width           =   1365
          End
@@ -1478,13 +1526,13 @@ Begin VB.Form CommonTransactions
          Caption         =   "Frame1"
          Height          =   1140
          Left            =   450
-         TabIndex        =   72
+         TabIndex        =   71
          Top             =   8850
-         Width           =   9540
+         Width           =   9390
          Begin UserControls.newInteger mskTotalQty 
             Height          =   540
             Left            =   225
-            TabIndex        =   73
+            TabIndex        =   72
             TabStop         =   0   'False
             Top             =   600
             Width           =   1065
@@ -1508,7 +1556,7 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newFloat mskTotalPreDiscount 
             Height          =   540
             Left            =   1350
-            TabIndex        =   74
+            TabIndex        =   73
             TabStop         =   0   'False
             Top             =   600
             Width           =   1065
@@ -1532,7 +1580,7 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newFloat mskDiscount 
             Height          =   540
             Left            =   2475
-            TabIndex        =   75
+            TabIndex        =   74
             TabStop         =   0   'False
             Top             =   600
             Width           =   1065
@@ -1556,7 +1604,7 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newFloat mskTransDiscount 
             Height          =   540
             Left            =   3600
-            TabIndex        =   76
+            TabIndex        =   75
             TabStop         =   0   'False
             Top             =   600
             Width           =   1065
@@ -1580,7 +1628,7 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newFloat mskTotalRestAmount 
             Height          =   540
             Left            =   4725
-            TabIndex        =   77
+            TabIndex        =   76
             TabStop         =   0   'False
             Top             =   600
             Width           =   1065
@@ -1604,7 +1652,7 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newFloat mskExtraCharges 
             Height          =   540
             Left            =   5850
-            TabIndex        =   78
+            TabIndex        =   77
             TabStop         =   0   'False
             Top             =   600
             Width           =   1065
@@ -1628,7 +1676,7 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newFloat mskTotalVAT 
             Height          =   540
             Left            =   6975
-            TabIndex        =   79
+            TabIndex        =   78
             TabStop         =   0   'False
             Top             =   600
             Width           =   1065
@@ -1652,22 +1700,22 @@ Begin VB.Form CommonTransactions
          Begin UserControls.newFloat mskTotalGross 
             Height          =   540
             Left            =   8100
-            TabIndex        =   88
+            TabIndex        =   87
             TabStop         =   0   'False
             Top             =   600
-            Width           =   1215
-            _ExtentX        =   2143
+            Width           =   1065
+            _ExtentX        =   1879
             _ExtentY        =   953
             Enabled         =   0   'False
             Alignment       =   1
-            ForeColor       =   0
-            Text            =   "99.999,99"
+            ForeColor       =   8388736
+            Text            =   "19.999,99"
             BackColor       =   0
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   12
-               Charset         =   161
-               Weight          =   700
+               Charset         =   0
+               Weight          =   400
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
@@ -1690,9 +1738,9 @@ Begin VB.Form CommonTransactions
             Height          =   315
             Index           =   19
             Left            =   8100
-            TabIndex        =   87
+            TabIndex        =   86
             Top             =   150
-            Width           =   1215
+            Width           =   1065
             WordWrap        =   -1  'True
          End
          Begin VB.Label lblSimple 
@@ -1712,7 +1760,7 @@ Begin VB.Form CommonTransactions
             Height          =   315
             Index           =   18
             Left            =   6975
-            TabIndex        =   86
+            TabIndex        =   85
             Top             =   150
             Width           =   1065
          End
@@ -1733,7 +1781,7 @@ Begin VB.Form CommonTransactions
             Height          =   540
             Index           =   17
             Left            =   5850
-            TabIndex        =   85
+            TabIndex        =   84
             Top             =   0
             Width           =   1065
             WordWrap        =   -1  'True
@@ -1755,7 +1803,7 @@ Begin VB.Form CommonTransactions
             Height          =   540
             Index           =   16
             Left            =   4725
-            TabIndex        =   84
+            TabIndex        =   83
             Top             =   0
             Width           =   1065
             WordWrap        =   -1  'True
@@ -1777,7 +1825,7 @@ Begin VB.Form CommonTransactions
             Height          =   540
             Index           =   15
             Left            =   3600
-            TabIndex        =   83
+            TabIndex        =   82
             Top             =   0
             Width           =   1065
             WordWrap        =   -1  'True
@@ -1799,7 +1847,7 @@ Begin VB.Form CommonTransactions
             Height          =   540
             Index           =   14
             Left            =   2475
-            TabIndex        =   82
+            TabIndex        =   81
             Top             =   0
             Width           =   1065
             WordWrap        =   -1  'True
@@ -1821,7 +1869,7 @@ Begin VB.Form CommonTransactions
             Height          =   315
             Index           =   13
             Left            =   1350
-            TabIndex        =   81
+            TabIndex        =   80
             Top             =   150
             Width           =   1065
          End
@@ -1842,7 +1890,7 @@ Begin VB.Form CommonTransactions
             Height          =   315
             Index           =   5
             Left            =   225
-            TabIndex        =   80
+            TabIndex        =   79
             Top             =   150
             Width           =   1065
          End
@@ -1852,14 +1900,14 @@ Begin VB.Form CommonTransactions
          BorderStyle     =   0  'None
          Height          =   690
          Left            =   450
-         TabIndex        =   47
+         TabIndex        =   48
          Top             =   10425
          Width           =   8940
          Begin GurhanButtonOCX.GurhanButton cmdButton 
             Height          =   690
             Index           =   0
             Left            =   225
-            TabIndex        =   48
+            TabIndex        =   49
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -1886,7 +1934,7 @@ Begin VB.Form CommonTransactions
             Height          =   690
             Index           =   1
             Left            =   1650
-            TabIndex        =   49
+            TabIndex        =   50
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -1913,7 +1961,7 @@ Begin VB.Form CommonTransactions
             Height          =   690
             Index           =   5
             Left            =   7350
-            TabIndex        =   50
+            TabIndex        =   51
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -1940,7 +1988,7 @@ Begin VB.Form CommonTransactions
             Height          =   690
             Index           =   2
             Left            =   3075
-            TabIndex        =   51
+            TabIndex        =   52
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -1967,7 +2015,7 @@ Begin VB.Form CommonTransactions
             Height          =   690
             Index           =   3
             Left            =   4500
-            TabIndex        =   52
+            TabIndex        =   53
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -1994,7 +2042,7 @@ Begin VB.Form CommonTransactions
             Height          =   690
             Index           =   4
             Left            =   5925
-            TabIndex        =   53
+            TabIndex        =   54
             TabStop         =   0   'False
             Top             =   0
             Width           =   1365
@@ -2021,7 +2069,7 @@ Begin VB.Form CommonTransactions
       Begin iGrid300_10Tec.iGrid grdCommonTransactions 
          Height          =   4890
          Left            =   450
-         TabIndex        =   9
+         TabIndex        =   10
          Top             =   3075
          Width           =   17415
          _ExtentX        =   30718
@@ -2060,28 +2108,6 @@ Begin VB.Form CommonTransactions
             Strikethrough   =   0   'False
          EndProperty
       End
-      Begin UserControls.newText txtInvoiceRemarks 
-         Height          =   465
-         Left            =   11475
-         TabIndex        =   8
-         Top             =   2475
-         Width           =   6390
-         _ExtentX        =   11271
-         _ExtentY        =   820
-         Enabled         =   0   'False
-         ForeColor       =   0
-         MaxLength       =   100
-         BackColor       =   4210688
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Ubuntu Condensed"
-            Size            =   11.25
-            Charset         =   161
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-      End
       Begin UserControls.newText txtCodeShortDescription 
          Height          =   465
          Left            =   2175
@@ -2108,8 +2134,8 @@ Begin VB.Form CommonTransactions
       Begin Dacara_dcButton.dcButton cmdIndex 
          Height          =   465
          Index           =   0
-         Left            =   8400
-         TabIndex        =   54
+         Left            =   7950
+         TabIndex        =   55
          TabStop         =   0   'False
          Top             =   1425
          Width           =   390
@@ -2136,8 +2162,8 @@ Begin VB.Form CommonTransactions
       Begin Dacara_dcButton.dcButton cmdIndex 
          Height          =   465
          Index           =   1
-         Left            =   8850
-         TabIndex        =   55
+         Left            =   8400
+         TabIndex        =   56
          TabStop         =   0   'False
          Top             =   1425
          Width           =   390
@@ -2166,8 +2192,8 @@ Begin VB.Form CommonTransactions
          Left            =   2175
          TabIndex        =   2
          Top             =   1425
-         Width           =   6165
-         _ExtentX        =   10874
+         Width           =   5715
+         _ExtentX        =   10081
          _ExtentY        =   820
          Enabled         =   0   'False
          ForeColor       =   0
@@ -2187,7 +2213,7 @@ Begin VB.Form CommonTransactions
          Height          =   465
          Index           =   2
          Left            =   3750
-         TabIndex        =   56
+         TabIndex        =   57
          TabStop         =   0   'False
          Top             =   1950
          Width           =   390
@@ -2215,7 +2241,7 @@ Begin VB.Form CommonTransactions
          Height          =   465
          Index           =   3
          Left            =   4200
-         TabIndex        =   57
+         TabIndex        =   58
          TabStop         =   0   'False
          Top             =   1950
          Width           =   390
@@ -2242,14 +2268,15 @@ Begin VB.Form CommonTransactions
       Begin UserControls.newText txtDeliveryPointDescription 
          Height          =   465
          Left            =   11475
-         TabIndex        =   5
-         Top             =   900
-         Width           =   4965
-         _ExtentX        =   8758
+         TabIndex        =   7
+         Top             =   1425
+         Width           =   5490
+         _ExtentX        =   9684
          _ExtentY        =   820
          Enabled         =   0   'False
          ForeColor       =   0
          MaxLength       =   40
+         Text            =   "τοπος παραλαβης"
          BackColor       =   4210688
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Ubuntu Condensed"
@@ -2264,14 +2291,15 @@ Begin VB.Form CommonTransactions
       Begin UserControls.newText txtPaymentWayDescription 
          Height          =   465
          Left            =   11475
-         TabIndex        =   6
-         Top             =   1425
-         Width           =   4965
-         _ExtentX        =   8758
+         TabIndex        =   8
+         Top             =   1950
+         Width           =   5490
+         _ExtentX        =   9684
          _ExtentY        =   820
          Enabled         =   0   'False
          ForeColor       =   0
          MaxLength       =   40
+         Text            =   "τροπος πληρωμης"
          BackColor       =   4210688
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Ubuntu Condensed"
@@ -2286,14 +2314,15 @@ Begin VB.Form CommonTransactions
       Begin UserControls.newText txtInvoicePlates 
          Height          =   465
          Left            =   11475
-         TabIndex        =   7
-         Top             =   1950
-         Width           =   4965
-         _ExtentX        =   8758
+         TabIndex        =   5
+         Top             =   900
+         Width           =   3540
+         _ExtentX        =   6244
          _ExtentY        =   820
          Enabled         =   0   'False
          ForeColor       =   0
          MaxLength       =   40
+         Text            =   "ΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑΑ"
          BackColor       =   4210688
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Ubuntu Condensed"
@@ -2308,8 +2337,8 @@ Begin VB.Form CommonTransactions
       Begin Dacara_dcButton.dcButton cmdIndex 
          Height          =   465
          Index           =   4
-         Left            =   16500
-         TabIndex        =   58
+         Left            =   17025
+         TabIndex        =   59
          TabStop         =   0   'False
          Top             =   900
          Width           =   390
@@ -2335,11 +2364,11 @@ Begin VB.Form CommonTransactions
       End
       Begin Dacara_dcButton.dcButton cmdIndex 
          Height          =   465
-         Index           =   5
-         Left            =   16950
-         TabIndex        =   59
+         Index           =   7
+         Left            =   17025
+         TabIndex        =   60
          TabStop         =   0   'False
-         Top             =   900
+         Top             =   1950
          Width           =   390
          _ExtentX        =   688
          _ExtentY        =   820
@@ -2363,11 +2392,11 @@ Begin VB.Form CommonTransactions
       End
       Begin Dacara_dcButton.dcButton cmdIndex 
          Height          =   465
-         Index           =   6
-         Left            =   16500
-         TabIndex        =   60
+         Index           =   8
+         Left            =   17475
+         TabIndex        =   61
          TabStop         =   0   'False
-         Top             =   1425
+         Top             =   1950
          Width           =   390
          _ExtentX        =   688
          _ExtentY        =   820
@@ -2389,11 +2418,55 @@ Begin VB.Form CommonTransactions
          PicSizeH        =   16
          PicSizeW        =   16
       End
+      Begin UserControls.newText txtInvoiceNo 
+         Height          =   465
+         Left            =   2175
+         TabIndex        =   4
+         Top             =   2475
+         Width           =   1515
+         _ExtentX        =   2672
+         _ExtentY        =   820
+         Alignment       =   2
+         ForeColor       =   0
+         MaxLength       =   7
+         BackColor       =   4210688
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   11.25
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin UserControls.newText txtInvoicePrintExtraRemarks 
+         Height          =   465
+         Left            =   16350
+         TabIndex        =   6
+         Top             =   900
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   820
+         Alignment       =   2
+         ForeColor       =   0
+         Text            =   "ΝΑΙ"
+         BackColor       =   4210688
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   11.25
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
       Begin Dacara_dcButton.dcButton cmdIndex 
          Height          =   465
-         Index           =   7
-         Left            =   16950
-         TabIndex        =   61
+         Index           =   5
+         Left            =   17025
+         TabIndex        =   120
          TabStop         =   0   'False
          Top             =   1425
          Width           =   390
@@ -2417,17 +2490,46 @@ Begin VB.Form CommonTransactions
          PicSizeH        =   16
          PicSizeW        =   16
       End
-      Begin UserControls.newText txtInvoiceNo 
-         Height          =   390
-         Left            =   2175
-         TabIndex        =   4
-         Top             =   2475
-         Width           =   1515
-         _ExtentX        =   2672
-         _ExtentY        =   688
-         Alignment       =   2
+      Begin Dacara_dcButton.dcButton cmdIndex 
+         Height          =   465
+         Index           =   6
+         Left            =   17475
+         TabIndex        =   121
+         TabStop         =   0   'False
+         Top             =   1425
+         Width           =   390
+         _ExtentX        =   688
+         _ExtentY        =   820
+         BackColor       =   16777215
+         ButtonShape     =   3
+         ButtonStyle     =   2
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   0
-         MaxLength       =   7
+         PicNormal       =   "CommonTransactions.frx":63E0
+         PicSizeH        =   16
+         PicSizeW        =   16
+      End
+      Begin UserControls.newText txtInvoiceRemarks 
+         Height          =   465
+         Left            =   11475
+         TabIndex        =   9
+         Top             =   2475
+         Width           =   5490
+         _ExtentX        =   9684
+         _ExtentY        =   820
+         Enabled         =   0   'False
+         ForeColor       =   0
+         MaxLength       =   100
+         Text            =   "παρατηρησεις"
          BackColor       =   4210688
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Ubuntu Condensed"
@@ -2439,30 +2541,37 @@ Begin VB.Form CommonTransactions
             Strikethrough   =   0   'False
          EndProperty
       End
-      Begin VB.Label lblCodeDescription 
-         Alignment       =   1  'Right Justify
-         BackColor       =   &H000080FF&
-         BackStyle       =   0  'Transparent
-         Caption         =   "ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ - ΤΙΜΟΛΟΓΙΟ ΠΩΛΗΣΗΣ"
-         BeginProperty Font 
-            Name            =   "Segoe UI"
-            Size            =   14.25
+      Begin Dacara_dcButton.dcButton cmdIndex 
+         Height          =   465
+         Index           =   9
+         Left            =   8850
+         TabIndex        =   123
+         TabStop         =   0   'False
+         Top             =   1425
+         Width           =   390
+         _ExtentX        =   688
+         _ExtentY        =   820
+         BackColor       =   16777215
+         ButtonShape     =   3
+         ButtonStyle     =   2
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   12
             Charset         =   161
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00FFFF00&
-         Height          =   390
-         Left            =   6600
-         TabIndex        =   71
-         Top             =   225
-         Width           =   11265
+         ForeColor       =   4210688
+         PicNormal       =   "CommonTransactions.frx":697A
+         PicSizeH        =   16
+         PicSizeW        =   16
       End
       Begin VB.Label lblSimple 
          BackColor       =   &H000080FF&
-         Caption         =   "Τόπος παραλαβής"
+         Caption         =   "Παρατηρήσεις"
          BeginProperty Font 
             Name            =   "Ubuntu Condensed"
             Size            =   9.75
@@ -2474,10 +2583,10 @@ Begin VB.Form CommonTransactions
          EndProperty
          ForeColor       =   &H00FFFFFF&
          Height          =   315
-         Index           =   8
+         Index           =   1
          Left            =   9675
-         TabIndex        =   70
-         Top             =   975
+         TabIndex        =   122
+         Top             =   2550
          Width           =   1365
       End
       Begin VB.Label lblSimple 
@@ -2495,6 +2604,79 @@ Begin VB.Form CommonTransactions
          ForeColor       =   &H00FFFFFF&
          Height          =   315
          Index           =   7
+         Left            =   9675
+         TabIndex        =   68
+         Top             =   2025
+         Width           =   1365
+      End
+      Begin VB.Label lblSimple 
+         BackColor       =   &H000080FF&
+         Caption         =   "Εκτύπωση ΥγΣΜ"
+         BeginProperty Font 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Index           =   20
+         Left            =   15075
+         TabIndex        =   119
+         Top             =   975
+         Width           =   1215
+      End
+      Begin VB.Shape shpWedge 
+         BackColor       =   &H0000FFFF&
+         BackStyle       =   1  'Opaque
+         BorderStyle     =   0  'Transparent
+         FillColor       =   &H00008000&
+         Height          =   915
+         Index           =   5
+         Left            =   15975
+         Top             =   0
+         Visible         =   0   'False
+         Width           =   465
+      End
+      Begin VB.Label lblCodeDescription 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H000080FF&
+         BackStyle       =   0  'Transparent
+         Caption         =   "ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ - ΤΙΜΟΛΟΓΙΟ ΠΩΛΗΣΗΣ"
+         BeginProperty Font 
+            Name            =   "Segoe UI"
+            Size            =   14.25
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFF80&
+         Height          =   390
+         Left            =   6600
+         TabIndex        =   70
+         Top             =   300
+         Width           =   11265
+      End
+      Begin VB.Label lblSimple 
+         BackColor       =   &H000080FF&
+         Caption         =   "Τόπος παραλαβής"
+         BeginProperty Font 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Index           =   8
          Left            =   9675
          TabIndex        =   69
          Top             =   1500
@@ -2516,28 +2698,8 @@ Begin VB.Form CommonTransactions
          Height          =   315
          Index           =   6
          Left            =   9675
-         TabIndex        =   68
-         Top             =   2025
-         Width           =   1365
-      End
-      Begin VB.Label lblSimple 
-         BackColor       =   &H000080FF&
-         Caption         =   "Παρατηρήσεις"
-         BeginProperty Font 
-            Name            =   "Ubuntu Condensed"
-            Size            =   9.75
-            Charset         =   161
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FFFFFF&
-         Height          =   315
-         Index           =   1
-         Left            =   9675
          TabIndex        =   67
-         Top             =   2550
+         Top             =   975
          Width           =   1365
       End
       Begin VB.Label lblSimple 
@@ -2625,10 +2787,10 @@ Begin VB.Form CommonTransactions
          BackStyle       =   1  'Opaque
          BorderStyle     =   0  'Transparent
          FillColor       =   &H00008000&
-         Height          =   1140
+         Height          =   2865
          Index           =   8
          Left            =   17850
-         Top             =   4425
+         Top             =   1275
          Visible         =   0   'False
          Width           =   465
       End
@@ -2725,7 +2887,7 @@ Begin VB.Form CommonTransactions
          BackStyle       =   1  'Opaque
          BorderStyle     =   0  'Transparent
          FillColor       =   &H00008000&
-         Height          =   1140
+         Height          =   1665
          Index           =   3
          Left            =   11025
          Top             =   1200
@@ -2951,13 +3113,15 @@ Function DoSharedStuff(myInvoiceTrnID, myWindowTitle, myTable, myRefersTo)
     AddGridLines
     
     If txtCodeHandID.text = "1" Then
-        EnableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtPaymentWayDescription, txtInvoiceRemarks, grdCommonTransactions, cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7)
-        EnableFields mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
+        
+        EnableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+        EnableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), cmdIndex(8), cmdIndex(9)
+        EnableFields mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
+        
         UpdateButtons Me, 5, 0, 1, 1, 0, 1, 0
-        txtDeliveryPointDescription.Enabled = IIf(txtRefersTo.text = "1", True, False)
-        cmdIndex(4).Enabled = IIf(txtRefersTo.text = "1", True, False)
-        cmdIndex(5).Enabled = IIf(txtRefersTo.text = "1", True, False)
-        txtInvoicePlates.Enabled = IIf(txtRefersTo.text = "1", False, True)
+        
+        EnableOrDisableSpecialFields
+            
     End If
     
     If txtCodeHandID.text = "0" And txtRefersTo.text = "2" Then
@@ -2968,6 +3132,20 @@ Function DoSharedStuff(myInvoiceTrnID, myWindowTitle, myTable, myRefersTo)
     ColorizeRowsWhenItemIsNotGiven 0
     Tag = "False"
     ShowOrHideDetailsFrame
+
+End Function
+
+Function EnableOrDisableSpecialFields()
+
+    txtInvoicePlates.Enabled = IIf(txtRefersTo.text = "1", False, True) 'Αρ. κυκλοφορίας
+    txtInvoicePrintExtraRemarks.Enabled = IIf(txtRefersTo.text = "1", False, True) 'ΥγΣΜ
+    txtInvoicePrintExtraRemarks.text = IIf(txtRefersTo.text = "1", "", txtInvoicePrintExtraRemarks.text) 'ΥγΣΜ
+    cmdIndex(4).Enabled = IIf(txtRefersTo.text = "1", False, True) 'ΥγΣΜ
+    
+    txtInvoiceDeliveryPointID.text = IIf(txtRefersTo.text = "1", "", "1") 'Τόπος παραλαβής
+    txtDeliveryPointDescription.Enabled = IIf(txtRefersTo.text = "1", True, False) 'Τόπος παραλαβής
+    cmdIndex(5).Enabled = IIf(txtRefersTo.text = "1", True, False) 'Τόπος παραλαβής
+    cmdIndex(6).Enabled = IIf(txtRefersTo.text = "1", True, False) 'Τόπος παραλαβής
 
 End Function
 
@@ -3158,11 +3336,15 @@ Private Function AbortProcedure(blnStatus)
     If Not blnStatus Then
         If MyMsgBox(3, strAppTitle, strMessages(3), 2) Then
             blnStatus = False
-            ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
-            ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+            
+            ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoicePrintExtraRemarksID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
+            ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
             ClearFields mskTotalQty, mskTotalPreDiscount, mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT, mskTotalGross
-            DisableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+            
+            DisableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+            DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), cmdIndex(8), cmdIndex(9)
             DisableFields mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
+            
             UpdateButtons Me, 5, 1, 0, 0, IIf(CheckForLoadedForm("CommonTransactionsIndex"), 0, 1), 0, 1
         End If
         Exit Function
@@ -3244,11 +3426,12 @@ Private Function DeleteRecord()
     If Not blnError Then
         CommitTrans
         
-        ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
-        ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+        ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoicePrintExtraRemarksID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
+        ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
         ClearFields mskTotalQty, mskTotalPreDiscount, mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT, mskTotalGross
         
-        DisableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+        DisableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+        DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), cmdIndex(8), cmdIndex(9)
         DisableFields mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
         
         UpdateButtons Me, 5, 1, 0, 0, IIf(CheckForLoadedForm("CommonTransactionsIndex"), 0, 1), 0, 1
@@ -3416,43 +3599,26 @@ ErrTrap:
 
 End Function
 
-Private Function HideDetails()
-
-    EnableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, grdCommonTransactions, cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7)
-    EnableFields mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
-    
-    UpdateButtons Me, 5, 0, 1, 0, 0, 1, 0
-    
-    EnableTabStop grdCommonTransactions
-    
-    CommonTransactions.grdCommonTransactions.SetCurCell 0, 0
-    mskInvoiceIssueDate.SetFocus
-
-End Function
-
 Private Function NewRecord()
     
     Dim lngRow As Long
     
     blnStatus = True
     
-    ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
-    ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+    ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoicePrintExtraRemarksID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
+    ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
     ClearFields mskTotalQty, mskTotalPreDiscount, mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT, mskTotalGross
     
-    EnableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7)
-    EnableFields mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
-    
-    txtInvoiceDeliveryPointID.text = IIf(txtRefersTo.text = "1", "", "1")
-    txtDeliveryPointDescription.Enabled = IIf(txtRefersTo.text = "1", True, False)
-    cmdIndex(4).Enabled = IIf(txtRefersTo.text = "1", True, False)
-    cmdIndex(5).Enabled = IIf(txtRefersTo.text = "1", True, False)
-    txtInvoicePlates.Enabled = IIf(txtRefersTo.text = "1", False, True)
+    EnableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+    EnableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), cmdIndex(8)
+    EnableFields mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
     
     ReDim aInvoicesArray(1, 3)
     
     CustomizeGrid grdCommonTransactions
     EnableTabStop grdCommonTransactions
+    
+    EnableOrDisableSpecialFields
     
     InitializeFields IIf(txtRefersTo.text = "2", mskInvoiceIssueDate, ""), mskTotalQty, mskTotalPreDiscount, mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT, mskTotalGross
     ColorizeRowsWhenItemIsNotGiven 0
@@ -3535,8 +3701,12 @@ Function CreateUnicodeFile(myPrinterType, myEAFDSSString, myInvoiceHeight, myDet
     '27+69 Bold 27+70 Cancel
     '27+71 Double 27+72 Cancel
     
-    Print #1, Chr(27) + Chr(71) + strInvoiceExtraRemarksA + Chr(27) + Chr(72)
-    Print #1, Chr(14) + strInvoiceExtraRemarksB + Chr(20)
+    If txtInvoicePrintExtraRemarksID.text = "1" Then
+        Print #1, Chr(14) + strInvoiceExtraRemarksA + Chr(20)
+    Else
+        Print #1, ""
+    End If
+    Print #1, strInvoiceExtraRemarksB
     Print #1, ""
     Print #1, ""
     
@@ -3681,6 +3851,7 @@ Private Function SaveInvoice()
             txtInvoiceLoadingSite.text, _
             txtInvoiceDestinationSite.text, _
             txtInvoiceDeliveryPointID.text, _
+            IIf(txtInvoicePrintExtraRemarksID.text <> "", txtInvoicePrintExtraRemarksID.text, "0"), _
             strCurrentUser) <> 0 Then
             blnError = True
         End If
@@ -3707,12 +3878,15 @@ Private Function SaveRecord()
         
     If Not blnError Then
         If txtCodeHandID.text = "1" Or (txtCodeHandID.text = "0" And blnStatus) Then CommitTrans
-        ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
-        ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+        
+        ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoicePrintExtraRemarksID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
+        ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
         ClearFields mskTotalQty, mskTotalPreDiscount, mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT, mskTotalGross
-        DisableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks
-        DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+        
+        DisableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+        DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), cmdIndex(8), cmdIndex(9)
         DisableFields mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
+        
         UpdateButtons Me, 5, 1, 0, 0, IIf(CheckForLoadedForm("CommonTransactionsIndex"), 0, 1), 0, 1
     Else
         If txtCodeHandID.text = "1" Or (txtCodeHandID.text = "0" And blnStatus) Then Rollback
@@ -3756,7 +3930,7 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle, myTable, myRefersT
     Set TempQuery = CommonDB.CreateQueryDef("")
     
     'Κύριο SQL
-    strSQL = "SELECT InvoiceIssueDate, InvoiceNo, InvoiceCodeID, InvoiceRefersToID, InvoiceQty, InvoiceNet, InvoicePercentDiscount, InvoiceAmountDiscount, InvoiceRestAmount, InvoiceVATAmount, InvoiceGrossAmount, InvoiceTrnID, InvoiceRemarks, InvoicePlates, InvoicePaymentWayID, InvoicePersonID, InvoiceIsInvoiced, InvoiceIsPrinted, InvoiceInDate, InvoiceInTime, InvoiceExtraChargesAmount, InvoiceTransportReason, InvoiceTransportWay, InvoiceLoadingSite, InvoiceDestinationSite, InvoiceDeliveryPointID " _
+    strSQL = "SELECT InvoiceIssueDate, InvoiceNo, InvoiceCodeID, InvoiceRefersToID, InvoiceQty, InvoiceNet, InvoicePercentDiscount, InvoiceAmountDiscount, InvoiceRestAmount, InvoiceVATAmount, InvoiceGrossAmount, InvoiceTrnID, InvoiceRemarks, InvoicePlates, InvoicePaymentWayID, InvoicePersonID, InvoiceIsInvoiced, InvoiceIsPrinted, InvoiceInDate, InvoiceInTime, InvoiceExtraChargesAmount, InvoiceTransportReason, InvoiceTransportWay, InvoiceLoadingSite, InvoiceDestinationSite, InvoiceDeliveryPointID, InvoicePrintExtraRemarksID " _
         & "FROM Invoices "
         
     'TrnID παραστατικού
@@ -3811,8 +3985,13 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle, myTable, myRefersT
         txtCodePrinterID.text = tmpRecordset.Fields(11)
         mskCodeDetailLines.text = tmpRecordset.Fields(16)
         txtCodeDateCheckID.text = tmpRecordset.Fields(17)
+        txtInvoicePrintExtraRemarksID.text = !InvoicePrintExtraRemarksID
         'Νο παραστατικού
         txtInvoiceNo.text = !InvoiceNo
+        'Τυπώνει επιπλέον παρατηρήσεις
+        Set tmpRecordset = CheckForMatch("CommonDB", txtInvoicePrintExtraRemarksID.text, "YesOrNo", "YesNoID", "String", 0, 1)
+        txtInvoicePrintExtraRemarksID.text = tmpRecordset.Fields(0)
+        txtInvoicePrintExtraRemarks.text = tmpRecordset.Fields(1)
         'Τόπος παραλαβής
         txtInvoiceDeliveryPointID.text = !InvoiceDeliveryPointID
         Set tmpRecordset = CheckForMatch("CommonDB", txtInvoiceDeliveryPointID.text, "DeliveryPoints", "DeliveryPointID", "Numeric", 0, 1)
@@ -3895,14 +4074,14 @@ Function ShowOrHideDetailsFrame()
     If txtRefersTo.text = "1" Then
         frmDetails.Visible = False
         grdCommonTransactions.Height = Me.Height - 6190
-        ClearFields txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
-        DisableFields txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
-    Else
+   Else
         frmDetails.Visible = True
         grdCommonTransactions.Height = Me.Height - 6280 - frmDetails.Height
     End If
-    
+   
 End Function
+
+
 
 Private Function ShowReport()
 
@@ -4175,6 +4354,12 @@ Private Sub cmdIndex_Click(Index As Integer)
                 .Show 1, Me
             End With
         Case 4
+            'Εξτρα παρατηρήσεις
+            Set tmpRecordset = CheckForMatch("CommonDB", txtInvoicePrintExtraRemarks.text, "YesOrNo", "YesNoDescription", "String", 1, 2)
+            tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 2, 0, 1, "ID", "Περιγραφή", 0, 40, 1, 0)
+            txtInvoicePrintExtraRemarksID.text = tmpTableData.strCode
+            txtInvoicePrintExtraRemarks.text = tmpTableData.strOneField
+        Case 5
             'Τόπος παραλαβής
             If txtDeliveryPointDescription.text = "" Then Exit Sub
             With UtilsDeliveryPoints
@@ -4183,13 +4368,13 @@ Private Sub cmdIndex_Click(Index As Integer)
                 txtInvoiceDeliveryPointID.text = tmpTableData.strCode
                 txtDeliveryPointDescription.text = tmpTableData.strOneField
             End With
-        Case 5
+        Case 6
             'Τόπος παραλαβής
             With UtilsDeliveryPoints
                 .Tag = "True"
                 .Show 1, Me
             End With
-        Case 6
+        Case 7
             'Τρόπος πληρωμής
             If txtPaymentWayDescription.text = "" Then Exit Sub
             With UtilsPaymentWays
@@ -4198,12 +4383,21 @@ Private Sub cmdIndex_Click(Index As Integer)
                 txtInvoicePaymentWayID.text = tmpTableData.strCode
                 txtPaymentWayDescription.text = tmpTableData.strOneField
             End With
-        Case 7
+        Case 8
             'Τρόπος πληρωμής
             With UtilsPaymentWays
                 .Tag = "True"
                 .Show 1, Me
             End With
+        Case 9
+            'Καρτέλα συναλλασόμενου
+            ShowPersonLedger _
+                txtInvoicePersonID.text, _
+                txtPersonDescription.text, _
+                IIf(txtRefersTo.text = "1", "Καρτέλα προμηθευτή", "Καρτέλα πελάτη"), _
+                txtTable.text, _
+                IIf(txtRefersTo.text = "1", "Customers", "Suppliers"), _
+                IIf(txtRefersTo.text = "1", "3", "4")
     End Select
     
     Exit Sub
@@ -4259,6 +4453,8 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
             mskExtraCharges.SetFocus
         Case vbKeyF And CtrlDown = 4 And mskTotalVAT.Enabled
             mskTotalVAT.SetFocus
+        Case vbKeyF4 And cmdIndex(9).Enabled
+            cmdIndex_Click 9
     End Select
 
 End Function
@@ -4274,11 +4470,12 @@ Private Sub Form_Load()
     SetUpGrid lstIconList, grdCommonTransactions
     PositionControls Me, True, grdCommonTransactions: ColorizeControls Me, True
     
-    ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
-    ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+    ClearFields txtInvoiceTrnID, txtInvoicePersonID, txtInvoiceCodeID, txtInvoicePrintExtraRemarksID, txtInvoiceDeliveryPointID, txtInvoicePaymentWayID, txtInvoiceInDate, txtInvoiceInTime, txtInvoiceIsInvoiced, txtInvoiceIsPrinted, txtCodeDetailsID, txtCodeHandID, txtCodeLastNo, txtVATStateID, txtCodeInventoryQty, txtCodeInventoryValue, txtCodeTransformID, mskCodeLastDate, txtCodePrinterID, mskCodeDetailLines, txtProfession, txtAddress, txtCity, txtTaxNo, txtPhones, txtTaxOfficeDescription, grdCommonTransactions, txtCodeDateCheckID
+    ClearFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
     ClearFields mskTotalQty, mskTotalPreDiscount, mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT, mskTotalGross
     
-    DisableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+    DisableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
+    DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), cmdIndex(8), cmdIndex(9)
     DisableFields mskDiscount, mskTransDiscount, mskTotalRestAmount, mskExtraCharges, mskTotalVAT
     
     UpdateButtons Me, 5, 1, 0, 0, 1, 0, 1
@@ -4956,6 +5153,14 @@ Private Function ValidateFields()
         End If
     End If
     
+    'Εκτύπωση ΥγΣΜ - μόνο για πωλήσεις
+    If txtInvoicePrintExtraRemarksID.text = "" And txtRefersTo.text = "2" Then
+        If DisplayMessage(1, 4, 1, "", txtInvoicePrintExtraRemarksID.text) Then
+            txtInvoicePrintExtraRemarks.SetFocus
+            Exit Function
+        End If
+    End If
+    
     'Τόπος παραλαβής - μόνο για αγορές
     If txtRefersTo.text = "1" Then
         If DisplayMessage(1, 4, 1, "", txtInvoiceDeliveryPointID.text) Then
@@ -5085,15 +5290,46 @@ End Sub
 
 Private Sub txtDeliveryPointDescription_KeyDown(KeyCode As Integer, Shift As Integer)
 
-    If KeyCode = vbKeyF2 Then cmdIndex_Click 4
-    If KeyCode = vbKeyF5 Then cmdIndex_Click 5
+    If KeyCode = vbKeyF2 Then cmdIndex_Click 5
+    If KeyCode = vbKeyF5 Then cmdIndex_Click 6
 
 End Sub
 
 Private Sub txtDeliveryPointDescription_Validate(Cancel As Boolean)
 
-    If txtInvoiceDeliveryPointID.text = "" And txtDeliveryPointDescription.text <> "" Then cmdIndex_Click 4: If txtInvoiceDeliveryPointID.text = "" Then Cancel = True
+    If txtInvoiceDeliveryPointID.text = "" And txtDeliveryPointDescription.text <> "" Then cmdIndex_Click 5: If txtInvoiceDeliveryPointID.text = "" Then Cancel = True
 
+End Sub
+
+Private Sub txtInvoiceIsPrinted_Change()
+
+    cmdIndex(9).Enabled = txtInvoicePersonID.text <> "" And txtInvoiceIsPrinted.text <> "1"
+
+End Sub
+
+Private Sub txtInvoicePersonID_Change()
+
+    cmdIndex(9).Enabled = txtInvoicePersonID.text <> "" And txtInvoiceIsPrinted.text <> "1"
+
+End Sub
+
+Private Sub txtInvoicePrintExtraRemarks_Change()
+
+    If txtInvoicePrintExtraRemarks.text = "" And txtRefersTo.text = "2" Then ClearFields txtInvoicePrintExtraRemarksID
+    
+End Sub
+
+Private Sub txtInvoicePrintExtraRemarks_KeyDown(KeyCode As Integer, Shift As Integer)
+
+    If KeyCode = vbKeyF2 Then cmdIndex_Click 4
+    
+End Sub
+
+
+Private Sub txtInvoicePrintExtraRemarks_Validate(Cancel As Boolean)
+
+    If txtInvoicePrintExtraRemarksID.text = "" And txtInvoicePrintExtraRemarks.text <> "" Then cmdIndex_Click 4: If txtInvoicePrintExtraRemarksID.text = "" Then Cancel = True
+    
 End Sub
 
 Private Sub txtInvoiceRemarks_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -5114,14 +5350,14 @@ End Sub
 
 Private Sub txtPaymentWayDescription_KeyDown(KeyCode As Integer, Shift As Integer)
 
-    If KeyCode = vbKeyF2 Then cmdIndex_Click 6
-    If KeyCode = vbKeyF5 Then cmdIndex_Click 7
+    If KeyCode = vbKeyF2 Then cmdIndex_Click 7
+    If KeyCode = vbKeyF5 Then cmdIndex_Click 8
 
 End Sub
 
 Private Sub txtPaymentWayDescription_Validate(Cancel As Boolean)
 
-    If txtInvoicePaymentWayID.text = "" And txtPaymentWayDescription.text <> "" Then cmdIndex_Click 6: If txtInvoicePaymentWayID.text = "" Then Cancel = True
+    If txtInvoicePaymentWayID.text = "" And txtPaymentWayDescription.text <> "" Then cmdIndex_Click 7: If txtInvoicePaymentWayID.text = "" Then Cancel = True
 
 End Sub
 

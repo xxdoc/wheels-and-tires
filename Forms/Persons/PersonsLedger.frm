@@ -2084,6 +2084,7 @@ End Sub
 Private Sub grdPersonsLedger_CurCellChange(ByVal lRow As Long, ByVal lCol As Long)
 
     cmdButton(1).Enabled = CheckToEnableButton(grdPersonsLedger, lRow, "AA")
+    cmdButton(1).Enabled = IIf(CheckForLoadedForm("PersonsTransactions,CommonTransactions"), 0, cmdButton(1).Enabled)
 
 End Sub
 

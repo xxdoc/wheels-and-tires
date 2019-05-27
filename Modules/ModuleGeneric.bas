@@ -1972,7 +1972,7 @@ End Function
 
 Function MainSaveRecord(SelectedDB, Table, Status, FormTitle, IndexField, CodeToSeek, ParamArray Fields() As Variant)
 
-    On Error GoTo ErrTrap
+    'On Error GoTo ErrTrap
     
     Dim lngFieldNo As Long
     Dim rsTable As Recordset
