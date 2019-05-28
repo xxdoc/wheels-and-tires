@@ -4554,9 +4554,6 @@ Private Sub grdCommonTransactions_AfterCommitEdit(ByVal lRow As Long, ByVal lCol
                     FillCellWithSomething grdCommonTransactions, "", grdCommonTransactions.CurRow, "3,4,5,11"
                     FillCellWithSomething grdCommonTransactions, "0", grdCommonTransactions.CurRow, "13,16"
                     ColorizeRowsWhenItemIsNotGiven lRow
-                    'grdCommonTransactions.CellValue(lRow, "ItemID") = ""
-                    'grdCommonTransactions.CellValue(lRow, "ItemDescription") = ""
-                    'grdCommonTransactions.CellValue(lRow, "ManufacturerDescription") = ""
                 Else
                     grdCommonTransactions.CellValue(lRow, "ItemID") = tmpTableData.strCode
                     grdCommonTransactions.CellValue(lRow, "ItemDescription") = tmpTableData.strFourField

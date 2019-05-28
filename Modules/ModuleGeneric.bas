@@ -1659,6 +1659,7 @@ Function DisplayIndex(tmpRecordset, blnShowList, blnIncludeOneRecordCount, strTi
                     Loop
                     GoSub ResizeForm
                     GoSub PositionInactiveRecordsCheckBox
+                    GoSub DisplayButtonForLedger
                 End If
                 With CommonIndex
                     .lblTitle.Caption = strTitle
@@ -1672,7 +1673,6 @@ Function DisplayIndex(tmpRecordset, blnShowList, blnIncludeOneRecordCount, strTi
                     
                     If tmpArguments(UBound(tmpArguments)) = "Items" Then
                         lngActiveColumn = 10
-                        
                         GoSub DisplayOnlyWithCategoryCheckBalanceIsTrue
                         GoSub DisplayOnlyActiveItems
                         GoSub PaintWithAlternateColor
@@ -1888,7 +1888,21 @@ PositionInactiveRecordsCheckBox:
     CommonIndex.chkShowInactiveRecords.Left = CommonIndex.Width - CommonIndex.chkShowInactiveRecords.Width - 320
 
     Return
+    
+DisplayButtonForLedger:
 
+    If tmpArguments(UBound(tmpArguments)) = "Items" Then
+        CommonIndex.frmButtonFrame.Width = 4365
+        CommonIndex.cmdButton(2).Left = 2925
+    Else
+        CommonIndex.frmButtonFrame.Width = 2940
+        CommonIndex.cmdButton(2).Left = 1500
+    End If
+    
+    CommonIndex.frmButtonFrame.Left = CommonIndex.Width / 2 - CommonIndex.frmButtonFrame.Width / 2
+
+    Return
+    
 End Function
 
 Function PrintRecords(myForm As Form, myWhatToDo, myDisplayCompletionMessage, myInvoiceOrReport, Optional myPrinterCodeID, Optional myInvoiceTrnID)

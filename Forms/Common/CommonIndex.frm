@@ -8,14 +8,14 @@ Begin VB.Form CommonIndex
    ClientHeight    =   8415
    ClientLeft      =   15
    ClientTop       =   15
-   ClientWidth     =   3090
+   ClientWidth     =   4575
    ControlBox      =   0   'False
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   8415
-   ScaleWidth      =   3090
+   ScaleWidth      =   4575
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox chkShowInactiveRecords 
@@ -32,7 +32,7 @@ Begin VB.Form CommonIndex
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00FFFFFF&
+      ForeColor       =   &H00404000&
       Height          =   315
       Left            =   -450
       TabIndex        =   5
@@ -46,7 +46,7 @@ Begin VB.Form CommonIndex
       Left            =   75
       TabIndex        =   2
       Top             =   7350
-      Width           =   2940
+      Width           =   4365
       Begin GurhanButtonOCX.GurhanButton cmdButton 
          Height          =   690
          Index           =   0
@@ -76,8 +76,8 @@ Begin VB.Form CommonIndex
       End
       Begin GurhanButtonOCX.GurhanButton cmdButton 
          Height          =   690
-         Index           =   1
-         Left            =   1500
+         Index           =   2
+         Left            =   2925
          TabIndex        =   4
          TabStop         =   0   'False
          Top             =   75
@@ -100,6 +100,33 @@ Begin VB.Form CommonIndex
          MousePointer    =   2
          ShowFocusRect   =   0   'False
          BackColor       =   8421631
+      End
+      Begin GurhanButtonOCX.GurhanButton cmdButton 
+         Height          =   690
+         Index           =   1
+         Left            =   1500
+         TabIndex        =   6
+         TabStop         =   0   'False
+         Top             =   75
+         Width           =   1365
+         _ExtentX        =   2408
+         _ExtentY        =   1217
+         Caption         =   "Καρτέλα"
+         ButtonStyle     =   2
+         OriginalPicSizeW=   0
+         OriginalPicSizeH=   0
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         MousePointer    =   2
+         ShowFocusRect   =   0   'False
+         BackColor       =   12640511
       End
    End
    Begin iGrid300_10Tec.iGrid grdGrid 
@@ -151,7 +178,7 @@ Begin VB.Form CommonIndex
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00FFFFFF&
+      ForeColor       =   &H00404000&
       Height          =   630
       Left            =   300
       TabIndex        =   1
@@ -175,6 +202,28 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Function ShowItemLedger()
+
+    Dim lngCurrentRow As Long
+    
+    lngCurrentRow = grdGrid.CurRow
+    
+    With ItemsLedger
+        .txtCategoryID.text = grdGrid.CellValue(lngCurrentRow, 2)
+        .txtCategoryShortDescription.text = grdGrid.CellValue(lngCurrentRow, 7)
+        .lblCategoryDescription.Caption = grdGrid.CellValue(lngCurrentRow, 4)
+        .txtManufacturerID.text = grdGrid.CellValue(lngCurrentRow, 3)
+        .txtManufacturerDescription.text = grdGrid.CellValue(lngCurrentRow, 6)
+        .txtItemID.text = grdGrid.CellValue(lngCurrentRow, 1)
+        .txtItemDescription.text = grdGrid.CellValue(lngCurrentRow, 5)
+        .txtTable.text = "Items"
+        .Tag = "True"
+        DisableFields .txtCategoryShortDescription, .txtManufacturerDescription, .txtItemDescription, .cmdIndex(0), .cmdIndex(1), .cmdIndex(2)
+        .Show 1, Me
+    End With
+    
+End Function
+
 Private Sub chkShowInactiveRecords_Click()
 
     ToggleInactiveRecords
@@ -186,7 +235,7 @@ Private Sub cmdButton_Click(Index As Integer)
     Select Case Index
         Case 0
             Me.Hide
-        Case 1
+        Case 2
             AbortProcedure
     End Select
 
@@ -232,7 +281,7 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
         Case vbKeyReturn
             cmdButton_Click 0
         Case vbKeyEscape
-            cmdButton_Click 1
+            cmdButton_Click 2
         Case vbKeyA And CtrlDown = 4 And chkShowInactiveRecords.Visible
             chkShowInactiveRecords.Value = IIf(chkShowInactiveRecords.Value = 0, 1, 0)
     End Select
@@ -261,6 +310,12 @@ End Sub
 Private Sub grdGrid_DblClick(ByVal lRow As Long, ByVal lCol As Long, bRequestEdit As Boolean)
 
     Me.Hide
+
+End Sub
+
+Private Sub grdGrid_KeyDown(KeyCode As Integer, Shift As Integer, bDoDefault As Boolean)
+
+    If KeyCode = vbKeyF4 Then ShowItemLedger
 
 End Sub
 
