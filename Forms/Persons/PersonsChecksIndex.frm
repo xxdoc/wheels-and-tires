@@ -1233,7 +1233,7 @@ Private Function RefreshList()
     End With
     
     'Áמיüדסבצב
-    strSQL = "SELECT CheckID, BankDescription, CheckNo, CheckExpireDate, InvoiceGrossAmount, CheckIssuedByID, CheckRefersToID, Invoices.InvoiceIssueDate, Invoices.InvoiceNo, InvoiceCodeID, InvoicePersonID, InvoiceTrnID, InvoiceID, InvoiceRefersToID, InvoiceInDate " _
+    strSQL = "SELECT CheckID, BankDescription, CheckNo, CheckExpireDate, CheckAmount, CheckIssuedByID, CheckRefersToID, Invoices.InvoiceIssueDate, Invoices.InvoiceNo, InvoiceCodeID, InvoicePersonID, InvoiceTrnID, InvoiceID, InvoiceRefersToID, InvoiceInDate " _
     & "FROM ((Checks " _
     & "INNER JOIN Banks ON Checks.CheckBankID = Banks.BankID) " _
     & "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) "
@@ -1335,7 +1335,7 @@ Private Function RefreshList()
             End If
             grdPersonsChecksIndex.CellValue(lngRow, "BankDescription") = !BankDescription
             grdPersonsChecksIndex.CellValue(lngRow, "InvoiceNo") = !InvoiceNo
-            grdPersonsChecksIndex.CellValue(lngRow, "CheckAmount") = !InvoiceGrossAmount
+            grdPersonsChecksIndex.CellValue(lngRow, "CheckAmount") = !CheckAmount
             grdPersonsChecksIndex.CellValue(lngRow, "WindowTitle") = UpdateWindowTitle(!InvoiceRefersToID)
             grdPersonsChecksIndex.CellValue(lngRow, "NextWindowTitle") = UpdateNextWindowTitle(!InvoiceRefersToID)
             '///
@@ -1401,11 +1401,11 @@ FindChecks:
             grdPersonsChecksIndex.CellValue(lngRow, "LineType") = "Printable"
             grdPersonsChecksIndex.CellFont(lngRow, "PersonDescription").Name = "Input"
             grdPersonsChecksIndex.CellFont(lngRow, "PersonDescription").Size = "9"
-            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = Format(!CheckExpire, "dd/mm/yyyy")
-            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") & " " & Space(12 - Len(Format(!CheckAmount, "#,##0.00"))) & Format(!CheckAmount, "#,##0.00")
+            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = format(!CheckExpire, "dd/mm/yyyy")
+            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") & " " & Space(12 - Len(format(!CheckAmount, "#,##0.00"))) & format(!CheckAmount, "#,##0.00")
             grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") & " " & !CheckNo
             grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") & " " & !BankDescription
-            For lngCol = 1 To grdPersonsChecksIndex.ColCount
+            For lngCol = 1 To grdPersonsChecksIndex.colCount
                 grdPersonsChecksIndex.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             .MoveNext
