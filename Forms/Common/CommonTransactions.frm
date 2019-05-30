@@ -3077,11 +3077,11 @@ Function ColorizeRowsWhenItemIsNotGiven(myRow As Long)
     
     If myRow <> 0 Then
         If grdCommonTransactions.CellText(myRow, "CategoryID") = "" And grdCommonTransactions.CellText(myRow, "ItemID") = "" Then
-            For lngCol = 5 To grdCommonTransactions.ColCount
+            For lngCol = 5 To grdCommonTransactions.colCount
                 grdCommonTransactions.CellForeColor(myRow, lngCol) = vbBlack
             Next lngCol
         Else
-            For lngCol = 5 To grdCommonTransactions.ColCount
+            For lngCol = 5 To grdCommonTransactions.colCount
                 grdCommonTransactions.CellForeColor(myRow, lngCol) = vbWhite
             Next lngCol
         End If
@@ -3091,11 +3091,11 @@ Function ColorizeRowsWhenItemIsNotGiven(myRow As Long)
     
     For lngRow = 1 To grdCommonTransactions.RowCount
         If grdCommonTransactions.CellText(lngRow, "CategoryID") = "" And grdCommonTransactions.CellText(lngRow, "ItemID") = "" Then
-            For lngCol = 5 To grdCommonTransactions.ColCount
+            For lngCol = 5 To grdCommonTransactions.colCount
                 grdCommonTransactions.CellForeColor(lngRow, lngCol) = vbBlack
             Next lngCol
         Else
-            For lngCol = 5 To grdCommonTransactions.ColCount
+            For lngCol = 5 To grdCommonTransactions.colCount
                 grdCommonTransactions.CellForeColor(lngRow, lngCol) = vbWhite
             Next lngCol
         End If
@@ -3142,7 +3142,7 @@ Function EnableOrDisableSpecialFields()
     txtInvoicePrintExtraRemarks.text = IIf(txtRefersTo.text = "1", "", txtInvoicePrintExtraRemarks.text) 'ΥγΣΜ
     cmdIndex(4).Enabled = IIf(txtRefersTo.text = "1", False, True) 'ΥγΣΜ
     
-    txtInvoiceDeliveryPointID.text = IIf(txtRefersTo.text = "1", "", "1") 'Τόπος παραλαβής
+    txtInvoiceDeliveryPointID.text = IIf(txtRefersTo.text = "1", txtInvoiceDeliveryPointID.text, "1") 'Τόπος παραλαβής
     txtDeliveryPointDescription.Enabled = IIf(txtRefersTo.text = "1", True, False) 'Τόπος παραλαβής
     cmdIndex(5).Enabled = IIf(txtRefersTo.text = "1", True, False) 'Τόπος παραλαβής
     cmdIndex(6).Enabled = IIf(txtRefersTo.text = "1", True, False) 'Τόπος παραλαβής
@@ -3676,13 +3676,13 @@ Function CreateUnicodeFile(myPrinterType, myEAFDSSString, myInvoiceHeight, myDet
             If .CellValue(lngRow, "CategoryID") <> "" And .CellValue(lngRow, "ItemID") <> "" Then
                 intDetailLines = intDetailLines + 1
                 Print #1, ItemDescriptionAndManufacturer(.CellText(lngRow, "ItemDescription"), .CellText(lngRow, "ManufacturerDescription")); Tab(48); "TEM"; Tab(60 - Len(.CellText(lngRow, "Qty"))); .CellText(lngRow, "Qty"); _
-                Tab(74 - Len(Format(.CellText(lngRow, "UnitPrice"), "#,##0.00"))); Format(.CellText(lngRow, "UnitPrice"), "#,##0.00"); _
-                Tab(89 - Len(Format(.CellText(lngRow, "TotalNetPreDiscount"), "#,##0.00"))); Format(.CellText(lngRow, "TotalNetPreDiscount"), "#,##0.00"); _
-                Tab(96 - Len(Format(.CellText(lngRow, "DiscPercent"), "#,##0.00"))); Format(.CellText(lngRow, "DiscPercent"), "#,##0.00"); _
-                Tab(107 - Len(Format(.CellText(lngRow, "DiscAmount"), "#,##0.00"))); Format(.CellText(lngRow, "DiscAmount"), "#,##0.00"); _
-                Tab(119 - Len(Format(.CellText(lngRow, "TotalNetPostDiscount"), "#,##0.00"))); Format(.CellText(lngRow, "TotalNetPostDiscount"), "#,##0.00"); _
-                Tab(123 - Len(Format(.CellValue(lngRow, "VATPercent"), "#0"))); Format(.CellValue(lngRow, "VATPercent"), "#0,00"); _
-                Tab(136 - Len(Format(.CellText(lngRow, "VATAmount"), "#,##0.00"))); Format(.CellValue(lngRow, "VATAmount"), "#,##0.00")
+                Tab(74 - Len(format(.CellText(lngRow, "UnitPrice"), "#,##0.00"))); format(.CellText(lngRow, "UnitPrice"), "#,##0.00"); _
+                Tab(89 - Len(format(.CellText(lngRow, "TotalNetPreDiscount"), "#,##0.00"))); format(.CellText(lngRow, "TotalNetPreDiscount"), "#,##0.00"); _
+                Tab(96 - Len(format(.CellText(lngRow, "DiscPercent"), "#,##0.00"))); format(.CellText(lngRow, "DiscPercent"), "#,##0.00"); _
+                Tab(107 - Len(format(.CellText(lngRow, "DiscAmount"), "#,##0.00"))); format(.CellText(lngRow, "DiscAmount"), "#,##0.00"); _
+                Tab(119 - Len(format(.CellText(lngRow, "TotalNetPostDiscount"), "#,##0.00"))); format(.CellText(lngRow, "TotalNetPostDiscount"), "#,##0.00"); _
+                Tab(123 - Len(format(.CellValue(lngRow, "VATPercent"), "#0"))); format(.CellValue(lngRow, "VATPercent"), "#0,00"); _
+                Tab(136 - Len(format(.CellText(lngRow, "VATAmount"), "#,##0.00"))); format(.CellValue(lngRow, "VATAmount"), "#,##0.00")
             End If
         Next lngRow
     End With
@@ -3713,12 +3713,12 @@ Function CreateUnicodeFile(myPrinterType, myEAFDSSString, myInvoiceHeight, myDet
     'If blnPrintBalance Then Print #1, Tab(35 - Len(Format(curPreviousBalance, "#,##0.00"))); Format(curPreviousBalance, "#,##0.00");
     'If blnPrintBalance Then Print #1, Tab(35 - Len(Format(curNewBalance, "#,##0.00"))); Format(curNewBalance, "#,##0.00");
     
-    Print #1, Tab(136 - Len(Format(mskTotalPreDiscount.text, "#,##0.00"))); Format(mskTotalPreDiscount.text, "#,##0.00")
-    Print #1, Tab(136 - Len(Format(mskDiscount.text, "#,##0.00"))); Format(mskDiscount.text, "#,##0.00")
-    Print #1, Tab(45); Format(mskTotalRestAmount.text, "#,##0.00"); Tab(65); CStr(curExtraChargesVATPercent); Tab(75); Format(mskTotalVAT.text, "#,##0.00"); Tab(136 - Len(Format(mskTotalRestAmount.text, "#,##0.00"))); Format(mskTotalRestAmount.text, "#,##0.00")
-    Print #1, Tab(136 - Len(Format(mskTotalVAT.text, "#,##0.00"))); Format(mskTotalVAT.text, "#,##0.00")
+    Print #1, Tab(136 - Len(format(mskTotalPreDiscount.text, "#,##0.00"))); format(mskTotalPreDiscount.text, "#,##0.00")
+    Print #1, Tab(136 - Len(format(mskDiscount.text, "#,##0.00"))); format(mskDiscount.text, "#,##0.00")
+    Print #1, Tab(45); format(mskTotalRestAmount.text, "#,##0.00"); Tab(65); CStr(curExtraChargesVATPercent); Tab(75); format(mskTotalVAT.text, "#,##0.00"); Tab(136 - Len(format(mskTotalRestAmount.text, "#,##0.00"))); format(mskTotalRestAmount.text, "#,##0.00")
+    Print #1, Tab(136 - Len(format(mskTotalVAT.text, "#,##0.00"))); format(mskTotalVAT.text, "#,##0.00")
     Print #1, ""
-    Print #1, Tab(136 - Len(Format(mskTotalGross.text, "#,##0.00"))); Chr(27) + Chr(71) + Format(mskTotalGross.text, "#,##0.00") + Chr(27) + Chr(72)
+    Print #1, Tab(136 - Len(format(mskTotalGross.text, "#,##0.00"))); Chr(27) + Chr(71) + format(mskTotalGross.text, "#,##0.00") + Chr(27) + Chr(72)
     
     Print #1, Space(13) & Left(txtInvoiceRemarks.text, 60)
     Print #1, FullNumber(mskTotalGross.text)
@@ -3966,7 +3966,7 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle, myTable, myRefersT
     'Ενημερώνω τα πεδία της φόρμας
     With rstRecordset
         'Ημερομηνία
-        mskInvoiceIssueDate.text = Format(!InvoiceIssueDate, "dd/mm/yyyy")
+        mskInvoiceIssueDate.text = format(!InvoiceIssueDate, "dd/mm/yyyy")
         'Συναλλασόμενος
         FindPersonDetails !InvoicePersonID
         'Παραστατικό
@@ -3985,6 +3985,7 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle, myTable, myRefersT
         txtCodePrinterID.text = tmpRecordset.Fields(11)
         mskCodeDetailLines.text = tmpRecordset.Fields(16)
         txtCodeDateCheckID.text = tmpRecordset.Fields(17)
+        txtInvoiceDeliveryPointID.text = !InvoiceDeliveryPointID
         txtInvoicePrintExtraRemarksID.text = !InvoicePrintExtraRemarksID
         'Νο παραστατικού
         txtInvoiceNo.text = !InvoiceNo
@@ -3993,7 +3994,6 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle, myTable, myRefersT
         txtInvoicePrintExtraRemarksID.text = tmpRecordset.Fields(0)
         txtInvoicePrintExtraRemarks.text = tmpRecordset.Fields(1)
         'Τόπος παραλαβής
-        txtInvoiceDeliveryPointID.text = !InvoiceDeliveryPointID
         Set tmpRecordset = CheckForMatch("CommonDB", txtInvoiceDeliveryPointID.text, "DeliveryPoints", "DeliveryPointID", "Numeric", 0, 1)
         txtInvoiceDeliveryPointID.text = tmpRecordset.Fields(0)
         txtDeliveryPointDescription.text = tmpRecordset.Fields(1)
@@ -4012,20 +4012,20 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle, myTable, myRefersT
         txtInvoiceLoadingSite.text = !InvoiceLoadingSite
         txtInvoiceDestinationSite.text = !InvoiceDestinationSite
         'Σύνολα
-        mskTotalQty.text = Format(!InvoiceQty, "#,##0")
-        mskTotalPreDiscount.text = Format(!InvoiceNet, "#,##0.00")
-        mskDiscount.text = Format(!InvoicePercentDiscount, "#,##0.00")
-        mskTransDiscount.text = Format(!InvoiceAmountDiscount, "#,##0.00")
-        mskTotalRestAmount.text = Format(!InvoiceRestAmount, "#,##0.00")
-        mskExtraCharges.text = Format(!InvoiceExtraChargesAmount, "#,##0.00")
-        mskTotalVAT.text = Format(!InvoiceVATAmount, "#,##0.00")
-        mskTotalGross.text = Format(!InvoiceGrossAmount, "#,##0.00")
+        mskTotalQty.text = format(!InvoiceQty, "#,##0")
+        mskTotalPreDiscount.text = format(!InvoiceNet, "#,##0.00")
+        mskDiscount.text = format(!InvoicePercentDiscount, "#,##0.00")
+        mskTransDiscount.text = format(!InvoiceAmountDiscount, "#,##0.00")
+        mskTotalRestAmount.text = format(!InvoiceRestAmount, "#,##0.00")
+        mskExtraCharges.text = format(!InvoiceExtraChargesAmount, "#,##0.00")
+        mskTotalVAT.text = format(!InvoiceVATAmount, "#,##0.00")
+        mskTotalGross.text = format(!InvoiceGrossAmount, "#,##0.00")
         'Βοηθητικά
         txtInvoiceTrnID.text = !InvoiceTrnID
         txtInvoiceIsInvoiced.text = !InvoiceIsInvoiced
         txtInvoiceIsPrinted.text = !InvoiceIsPrinted
-        txtInvoiceInDate.text = Format(!InvoiceInDate, "dd/mm/yy")
-        txtInvoiceInTime.text = Format(!InvoiceInTime, "hh:mm")
+        txtInvoiceInDate.text = format(!InvoiceInDate, "dd/mm/yy")
+        txtInvoiceInTime.text = format(!InvoiceInTime, "hh:mm")
         txtRefersTo.text = !InvoiceRefersToID
     End With
     
@@ -4672,12 +4672,12 @@ Sub CalculateTotals(blnRecalculate As Boolean)
     curTotalGross = curTotalRestAmount + curExtraCharges + curTotalVAT
     
     'Εμφανίζω
-    mskTotalQty.text = Format(intTotalQty, "#,##0")
-    mskTotalPreDiscount.text = Format(curTotalPreDiscount, "#,##0.00")
-    mskDiscount.text = Format(curDiscount, "#,##0.00")
-    mskTotalVAT.text = Format(curTotalVAT, "#,##0.00")
-    mskTotalRestAmount.text = Format(curTotalRestAmount, "#,##0.00")
-    mskTotalGross.text = Format(curTotalGross, "#,##0.00")
+    mskTotalQty.text = format(intTotalQty, "#,##0")
+    mskTotalPreDiscount.text = format(curTotalPreDiscount, "#,##0.00")
+    mskDiscount.text = format(curDiscount, "#,##0.00")
+    mskTotalVAT.text = format(curTotalVAT, "#,##0.00")
+    mskTotalRestAmount.text = format(curTotalRestAmount, "#,##0.00")
+    mskTotalGross.text = format(curTotalGross, "#,##0.00")
         
     'Βγαίνω
     Exit Sub
@@ -4750,11 +4750,11 @@ Sub DoCalculations(lngRow As Long)
     'Στρογγυλοποίηση ΦΠΑ
     If ((txtRefersTo.text = "1" And blnRoundBuys = True) Or (txtRefersTo.text = "2" And blnRoundSales = True)) And Val(grdCommonTransactions.CellValue(lngRow, "DiscAllow")) = 0 And Val(grdCommonTransactions.CellValue(lngRow, "DiscPercent")) = 0 Then
         'Διόρθωση
-        If Right(Format(curGrossAmount, "#,##0.00"), 2) <= bytRoundCents And Right(Format(curGrossAmount, "#,##0.00"), 2) <> "00" Then
+        If Right(format(curGrossAmount, "#,##0.00"), 2) <= bytRoundCents And Right(format(curGrossAmount, "#,##0.00"), 2) <> "00" Then
             curVATAmount = curVATAmount - Right(CCur(curGrossAmount), 1) / 100
         End If
         'Προς τα πάνω
-        If Right(Format(curGrossAmount, "#,##0.00"), 2) >= 100 - bytRoundCents Then
+        If Right(format(curGrossAmount, "#,##0.00"), 2) >= 100 - bytRoundCents Then
             curVATToAdd = 1 - Right((curGrossAmount), 2) / 100
             curVATAmount = curVATAmount + curVATToAdd
         End If
@@ -4808,7 +4808,7 @@ Sub DoReverseCalculation(lngRow As Long)
     'Καθαρή αξία
     curNetAmount = Replace(grdCommonTransactions.CellValue(lngRow, "TotalGross"), " ", "") / Val(strVAT)
     'Τιμή μονάδας
-    grdCommonTransactions.CellValue(lngRow, "UnitPrice") = Format(Round(curNetAmount / Val(grdCommonTransactions.CellValue(lngRow, "Qty")), 2), "#,##0.00")
+    grdCommonTransactions.CellValue(lngRow, "UnitPrice") = format(Round(curNetAmount / Val(grdCommonTransactions.CellValue(lngRow, "Qty")), 2), "#,##0.00")
     
     'Αν είναι μεγαλύτερη από 9999,99
     If grdCommonTransactions.CellValue(lngRow, "UnitPrice") > 9999.99 Then
@@ -4864,7 +4864,7 @@ Private Sub grdCommonTransactions_CurCellChange(ByVal lRow As Long, ByVal lCol A
     Dim lngColCount As Long
     Dim lngRowCount As Long
     
-    lngColCount = grdCommonTransactions.ColCount
+    lngColCount = grdCommonTransactions.colCount
     lngRowCount = grdCommonTransactions.RowCount
     
     If grdCommonTransactions.RowCount = 0 Or grdCommonTransactions.CurRow = 0 Then Exit Sub

@@ -235,6 +235,8 @@ Private Sub cmdButton_Click(Index As Integer)
     Select Case Index
         Case 0
             Me.Hide
+        Case 1
+            ShowItemLedger
         Case 2
             AbortProcedure
     End Select
@@ -280,6 +282,8 @@ Private Function CheckFunctionKeys(KeyCode, Shift)
     Select Case KeyCode
         Case vbKeyReturn
             cmdButton_Click 0
+        Case vbKeyF4 And cmdButton(1).Enabled
+            cmdButton_Click 1
         Case vbKeyEscape
             cmdButton_Click 2
         Case vbKeyA And CtrlDown = 4 And chkShowInactiveRecords.Visible
@@ -315,7 +319,7 @@ End Sub
 
 Private Sub grdGrid_KeyDown(KeyCode As Integer, Shift As Integer, bDoDefault As Boolean)
 
-    If KeyCode = vbKeyF4 Then ShowItemLedger
+    If KeyCode = vbKeyF4 And cmdButton(1).Enabled Then ShowItemLedger
 
 End Sub
 

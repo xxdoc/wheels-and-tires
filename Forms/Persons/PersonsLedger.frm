@@ -522,7 +522,7 @@ Begin VB.Form PersonsLedger
             Width           =   1365
             _ExtentX        =   2408
             _ExtentY        =   1217
-            Caption         =   "Αποστολή με email"
+            Caption         =   "Δημιουργία αρχείου XLS"
             ButtonStyle     =   2
             OriginalPicSizeW=   0
             OriginalPicSizeH=   0
@@ -1589,7 +1589,7 @@ Private Sub cmdButton_Click(Index As Integer)
         Case 3
             PrintRecords Me, "CreatePDF", True, "PrinterPrintsReportsID"
         Case 4
-            DisplayEmailFrame
+            ExportToExcel
         Case 5
             EditGrid
         Case 6
@@ -1603,6 +1603,102 @@ Private Sub cmdButton_Click(Index As Integer)
     End Select
     
 End Sub
+
+Private Function ExportToExcel()
+
+    On Error GoTo ErrTrap
+    
+    Dim blnEnableEdit As Boolean
+    Dim lngCurrentRow As Long
+    
+    Dim lngRow As Long
+    Dim lngCol As Long
+    Dim xlsRowOffsetFromTop As Long
+    Dim xlsColCount As Long
+    
+    Dim oExcel As Object
+    Dim oBook As Object
+    Dim oSheet As Object
+
+    lngCurrentRow = grdPersonsLedger.CurRow
+    
+    Set oExcel = CreateObject("Excel.Application")
+    Set oBook = oExcel.Workbooks.Add
+    Set oSheet = oBook.Worksheets(1)
+    
+    xlsRowOffsetFromTop = 10
+    xlsColCount = 5
+    
+    With oSheet
+       
+        SetFontNameAndSize oSheet, "Ubuntu Condensed", 11
+        AddCompanyData oSheet, xlsColCount
+        AddTitle oSheet, lblTitle.Caption, xlsColCount
+        AddCriteria oSheet, lblCriteria.Caption, xlsColCount
+        AddHeaders oSheet, grdPersonsLedger, xlsColCount, _
+            "A", "InvoiceIssueDate", _
+            "B", "CodeDescription", _
+            "C", "InvoiceNo", _
+            "D", "Plates", _
+            "E", "Qty"
+        AdjustColumnWidths oSheet, "A", 10, "B", 50, "C", 12, "D", 12, "E", 12
+                
+        InitializeProgressBar Me, strAppTitle, grdPersonsLedger.RowCount
+        
+        'Προσωρινά
+        UpdateButtons Me, 6, 0, 0, 0, 0, 0, 1, 0
+        cmdButton(5).Caption = "Διακοπή επεξεργασίας"
+        blnProcessing = True
+                
+        For lngRow = 1 To grdPersonsLedger.RowCount
+            UpdateProgressBar Me
+            .Range("A" & lngRow + xlsRowOffsetFromTop) = grdPersonsLedger.CellValue(lngRow, "InvoiceIssueDate")
+            .Range("B" & lngRow + xlsRowOffsetFromTop) = grdPersonsLedger.CellValue(lngRow, "CodeDescription")
+            .Range("C" & lngRow + xlsRowOffsetFromTop) = grdPersonsLedger.CellValue(lngRow, "InvoiceNo")
+            .Range("D" & lngRow + xlsRowOffsetFromTop) = grdPersonsLedger.CellValue(lngRow, "Plates")
+            .Range("E" & lngRow + xlsRowOffsetFromTop) = grdPersonsLedger.CellText(lngRow, "Qty")
+            DoEvents
+            If Not blnProcessing Then Exit For
+        Next lngRow
+        
+        AddNumberFormats oSheet, grdPersonsLedger, "Integers", 5, "E"
+        
+    End With
+    
+    If blnProcessing Then
+        blnError = False
+        GoSub DoFinals
+        oBook.SaveAs strReportsPathName & format(Date, "yyyy.mm.dd") & "-" & format(Time, "hh.mm.ss") & ".xlsx"
+        oExcel.Quit
+        DisplayMessage 10, 1, 1, ""
+    Else
+        GoSub DoFinals
+        DisplayMessage 10, 1, 1, ""
+    End If
+    
+    Exit Function
+    
+DoFinals:
+    blnProcessing = False
+    ClearFields frmProgress
+    blnEnableEdit = CheckToEnableButton(grdPersonsLedger, lngCurrentRow, "AA")
+    UpdateButtons Me, 9, 0, IIf(CheckForLoadedForm("PersonsTransactions,CommonTransactions"), 0, blnEnableEdit), 1, 1, 1, IIf(chkCriteriaOnlyQty.Value = 1, 1, 0), 1, 0, 0, 0
+    cmdButton(5).Caption = "Νέα αναζήτηση"
+    grdPersonsLedger.SetFocus
+    
+    Return
+
+ErrTrap:
+    oBook.Close False
+    oExcel.Quit
+    GoSub DoFinals
+    If blnError Then
+        DisplayErrorMessage True, Err.Description
+    End If
+    
+End Function
+
+
 
 Private Function EditGrid()
 
@@ -1906,11 +2002,11 @@ FindChecks:
             lngRow = lngRow + 1
             grdPersonsLedger.CellFont(lngRow, "CodeDescription").Name = "Input"
             grdPersonsLedger.CellFont(lngRow, "CodeDescription").Size = "11"
-            grdPersonsLedger.CellValue(lngRow, "CodeDescription") = Format(!CheckExpireDate, "dd/mm/yyyy")
-            grdPersonsLedger.CellValue(lngRow, "CodeDescription") = grdPersonsLedger.CellValue(lngRow, "CodeDescription") & " " & Space(12 - Len(Format(!CheckAmount, "#,##0.00"))) & Format(!CheckAmount, "#,##0.00")
+            grdPersonsLedger.CellValue(lngRow, "CodeDescription") = format(!CheckExpireDate, "dd/mm/yyyy")
+            grdPersonsLedger.CellValue(lngRow, "CodeDescription") = grdPersonsLedger.CellValue(lngRow, "CodeDescription") & " " & Space(12 - Len(format(!CheckAmount, "#,##0.00"))) & format(!CheckAmount, "#,##0.00")
             grdPersonsLedger.CellValue(lngRow, "CodeDescription") = grdPersonsLedger.CellValue(lngRow, "CodeDescription") & " " & !CheckNo
             grdPersonsLedger.CellValue(lngRow, "CodeDescription") = grdPersonsLedger.CellValue(lngRow, "CodeDescription") & " " & !BankDescription
-            For lngCol = 1 To grdPersonsLedger.ColCount
+            For lngCol = 1 To grdPersonsLedger.colCount
                 grdPersonsLedger.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             .MoveNext
@@ -1935,8 +2031,8 @@ FindItems:
             grdPersonsLedger.CellFont(lngRow, "CodeDescription").Name = "Input"
             grdPersonsLedger.CellFont(lngRow, "CodeDescription").Size = "11"
             grdPersonsLedger.CellValue(lngRow, "Qty") = !Qty
-            grdPersonsLedger.CellValue(lngRow, "CodeDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & IIf(chkCriteriaOnlyQty.Value = 0, Format(!Qty, "#,##0") & IIf(chkCriteriaOnlyQty.Value = 0, " x " & Format(!TotalNetPostDiscount / !Qty, "#,##0.00"), "x τεμ"), "")
-            For lngCol = 1 To grdPersonsLedger.ColCount
+            grdPersonsLedger.CellValue(lngRow, "CodeDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & IIf(chkCriteriaOnlyQty.Value = 0, format(!Qty, "#,##0") & IIf(chkCriteriaOnlyQty.Value = 0, " x " & format(!TotalNetPostDiscount / !Qty, "#,##0.00"), "x τεμ"), "")
+            For lngCol = 1 To grdPersonsLedger.colCount
                 grdPersonsLedger.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             curPeriod(3) = curPeriod(3) + !Qty
@@ -2055,7 +2151,7 @@ Private Function CalculateNewQtyTotal(myGrid As iGrid, myFirstTime As Boolean)
 End Function
 
 
-Private Sub grdPersonsLedger_ColHeaderClick(ByVal lCol As Long, bDoDefault As Boolean, ByVal Shift As Integer, ByVal X As Long, ByVal Y As Long)
+Private Sub grdPersonsLedger_ColHeaderClick(ByVal lCol As Long, bDoDefault As Boolean, ByVal Shift As Integer, ByVal x As Long, ByVal Y As Long)
 
     If grdPersonsLedger.RowCount = 0 Then Exit Sub
 
@@ -2094,7 +2190,7 @@ Private Sub grdPersonsLedger_DblClick(ByVal lRow As Long, ByVal lCol As Long, bR
     
 End Sub
 
-Private Sub grdPersonsLedger_HeaderRightClick(ByVal lCol As Long, ByVal Shift As Integer, ByVal X As Long, ByVal Y As Long)
+Private Sub grdPersonsLedger_HeaderRightClick(ByVal lCol As Long, ByVal Shift As Integer, ByVal x As Long, ByVal Y As Long)
 
     PopupMenu mnuHdrPopUp
 

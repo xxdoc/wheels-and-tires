@@ -1,7 +1,6 @@
 Attribute VB_Name = "ModuleParticular"
 Option Explicit
 
-'Μεταβλητές εφαρμογής
 Global lngItemID As Long
 Global blnPrintHour As Boolean
 Global blnPrintBalance As Boolean
@@ -43,6 +42,135 @@ Public Declare Function Process32Next Lib "kernel32.dll" (ByVal hSnapshot As Lon
 Public Declare Function CloseHandle Lib "kernel32.dll" (ByVal hObject As Long) As Long
 Public Const TH32CS_SNAPPROCESS As Long = &H2
 
+
+Function SetFontNameAndSize(sheet As Object, fontName As String, fontSize As Integer)
+
+    'Excel
+    With sheet
+        .Range("A1:Z9999").Font.Name = fontName
+        .Range("A1:Z9999").Font.Size = fontSize
+    End With
+
+End Function
+
+
+
+Function AddCompanyData(sheet As Object, colCount As Long)
+
+    'Excel
+    With sheet
+        .Range("A1:" & Chr(colCount + 64) & "1").MergeCells = True
+        .Range("A2:" & Chr(colCount + 64) & "2").MergeCells = True
+        .Range("A3:" & Chr(colCount + 64) & "3").MergeCells = True
+        .Range("A4:" & Chr(colCount + 64) & "4").MergeCells = True
+        .Range("A1").Value = arrCompanyData(7)
+        .Range("A2").Value = arrCompanyData(8)
+        .Range("A3").Value = arrCompanyData(9)
+        .Range("A4").Value = arrCompanyData(10)
+    End With
+
+End Function
+
+
+Function AddTitle(sheet As Object, title As String, colCount As Long)
+
+    'Excel
+    With sheet
+        .Range("A6:" & Chr(colCount + 64) & "6").MergeCells = True
+        .Range("A6").Value = title
+        .Range("A6").HorizontalAlignment = 3
+        .Range("A6").VerticalAlignment = 2
+        .rows("6").RowHeight = 24
+    End With
+
+End Function
+
+
+
+
+Function AddCriteria(sheet As Object, criteria As String, colCount As Long)
+
+    'Excel
+    With sheet
+        .Range("A7:" & Chr(colCount + 64) & "7").MergeCells = True
+        .Range("A7:" & Chr(colCount + 64) & "7").WrapText = True
+        .Range("A7").Value = criteria
+        .Range("A7").HorizontalAlignment = 3
+        .Range("A7").VerticalAlignment = 2
+        .rows("7").RowHeight = 40
+    End With
+
+End Function
+
+
+Function AddHeaders(sheet As Object, grid As iGrid, colCount As Long, ParamArray columns() As Variant)
+
+    'Excel
+    On Error Resume Next
+    
+    Dim x As Integer
+    Dim lngColCount As Long
+    lngColCount = UBound(columns) + 1
+    
+    x = 0
+    
+    With sheet
+        .Range("A9:" & Chr(colCount + 64) & "9").WrapText = True
+        .Range("A9:" & Chr(colCount + 64) & "9").HorizontalAlignment = 3
+        .Range("A9:" & Chr(colCount + 64) & "9").VerticalAlignment = 2
+        For x = 0 To lngColCount Step 2
+            Debug.Print columns(x)
+            Debug.Print grid.ColHeaderText(columns(x + 1))
+            .Range("" & columns(x) & "9").Value = grid.ColHeaderText(columns(x + 1))
+        Next x
+        .rows("9").RowHeight = 30
+    End With
+
+End Function
+
+
+
+Function AddNumberFormats(sheet As Object, grid As iGrid, format As String, rowOffsetFromTop As Long, ParamArray columns() As Variant)
+
+    Dim column As Long
+    Dim row As Long
+    
+    'Excel
+    With sheet
+        For column = 0 To UBound(columns)
+            Select Case format
+                Case "Floats"
+                    For row = 1 To grid.RowCount
+                        .Range(columns(column) & row + rowOffsetFromTop).NumberFormat = "#,##0.00_);[Red]#,##0.00 "
+                    Next row
+                Case "Integers"
+                    For row = 1 To grid.RowCount
+                        .Range(columns(column) & row + rowOffsetFromTop).NumberFormat = "#,##0_);[Red]#,##0 "
+                    Next row
+                Case "Dates"
+                    For row = 1 To grid.RowCount
+                        .Range(columns(column) & row + rowOffsetFromTop).NumberFormat = "dd-mm-yyyy"
+                    Next row
+            End Select
+        Next column
+    End With
+
+End Function
+
+
+
+Function AdjustColumnWidths(sheet As Object, ParamArray columns() As Variant)
+
+    Dim x As Integer
+    
+    'Excel
+    With sheet
+        For x = 0 To UBound(columns) - 1 / 2 Step 2
+            .columns(columns(x)).columnWidth = columns(x + 1)
+        Next x
+    End With
+
+End Function
 
 Function InitReport(myPrinterType, myEAFDSSString, myInvoiceHeight)
 
@@ -114,13 +242,13 @@ Function FillArray(strArrayName, ParamArray myColumns() As Variant)
     
 End Function
 
-Function DoRunningTotal(strArrayName, ParamArray Columns() As Variant)
+Function DoRunningTotal(strArrayName, ParamArray columns() As Variant)
 
     Dim intLoop As Integer
     
-    For intLoop = 0 To UBound(Columns)
-        If Columns(intLoop) <> "" Then
-            strArrayName(intLoop) = strArrayName(intLoop) + Columns(intLoop)
+    For intLoop = 0 To UBound(columns)
+        If columns(intLoop) <> "" Then
+            strArrayName(intLoop) = strArrayName(intLoop) + columns(intLoop)
         End If
     Next intLoop
     
@@ -260,14 +388,14 @@ Function CalculatePersonBalance(tmpTable, tmpCode)
     With rstInvoices
         Do While Not .EOF
             If ![CodeRefersTo] = 1 Or ![CodeRefersTo] = 3 Then
-                If ![Column] = "+" Then
+                If ![column] = "+" Then
                     curPreviousBalance = curPreviousBalance + ![InvoiceGross]
                 Else
                     curPreviousBalance = curPreviousBalance - ![InvoiceGross]
                 End If
             End If
             If ![CodeRefersTo] = 0 Or ![CodeRefersTo] = 2 Then
-                If ![Column] = "+" Then
+                If ![column] = "+" Then
                     curPreviousBalance = curPreviousBalance - ![InvoiceGross]
                 Else
                     curPreviousBalance = curPreviousBalance + ![InvoiceGross]
@@ -314,7 +442,7 @@ Function CalculateItemBalance(tmpCode)
         .Close
     End With
     
-    CalculateItemBalance = Format(intBalance, "#,##0")
+    CalculateItemBalance = format(intBalance, "#,##0")
 
 End Function
 

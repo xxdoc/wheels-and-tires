@@ -1894,9 +1894,11 @@ DisplayButtonForLedger:
     If tmpArguments(UBound(tmpArguments)) = "Items" Then
         CommonIndex.frmButtonFrame.Width = 4365
         CommonIndex.cmdButton(2).Left = 2925
+        CommonIndex.cmdButton(1).Enabled = True
     Else
         CommonIndex.frmButtonFrame.Width = 2940
         CommonIndex.cmdButton(2).Left = 1500
+        CommonIndex.cmdButton(1).Enabled = False
     End If
     
     CommonIndex.frmButtonFrame.Left = CommonIndex.Width / 2 - CommonIndex.frmButtonFrame.Width / 2
@@ -2437,6 +2439,7 @@ Function ResetKeyCode(KeyCode As Integer, Shift As Integer)
     
     If _
         (KeyCode = vbKeyEscape) Or _
+        (KeyCode = vbKeyF4) Or _
         (KeyCode = vbKeyN And CtrlDown > 2) Or _
         (KeyCode = vbKeyE And CtrlDown > 2) Or _
         (KeyCode = vbKeyS And CtrlDown > 2) Or _
