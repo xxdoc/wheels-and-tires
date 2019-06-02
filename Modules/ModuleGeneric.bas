@@ -156,7 +156,7 @@ End Function
 Function CheckForMaxLength(myText, myMaxLength, Optional myFormat)
 
     If myFormat = "Float" Then
-        myText = Format(myText, "#,##0.00")
+        myText = format(myText, "#,##0.00")
     End If
     
     CheckForMaxLength = IIf(Len(myText) <= myMaxLength, myText, "")
@@ -184,7 +184,7 @@ Function OldClearGridCell(myGrid As iGrid, myRow As Long, Optional myCol As Long
     Dim lngLoop As Long
     
     If myCol = 0 Then
-        For lngLoop = 1 To myGrid.ColCount
+        For lngLoop = 1 To myGrid.colCount
             myGrid.CellValue(myRow, lngLoop) = ""
         Next lngLoop
         Exit Function
@@ -525,7 +525,7 @@ Function SumSelectedGridRows(myGrid As iGrid, myLastColumnIsSpecial, ParamArray 
     
     If blnSelected Then
         For intLoop = 1 To UBound(myColumns) + 1
-            strDummy = strDummy & myGrid.ColHeaderText(myColumns(intLoop - 1)) & " " & Format(curGridColumnTotals(intLoop), "#,##0.00") & " "
+            strDummy = strDummy & myGrid.ColHeaderText(myColumns(intLoop - 1)) & " " & format(curGridColumnTotals(intLoop), "#,##0.00") & " "
         Next intLoop
         SumSelectedGridRows = Left(strDummy, Len(strDummy) - 1)
     End If
@@ -831,7 +831,7 @@ End Function
 Function UpdateLogFile(errorDescription)
 
     Open strReportsPathName & "Errors.txt" For Append As #2
-        Print #2, Format(Date, "dd/mm/yyyy") & " " & Format(Time, "hh:mm") & " " & errorDescription; ""
+        Print #2, format(Date, "dd/mm/yyyy") & " " & format(Time, "hh:mm") & " " & errorDescription; ""
     Close #2
     
 End Function
@@ -1082,7 +1082,7 @@ Function InitializeFields(ParamArray tmpFields())
     Dim bytLoop As Byte
 
     For bytLoop = 0 To UBound(tmpFields)
-        If TypeOf tmpFields(bytLoop) Is newText Or TypeOf tmpFields(bytLoop) Is newDate Then tmpFields(bytLoop).text = Format(Date, "dd/mm/yyyy")
+        If TypeOf tmpFields(bytLoop) Is newText Or TypeOf tmpFields(bytLoop) Is newDate Then tmpFields(bytLoop).text = format(Date, "dd/mm/yyyy")
         If TypeOf tmpFields(bytLoop) Is newInteger Then tmpFields(bytLoop).text = "0"
         If TypeOf tmpFields(bytLoop) Is newFloat Then tmpFields(bytLoop).text = "0,00"
         If TypeOf tmpFields(bytLoop) Is Label Then tmpFields(bytLoop).Caption = ""
@@ -1096,7 +1096,7 @@ Function MoveToNextColumn(grdGrid As iGrid, lngRow, lngCol)
     On Error GoTo ErrTrap
     
     Do While True
-        If lngCol + 1 <= grdGrid.ColCount Then
+        If lngCol + 1 <= grdGrid.colCount Then
             If grdGrid.ColTag(lngCol + 1) = "Y" Then
                 grdGrid.SetCurCell lngRow, lngCol + 1
                 Exit Function
@@ -1309,12 +1309,12 @@ Function PrintHeadings(tmpColumns, tmpPageNo, tmpReportTitle, tmpReportSubTitle1
     
 End Function
 
-Function PrintColumnHeadings(ParamArray Columns() As Variant)
+Function PrintColumnHeadings(ParamArray columns() As Variant)
 
     Dim bytLoop As Byte
     
-    For bytLoop = 0 To UBound(Columns) - 1 Step 2
-        Print #1, Tab(Columns(bytLoop)); Columns(bytLoop + 1);
+    For bytLoop = 0 To UBound(columns) - 1 Step 2
+        Print #1, Tab(columns(bytLoop)); columns(bytLoop + 1);
     Next bytLoop
     
     Print #1, ""
@@ -1436,7 +1436,9 @@ Function CheckForMatch(DBToUse, myFieldValue, myTable, myFieldLookup, myFieldTyp
     Exit Function
     
 ErrTrap:
-    DisplayErrorMessage True, Err.Description
+    If Err.Number <> 3075 Then
+        DisplayErrorMessage True, Err.Description
+    End If
     
 End Function
 
@@ -1518,10 +1520,10 @@ Function MainSeekRecord(SelectedDB, Table, IndexField, CodeToSeek, DisplayNotFou
                     Fields(bytLoop).text = IIf(Not IsNull(rsTable.Fields(bytLoop)), rsTable.Fields(bytLoop), "")
                 End If
                 If TypeOf Fields(bytLoop) Is newFloat Then
-                    Fields(bytLoop).text = Format(rsTable.Fields(bytLoop), "#,##0.00")
+                    Fields(bytLoop).text = format(rsTable.Fields(bytLoop), "#,##0.00")
                 End If
                 If TypeOf Fields(bytLoop) Is newInteger Then
-                    Fields(bytLoop).text = Format(rsTable.Fields(bytLoop), "#,##0")
+                    Fields(bytLoop).text = format(rsTable.Fields(bytLoop), "#,##0")
                 End If
                 If TypeOf Fields(bytLoop) Is Label Then
                     Fields(bytLoop).Caption = rsTable.Fields(bytLoop)
@@ -1533,7 +1535,7 @@ Function MainSeekRecord(SelectedDB, Table, IndexField, CodeToSeek, DisplayNotFou
                     Fields(bytLoop).Value = IIf(rsTable.Fields(bytLoop), 1, 0)
                 End If
                 If TypeOf Fields(bytLoop) Is newDate Then
-                    Fields(bytLoop).text = Format(rsTable.Fields(bytLoop), "dd/mm/yyyy")
+                    Fields(bytLoop).text = format(rsTable.Fields(bytLoop), "dd/mm/yyyy")
                 End If
             Next bytLoop
         Else
@@ -1799,7 +1801,7 @@ InitializeGrid:
     
 DisplayOnlyWithCategoryCheckBalanceIsTrue:
     For lngRow = 1 To CommonIndex.grdGrid.RowCount
-         If CommonIndex.grdGrid.CellValue(lngRow, CommonIndex.grdGrid.ColCount) = "0" Then
+         If CommonIndex.grdGrid.CellValue(lngRow, CommonIndex.grdGrid.colCount) = "0" Then
             CommonIndex.grdGrid.CellValue(lngRow, 9) = ""
         End If
     Next lngRow
@@ -1811,7 +1813,7 @@ DisplayOnlyActiveItems:
     
     For lngRow = 1 To CommonIndex.grdGrid.RowCount
         If CommonIndex.grdGrid.RowVisible(lngRow) <> CommonIndex.grdGrid.CellValue(lngRow, lngActiveColumn) Then
-            For lngCol = 1 To CommonIndex.grdGrid.ColCount
+            For lngCol = 1 To CommonIndex.grdGrid.colCount
                 CommonIndex.grdGrid.CellFont(lngRow, lngCol).Italic = True
                 CommonIndex.grdGrid.CellForeColor(lngRow, lngCol) = &HC0C0C0
                 CommonIndex.grdGrid.RowVisible(lngRow) = False
@@ -1847,12 +1849,12 @@ PaintWithAlternateColor:
                     If .CellValue(lngRow, 6) <> strOldManufacturer Then
                         lngBackColor = IIf(lngBackColor = -1, &HC8C8FF, -1)
                         lngForeColor = IIf(lngForeColor = -1, vbBlack, -1)
-                        For lngCol = 1 To .ColCount
+                        For lngCol = 1 To .colCount
                             .CellForeColor(lngRow, lngCol) = lngForeColor
                             .CellBackColor(lngRow, lngCol) = lngBackColor
                         Next
                     Else
-                        For lngCol = 1 To .ColCount
+                        For lngCol = 1 To .colCount
                             .CellForeColor(lngRow, lngCol) = lngForeColor
                             .CellBackColor(lngRow, lngCol) = lngBackColor
                         Next
@@ -1861,7 +1863,7 @@ PaintWithAlternateColor:
                     strOldManufacturer = .CellValue(lngRow, 6)
                     lngBackColor = IIf(lngBackColor = -1, &HC8C8FF, -1)
                     lngForeColor = IIf(lngForeColor = -1, vbBlack, -1)
-                    For lngCol = 1 To .ColCount
+                    For lngCol = 1 To .colCount
                         .CellForeColor(lngRow, lngCol) = lngForeColor
                         .CellBackColor(lngRow, lngCol) = lngBackColor
                     Next
@@ -2072,7 +2074,7 @@ Function ColorizeCells(myGrid As iGrid, myRow, ParamArray myCols() As Variant)
     Dim intLoop As Integer
     
     For intLoop = 0 To UBound(myCols())
-        For lngCol = 1 To myGrid.ColCount
+        For lngCol = 1 To myGrid.colCount
             If myGrid.ColKey(lngCol) = myCols(intLoop) Then
                 myGrid.CellForeColor(myRow, lngCol) = IIf(Left(myGrid.CellValue(myRow, lngCol), 1) <> "-", -1, &H8080FF)
                 Exit For
@@ -2370,8 +2372,8 @@ Function AddTotalsToOutputFile(myMessage, mySums, myTotals)
     For intLoop = 0 To UBound(myColumns)
         If Right(myColumns(intLoop), 1) = "Y" Then
             Print #1, _
-                Tab(Left(myColumns(intLoop), 3) - Len(Format(mySums(intLoop), FormatAsSelection(Mid(myColumns(intLoop), 4, 1))))); _
-                Format(mySums(intLoop), FormatAsSelection(Mid(myColumns(intLoop), 4, 1)));
+                Tab(Left(myColumns(intLoop), 3) - Len(format(mySums(intLoop), FormatAsSelection(Mid(myColumns(intLoop), 4, 1))))); _
+                format(mySums(intLoop), FormatAsSelection(Mid(myColumns(intLoop), 4, 1)));
         End If
     Next intLoop
     
@@ -2453,7 +2455,7 @@ Function ResetKeyCode(KeyCode As Integer, Shift As Integer)
     
 End Function
 
-Function AddDummyLines(grdGrid, ParamArray Columns() As Variant)
+Function AddDummyLines(grdGrid, ParamArray columns() As Variant)
 
     Dim lngRow As Long
     Dim lngCol As Long
@@ -2464,8 +2466,8 @@ Function AddDummyLines(grdGrid, ParamArray Columns() As Variant)
     For lngRow = 1 To 40
         With grdGrid
             .AddRow
-            For lngCol = 0 To (UBound(Columns))
-                .CellValue(lngRow, lngCol + 1) = String(Columns(lngCol), "A")
+            For lngCol = 0 To (UBound(columns))
+                .CellValue(lngRow, lngCol + 1) = String(columns(lngCol), "A")
             Next lngCol
         End With
     Next lngRow
@@ -2641,7 +2643,7 @@ Function PositionControls(thisForm As Form, formFullScreen As Boolean, Optional 
     
     'Σημερινή ημερομηνία
     For Each ctl In thisForm.Controls
-        If ctl.Name = "lblToday" Then thisForm.lblToday.Caption = Format(Date, "dddd dd/mm/yyyy")
+        If ctl.Name = "lblToday" Then thisForm.lblToday.Caption = format(Date, "dddd dd/mm/yyyy")
     Next ctl
 
     Exit Function
