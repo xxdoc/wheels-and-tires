@@ -3,10 +3,10 @@ Begin {9EB8768B-CDFA-44DF-8F3E-857A8405E1DB} rptInvoiceA
    ClientHeight    =   10230
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   18960
+   ClientWidth     =   15510
    Icon            =   "rptInvoiceA.dsx":0000
    StartUpPosition =   2  'CenterScreen
-   _ExtentX        =   33443
+   _ExtentX        =   27358
    _ExtentY        =   18045
    SectionData     =   "rptInvoiceA.dsx":1CCA
 End
@@ -147,7 +147,7 @@ Private Sub ActiveReport_FetchData(EOF As Boolean)
         Fields("PaymentWayDescription") = !PaymentWayDescription
         Fields("BankAccountNumber") = strBankAccountNo
         
-        Fields("NumberInWords") = FullNumber(Format(Fields("InvoiceGrossAmount"), "#,##0.00")) + "   "
+        Fields("NumberInWords") = FullNumber(format(Fields("InvoiceGrossAmount"), "#,##0.00")) + "   "
         
     End With
     

@@ -1360,7 +1360,7 @@ Private Function TransformInvoices()
     
     With CommonTransactions
         CustomizeGrid .grdCommonTransactions
-        EnableFields .mskInvoiceIssueDate, .txtCodeShortDescription, .txtInvoiceNo, .txtInvoiceRemarks, .grdCommonTransactions, .cmdIndex(2), .cmdIndex(3)
+        EnableFields .grdCommonTransactions
         EnableFields .mskTransDiscount, .mskTotalRestAmount, .mskExtraCharges, .mskTotalVAT
         InitializeFields IIf(.txtRefersTo.text = "2", .mskInvoiceIssueDate, ""), .mskTotalQty, .mskTotalPreDiscount, .mskDiscount, .mskTransDiscount, .mskTotalRestAmount, .mskExtraCharges, .mskTotalVAT, .mskTotalGross
         UpdateButtons CommonTransactions, 5, 0, 1, 0, 0, 1, 0
@@ -1372,14 +1372,19 @@ Private Function TransformInvoices()
         .CalculateTotals True
         .txtRefersTo.text = txtRefersTo
         If txtTriangularID.text = "0" Then
+            'Τιμολόγηση αγορών
             .UpdateHeaders
             .txtTable.text = txtTable.text
             .lblTitle.Caption = IIf(txtRefersTo = "1", "Τιμολόγηση αγορών", "Τιμολόγηση πωλήσεων")
+            EnableFields .mskInvoiceIssueDate, .txtCodeShortDescription, .txtInvoiceNo, .txtInvoiceRemarks
+            EnableFields .cmdIndex(2), .cmdIndex(3), .cmdIndex(7), .cmdIndex(8)
         Else
+            'Τιμολόγηση τριγωνικών πωλήσεων
             .txtTable.text = "Customers"
-            EnableFields .txtPersonDescription, .txtPaymentWayDescription, .cmdIndex(0), .cmdIndex(1), .cmdIndex(6), .cmdIndex(7)
-            DisableFields .txtInvoicePlates
             .lblTitle.Caption = "Τιμολόγηση τριγωνικών πωλήσεων"
+            EnableFields .mskInvoiceIssueDate, .txtCodeShortDescription, .txtInvoiceNo, .txtInvoicePrintExtraRemarks, .txtInvoiceRemarks, .txtPersonDescription, .txtPaymentWayDescription
+            EnableFields .cmdIndex(0), .cmdIndex(1), .cmdIndex(9), .cmdIndex(2), .cmdIndex(3), .cmdIndex(4), .cmdIndex(7), .cmdIndex(8)
+            DisableFields .txtInvoicePlates
         End If
         .Tag = "True"
         .Show 1, Me
@@ -1752,9 +1757,9 @@ FindItems:
             grdCommonPendingInvoices.CellFont(lngRow, "PersonDescription").Name = "Input"
             grdCommonPendingInvoices.CellFont(lngRow, "PersonDescription").Size = "11"
             'grdCommonPendingInvoices.CellValue(lngRow, "Qty") = !Qty
-            grdCommonPendingInvoices.CellValue(lngRow, "PersonDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & Format(!Qty, "#,##0") & " x " & Format(!TotalNetPostDiscount / !Qty, "#,##0.00") & " = " & Format(!TotalNetPostDiscount, "#,##0.00")
+            grdCommonPendingInvoices.CellValue(lngRow, "PersonDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & format(!Qty, "#,##0") & " x " & format(!TotalNetPostDiscount / !Qty, "#,##0.00") & " = " & format(!TotalNetPostDiscount, "#,##0.00")
             grdCommonPendingInvoices.CellTextFlags(lngRow, "PersonDescription") = igTextNoClip Or igTextLeft
-            For lngCol = 1 To grdCommonPendingInvoices.ColCount
+            For lngCol = 1 To grdCommonPendingInvoices.colCount
                 grdCommonPendingInvoices.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             .MoveNext

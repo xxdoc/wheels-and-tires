@@ -490,6 +490,8 @@ Function PrintInvoiceToLaser(myInvoiceTrnID, myPrinterName)
         rptInvoiceA.PageSettings.Orientation = ddOLandscape
         rptInvoiceA.PageSettings.PaperSize = 11
         rptInvoiceA.lblIsOriginalOrCopy.Caption = IIf(intLoop = 1, "пяытотупо", "амтицяажо")
+        rptInvoiceA.PageSettings.LeftMargin = 500
+        rptInvoiceA.PageSettings.RightMargin = 50
         If blnPreviewInvoices Then
             rptInvoiceA.Zoom = -2
             rptInvoiceA.Printer.ColorMode = vbPRCMMonochrome
