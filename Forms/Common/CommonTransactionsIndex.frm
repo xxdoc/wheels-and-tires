@@ -670,13 +670,11 @@ Begin VB.Form CommonTransactionsIndex
             Top             =   3450
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "CommonTransactionsIndex.frx":0038
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -947,7 +945,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":3748
+            PicNormal       =   "CommonTransactionsIndex.frx":0950
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -975,7 +973,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":3CE2
+            PicNormal       =   "CommonTransactionsIndex.frx":0EEA
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1003,7 +1001,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":427C
+            PicNormal       =   "CommonTransactionsIndex.frx":1484
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1054,7 +1052,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":4816
+            PicNormal       =   "CommonTransactionsIndex.frx":1A1E
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1104,7 +1102,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":4DB0
+            PicNormal       =   "CommonTransactionsIndex.frx":1FB8
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -2360,9 +2358,9 @@ FindItems:
             grdCommonTransactionsIndex.CellFont(lngRow, "PersonDescription").Name = "Input"
             grdCommonTransactionsIndex.CellFont(lngRow, "PersonDescription").Size = "11"
             grdCommonTransactionsIndex.CellValue(lngRow, "Qty") = !Qty
-            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & Format(!Qty, "#,##0") & " x " & Format(!TotalNetPostDiscount / !Qty, "#,##0.00") & " = " & Format(!TotalNetPostDiscount, "#,##0.00")
+            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & format(!Qty, "#,##0") & " x " & format(!TotalNetPostDiscount / !Qty, "#,##0.00") & " = " & format(!TotalNetPostDiscount, "#,##0.00")
             grdCommonTransactionsIndex.CellTextFlags(lngRow, "PersonDescription") = igTextNoClip Or igTextLeft
-            For lngCol = 1 To grdCommonTransactionsIndex.ColCount
+            For lngCol = 1 To grdCommonTransactionsIndex.colCount
                 grdCommonTransactionsIndex.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             .MoveNext
@@ -2386,11 +2384,11 @@ FindChecks:
             lngRow = lngRow + 1
             grdCommonTransactionsIndex.CellFont(lngRow, "PersonDescription").Name = "Input"
             grdCommonTransactionsIndex.CellFont(lngRow, "PersonDescription").Size = "11"
-            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = Format(!CheckExpireDate, "dd/mm/yyyy")
-            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") & " " & Space(12 - Len(Format(!CheckAmount, "#,##0.00"))) & Format(!CheckAmount, "#,##0.00")
+            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = format(!CheckExpireDate, "dd/mm/yyyy")
+            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") & " " & Space(12 - Len(format(!CheckAmount, "#,##0.00"))) & format(!CheckAmount, "#,##0.00")
             grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") & " " & !CheckNo
             grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") & " " & !BankDescription
-            For lngCol = 1 To grdCommonTransactionsIndex.ColCount
+            For lngCol = 1 To grdCommonTransactionsIndex.colCount
                 grdCommonTransactionsIndex.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             .MoveNext

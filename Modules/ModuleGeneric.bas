@@ -1063,7 +1063,7 @@ Function SelectRow(grdGrid, strKeyCode, lngRow, lngCol)
     With grdGrid
         If strKeyCode = 45 Or strKeyCode = 32 Then
             If .CellIcon(lngRow, "Selected") = "-1" Or .CellIcon(lngRow, "Selected") = "0" Then
-                SelectRow = 3
+                SelectRow = 2
             Else
                 SelectRow = 1
             End If
@@ -1696,6 +1696,10 @@ Function DisplayIndex(tmpRecordset, blnShowList, blnIncludeOneRecordCount, strTi
                 End With
             End If
         Else
+            If tmpArguments(UBound(tmpArguments)) = "Persons" Then
+                lngActiveColumn = tmpGroupElements
+            End If
+
             CommonIndex.grdGrid.CurRow = 1
         End If
     End If

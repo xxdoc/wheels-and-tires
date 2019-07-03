@@ -593,13 +593,11 @@ Begin VB.Form CommonPendingInvoices
             Top             =   2325
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "CommonPendingInvoices.frx":0038
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -720,7 +718,7 @@ Begin VB.Form CommonPendingInvoices
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonPendingInvoices.frx":3748
+            PicNormal       =   "CommonPendingInvoices.frx":0950
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -812,7 +810,7 @@ Begin VB.Form CommonPendingInvoices
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonPendingInvoices.frx":3CE2
+            PicNormal       =   "CommonPendingInvoices.frx":0EEA
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1377,7 +1375,7 @@ Private Function TransformInvoices()
             .txtTable.text = txtTable.text
             .lblTitle.Caption = IIf(txtRefersTo = "1", "Τιμολόγηση αγορών", "Τιμολόγηση πωλήσεων")
             EnableFields .mskInvoiceIssueDate, .txtCodeShortDescription, .txtInvoiceNo, .txtInvoiceRemarks
-            EnableFields .cmdIndex(2), .cmdIndex(3), .cmdIndex(7), .cmdIndex(8)
+            EnableFields .cmdIndex(2), .cmdIndex(3)
         Else
             'Τιμολόγηση τριγωνικών πωλήσεων
             .txtTable.text = "Customers"
