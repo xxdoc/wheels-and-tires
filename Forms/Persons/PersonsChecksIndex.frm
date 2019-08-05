@@ -1420,9 +1420,7 @@ Private Function FindPersonDescription(myTable, myFieldName, myFieldValue)
 
     Set tmpRecordset = NewCheckForMatch("CommonDB", "InvoiceTrnID, Description", "Invoices", "INNER JOIN " & myTable & " ON Invoices.InvoicePersonID = " & myTable & ".ID", myFieldName & " = " & myFieldValue, "", "")
     
-    If tmpRecordset.RecordCount = 1 Then
-        FindPersonDescription = tmpRecordset!Description
-    End If
+    If tmpRecordset.RecordCount = 1 Then FindPersonDescription = tmpRecordset!Description
 
 End Function
 

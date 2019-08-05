@@ -22,11 +22,11 @@ Begin VB.Form UtilsSettings
    Begin VB.Frame frmFrame 
       BackColor       =   &H00004080&
       BorderStyle     =   0  'None
-      Height          =   6165
+      Height          =   6690
       Index           =   2
-      Left            =   2850
+      Left            =   9525
       TabIndex        =   50
-      Top             =   2175
+      Top             =   5550
       Width           =   9165
       Begin UserControls.newText txtPrintHourDescription 
          Height          =   465
@@ -329,6 +329,76 @@ Begin VB.Form UtilsSettings
             Strikethrough   =   0   'False
          EndProperty
       End
+      Begin UserControls.newText txtUseNewInvoiceForm 
+         Height          =   465
+         Left            =   4500
+         TabIndex        =   100
+         Top             =   5700
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   820
+         Alignment       =   2
+         ForeColor       =   0
+         Text            =   "ΝΑΙ"
+         BackColor       =   4210688
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   11.25
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin Dacara_dcButton.dcButton cmdIndex 
+         Height          =   465
+         Index           =   6
+         Left            =   5175
+         TabIndex        =   103
+         TabStop         =   0   'False
+         Top             =   5700
+         Width           =   390
+         _ExtentX        =   688
+         _ExtentY        =   820
+         BackColor       =   16777215
+         ButtonShape     =   3
+         ButtonStyle     =   2
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   0
+         PicNormal       =   "UtilsSettings.frx":10CE
+         PicSizeH        =   16
+         PicSizeW        =   16
+      End
+      Begin VB.Label lblLabel 
+         BackColor       =   &H000080FF&
+         Caption         =   "Χρήση νέας φόρμας παραστατικού"
+         BeginProperty Font 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FFFFFF&
+         Height          =   315
+         Index           =   30
+         Left            =   450
+         TabIndex        =   104
+         Top             =   5775
+         Width           =   3615
+      End
       Begin VB.Label lblLabel 
          AutoSize        =   -1  'True
          BackColor       =   &H000080FF&
@@ -346,7 +416,7 @@ Begin VB.Form UtilsSettings
          Height          =   315
          Index           =   19
          Left            =   450
-         TabIndex        =   101
+         TabIndex        =   102
          Top             =   4725
          Width           =   3616
       End
@@ -367,7 +437,7 @@ Begin VB.Form UtilsSettings
          Height          =   315
          Index           =   20
          Left            =   450
-         TabIndex        =   100
+         TabIndex        =   101
          Top             =   5250
          Width           =   3616
       End
@@ -378,8 +448,8 @@ Begin VB.Form UtilsSettings
          FillColor       =   &H00008000&
          Height          =   540
          Index           =   20
-         Left            =   4875
-         Top             =   5625
+         Left            =   4650
+         Top             =   6150
          Visible         =   0   'False
          Width           =   465
       End
@@ -587,11 +657,11 @@ Begin VB.Form UtilsSettings
       BackColor       =   &H00C0C000&
       BorderStyle     =   0  'None
       ForeColor       =   &H80000008&
-      Height          =   6165
+      Height          =   6690
       Index           =   3
-      Left            =   6075
+      Left            =   10425
       TabIndex        =   62
-      Top             =   4800
+      Top             =   1725
       Width           =   9165
       Begin VB.Frame frmEAFDSS 
          Appearance      =   0  'Flat
@@ -679,7 +749,7 @@ Begin VB.Form UtilsSettings
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "UtilsSettings.frx":10CE
+            PicNormal       =   "UtilsSettings.frx":1668
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -875,7 +945,7 @@ Begin VB.Form UtilsSettings
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   0
-         PicNormal       =   "UtilsSettings.frx":1668
+         PicNormal       =   "UtilsSettings.frx":1C02
          PicSizeH        =   16
          PicSizeW        =   16
       End
@@ -1037,11 +1107,11 @@ Begin VB.Form UtilsSettings
    Begin VB.Frame frmFrame 
       BackColor       =   &H00C0FFC0&
       BorderStyle     =   0  'None
-      Height          =   6165
+      Height          =   6690
       Index           =   1
-      Left            =   6150
+      Left            =   11700
       TabIndex        =   40
-      Top             =   7650
+      Top             =   2775
       Width           =   9165
       Begin VB.Frame Frame 
          Appearance      =   0  'Flat
@@ -1338,7 +1408,7 @@ Begin VB.Form UtilsSettings
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   0
-         PicNormal       =   "UtilsSettings.frx":1C02
+         PicNormal       =   "UtilsSettings.frx":219C
          PicSizeH        =   16
          PicSizeW        =   16
       End
@@ -1392,11 +1462,11 @@ Begin VB.Form UtilsSettings
       BackColor       =   &H00000080&
       BorderStyle     =   0  'None
       ForeColor       =   &H80000008&
-      Height          =   6165
+      Height          =   6690
       Index           =   4
-      Left            =   4575
+      Left            =   11550
       TabIndex        =   92
-      Top             =   1350
+      Top             =   4275
       Width           =   9165
       Begin UserControls.newText txtSender 
          Height          =   465
@@ -1623,9 +1693,9 @@ Begin VB.Form UtilsSettings
       ForeColor       =   &H00800080&
       Height          =   6165
       Index           =   0
-      Left            =   675
+      Left            =   12225
       TabIndex        =   32
-      Top             =   6000
+      Top             =   825
       Width           =   9165
       Begin VB.Frame Frame 
          Appearance      =   0  'Flat
@@ -1992,10 +2062,53 @@ Begin VB.Form UtilsSettings
       Enabled         =   0   'False
       ForeColor       =   &H80000008&
       Height          =   3615
-      Left            =   11250
+      Left            =   15750
       TabIndex        =   69
-      Top             =   7725
+      Top             =   2475
       Width           =   4515
+      Begin VB.TextBox txtUseNewInvoiceFormID 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00C0C0FF&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   315
+         Left            =   3675
+         TabIndex        =   106
+         TabStop         =   0   'False
+         Top             =   2850
+         Width           =   780
+      End
+      Begin VB.TextBox Text7 
+         Appearance      =   0  'Flat
+         BackColor       =   &H00C0C0FF&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Ubuntu Condensed"
+            Size            =   9.75
+            Charset         =   161
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00000000&
+         Height          =   315
+         Left            =   75
+         TabIndex        =   105
+         TabStop         =   0   'False
+         Text            =   "Settings.UseNewInvoiceForm"
+         Top             =   2850
+         Width           =   3540
+      End
       Begin VB.TextBox Text8 
          Appearance      =   0  'Flat
          BackColor       =   &H00C0C0FF&
@@ -2304,7 +2417,7 @@ Begin VB.Form UtilsSettings
       Height          =   690
       Left            =   0
       TabIndex        =   86
-      Top             =   7800
+      Top             =   8325
       Width           =   6090
       Begin GurhanButtonOCX.GurhanButton cmdButton 
          Height          =   690
@@ -2550,7 +2663,7 @@ Begin VB.Form UtilsSettings
       Height          =   540
       Index           =   25
       Left            =   4950
-      Top             =   7275
+      Top             =   7800
       Visible         =   0   'False
       Width           =   465
    End
@@ -2570,7 +2683,7 @@ Begin VB.Form UtilsSettings
       BorderStyle     =   0  'Transparent
       Height          =   390
       Left            =   5175
-      Top             =   8475
+      Top             =   9000
       Visible         =   0   'False
       Width           =   840
    End
@@ -2700,8 +2813,6 @@ Private Function PositionPanels()
         btnPanel(intLoop).Enabled = True
         shpBridge(intLoop).Visible = False
         With frmFrame(intLoop)
-            .Height = 6165
-            .Width = 9165
             .Left = 1875
             .Top = 1125
             .BackColor = &HE0E0E0
@@ -2756,11 +2867,11 @@ Private Function SaveRecord()
 
     If Not ValidateFields Then Exit Function
     
-    If MainSaveRecord("CommonDB", "Settings", False, "Settings", "ID", txtID.text, txtLine01.text, txtLine02.text, txtLine03.text, txtLine04.text, txtLine05.text, txtLine06.text, txtLine07.text, txtLine08.text, txtLine09.text, txtLine10.text, txtPreviewReportsID.text, txtPrintHourID.text, txtPrintBalanceID.text, txtRoundSalesID.text, mskRoundSalesCents.text, txtTransportReason.text, txtTransportWay.text, txtLoadingSite.text, txtDestinationSite.text, txtEAFDSSCheckID.text, txtEAFDSSProcessName.text, txtTaxNoCheckID.text, mskExtraChargesVATPercent.text, mskClosedPeriod.text, txtBankAccountNo.text, txtInvoiceExtraRemarksA.text, txtInvoiceExtraRemarksB.text, txtSender.text, txtServer.text, txtUserName.text, txtPassword.text) <> 0 Then
+    If MainSaveRecord("CommonDB", "Settings", False, "Settings", "ID", txtID.text, txtLine01.text, txtLine02.text, txtLine03.text, txtLine04.text, txtLine05.text, txtLine06.text, txtLine07.text, txtLine08.text, txtLine09.text, txtLine10.text, txtPreviewReportsID.text, txtPrintHourID.text, txtPrintBalanceID.text, txtRoundSalesID.text, mskRoundSalesCents.text, txtTransportReason.text, txtTransportWay.text, txtLoadingSite.text, txtDestinationSite.text, txtEAFDSSCheckID.text, txtEAFDSSProcessName.text, txtTaxNoCheckID.text, mskExtraChargesVATPercent.text, mskClosedPeriod.text, txtBankAccountNo.text, txtInvoiceExtraRemarksA.text, txtInvoiceExtraRemarksB.text, txtUseNewInvoiceFormID.text, txtSender.text, txtServer.text, txtUserName.text, txtPassword.text) <> 0 Then
         btnPanel_Click 0
         blnStatus = True
-        DisableFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtTaxNoCheckDescription, txtEAFDSSProcessName, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtSender, txtServer, txtUserName, txtPassword, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB
-        DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
+        DisableFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtTaxNoCheckDescription, txtEAFDSSProcessName, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtSender, txtServer, txtUserName, txtPassword, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtUseNewInvoiceForm
+        DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6)
         UpdateButtons Me, 3, 1, 0, 0, 1
         If MyMsgBox(1, strAppTitle, strMessages(22), 1) Then
         End If
@@ -2873,8 +2984,8 @@ Private Function EditRecord()
     
     blnStatus = False
     
-    EnableFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtEAFDSSProcessName, txtTaxNoCheckDescription, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtSender, txtServer, txtUserName, txtPassword
-    EnableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
+    EnableFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtEAFDSSProcessName, txtTaxNoCheckDescription, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtSender, txtServer, txtUserName, txtPassword, txtUseNewInvoiceForm
+    EnableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6)
     
     UpdateButtons Me, 3, 0, 1, 1, 0
     
@@ -2890,8 +3001,8 @@ Private Function AbortProcedure(blnStatus)
         If MyMsgBox(3, strAppTitle, strMessages(3), 2) Then
             btnPanel_Click 0
             blnStatus = False
-            DisableFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtEAFDSSProcessName, txtTaxNoCheckDescription, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtSender, txtServer, txtUserName, txtPassword
-            DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
+            DisableFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtEAFDSSProcessName, txtTaxNoCheckDescription, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtSender, txtServer, txtUserName, txtPassword, txtUseNewInvoiceForm
+            DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6)
             UpdateButtons Me, 3, 1, 0, 0, 1
         End If
     End If
@@ -2951,6 +3062,13 @@ Private Sub cmdIndex_Click(Index As Integer)
             tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 2, 0, 1, "ID", "Περιγραφή", 0, 40, 1, 0)
             txtTaxNoCheckID.text = tmpTableData.strCode
             txtTaxNoCheckDescription.text = tmpTableData.strOneField
+        Case 6
+            'Χρήση νέας φόρμας παραστατικού
+            If txtUseNewInvoiceForm.text = "" Then Exit Sub
+            Set tmpRecordset = CheckForMatch("CommonDB", txtUseNewInvoiceForm.text, "YesOrNo", "YesNoDescription", "String", 1, 2)
+            tmpTableData = DisplayIndex(tmpRecordset, True, False, "Ευρετήριο", 2, 0, 1, "ID", "Περιγραφή", 0, 40, 1, 0)
+            txtUseNewInvoiceFormID.text = tmpTableData.strCode
+            txtUseNewInvoiceForm.text = tmpTableData.strOneField
     End Select
 
 End Sub
@@ -2962,7 +3080,7 @@ Private Sub Form_Activate()
     If Me.Tag = "True" Then
         Me.Tag = "False"
         Me.Refresh
-        If MainSeekRecord("CommonDB", "Settings", "ID", 1, True, txtID, txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsID, txtPrintHourID, txtPrintBalanceID, txtRoundSalesID, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckID, txtEAFDSSProcessName, txtTaxNoCheckID, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtSender, txtServer, txtUserName, txtPassword) Then
+        If MainSeekRecord("CommonDB", "Settings", "ID", 1, True, txtID, txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsID, txtPrintHourID, txtPrintBalanceID, txtRoundSalesID, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckID, txtEAFDSSProcessName, txtTaxNoCheckID, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtUseNewInvoiceForm, txtSender, txtServer, txtUserName, txtPassword) Then
             'Προεπισκόπηση αναφορών
             Set tmpRecordset = CheckForMatch("CommonDB", txtPreviewReportsID.text, "YesOrNo", "YesNoID", "Numeric", 0, 1)
             txtPreviewReportsID.text = tmpRecordset.Fields(0)
@@ -2987,6 +3105,10 @@ Private Sub Form_Activate()
             Set tmpRecordset = CheckForMatch("CommonDB", txtTaxNoCheckID.text, "YesOrNo", "YesNoID", "Numeric", 0, 1)
             txtTaxNoCheckID.text = tmpRecordset.Fields(0)
             txtTaxNoCheckDescription.text = tmpRecordset.Fields(1)
+            'Χρήση νέας φόρμας παραστατικού
+            Set tmpRecordset = CheckForMatch("CommonDB", txtTaxNoCheckID.text, "YesOrNo", "YesNoID", "Numeric", 0, 1)
+            txtUseNewInvoiceFormID.text = tmpRecordset.Fields(0)
+            txtUseNewInvoiceForm.text = tmpRecordset.Fields(1)
             '
             UpdateButtons Me, 3, 1, 0, 0, 1
         End If
@@ -3030,9 +3152,9 @@ Private Sub Form_Load()
 
     PositionPanels
     PositionControls Me, False: ColorizeControls Me
-    ClearFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtEAFDSSProcessName, txtTaxNoCheckDescription, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtSender, txtServer, txtUserName, txtPassword, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB
-    DisableFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtEAFDSSProcessName, txtTaxNoCheckDescription, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtSender, txtServer, txtUserName, txtPassword, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB
-    DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
+    ClearFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtEAFDSSProcessName, txtTaxNoCheckDescription, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtSender, txtServer, txtUserName, txtPassword, txtUseNewInvoiceForm, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB
+    DisableFields txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsDescription, txtPrintHourDescription, txtPrintBalanceDescription, txtRoundSalesDescription, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckDescription, txtEAFDSSProcessName, txtTaxNoCheckDescription, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtSender, txtServer, txtUserName, txtPassword, txtUseNewInvoiceForm, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB
+    DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6)
     UpdateButtons Me, 3, 1, 0, 0, 1
     
 End Sub
@@ -3217,4 +3339,25 @@ Private Sub txtTaxNoCheckDescription_Validate(Cancel As Boolean)
     If txtTaxNoCheckID.text = "" And txtTaxNoCheckDescription.text <> "" Then cmdIndex_Click 5: If txtTaxNoCheckID.text = "" Then Cancel = True
 
 End Sub
+
+Private Sub txtUseNewInvoiceForm_Change()
+
+    If txtUseNewInvoiceForm.text = "" Then ClearFields txtUseNewInvoiceFormID
+
+End Sub
+
+
+Private Sub txtUseNewInvoiceForm_KeyDown(KeyCode As Integer, Shift As Integer)
+
+    If KeyCode = vbKeyF2 Then cmdIndex_Click 6
+
+End Sub
+
+
+Private Sub txtUseNewInvoiceForm_Validate(Cancel As Boolean)
+
+    If txtUseNewInvoiceFormID.text = "" And txtUseNewInvoiceForm.text <> "" Then cmdIndex_Click 6: If txtUseNewInvoiceFormID.text = "" Then Cancel = True
+
+End Sub
+
 
