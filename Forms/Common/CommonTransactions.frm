@@ -3667,7 +3667,6 @@ Function CreateUnicodeFile(myPrinterType, myEAFDSSString, myInvoiceHeight, myDet
     Dim intDetailLines As Integer
     
     Open strUnicodeFile For Output As #1
-    'Open strReportsPathName & " " & "Test.txt" For Output As #1
     InitReport myPrinterType, myEAFDSSString, myInvoiceHeight
     GoSub PrintInvoiceHeadings
     
@@ -3710,8 +3709,8 @@ Function CreateUnicodeFile(myPrinterType, myEAFDSSString, myInvoiceHeight, myDet
     Print #1, ""
     Print #1, ""
     
-    'If blnPrintBalance Then Print #1, Tab(35 - Len(Format(curPreviousBalance, "#,##0.00"))); Format(curPreviousBalance, "#,##0.00");
-    'If blnPrintBalance Then Print #1, Tab(35 - Len(Format(curNewBalance, "#,##0.00"))); Format(curNewBalance, "#,##0.00");
+    'If blnPrintBalance Then Print #1, Tab(35 - Len(format(curPreviousBalance, "#,##0.00"))); format(curPreviousBalance, "#,##0.00");
+    'If blnPrintBalance Then Print #1, Tab(35 - Len(format(curNewBalance, "#,##0.00"))); format(curNewBalance, "#,##0.00");
     
     Print #1, Tab(136 - Len(format(mskTotalPreDiscount.text, "#,##0.00"))); format(mskTotalPreDiscount.text, "#,##0.00")
     Print #1, Tab(136 - Len(format(mskDiscount.text, "#,##0.00"))); format(mskDiscount.text, "#,##0.00")
@@ -3746,12 +3745,12 @@ PrintInvoiceHeadings:
     Print #1, ""
     Print #1, ""
     Print #1, ""
-    Print #1, Tab(11); txtInvoicePersonID.text; Tab(40); Left(txtTaxOfficeDescription, 20); Tab(86); Left(txtInvoiceTransportReason.text, 17), Tab(121); Left(txtInvoicePlates.text, 16)
+    Print #1, Tab(11); txtInvoicePersonID.text; Tab(40); Left(txtTaxOfficeDescription, 20); Tab(86); Left(txtInvoiceTransportReason.text, 17); Tab(121); IIf(blnUseNewInvoiceForm, "", Left(txtInvoicePlates.text, 16))
     Print #1, Tab(11); txtPersonDescription.text; Tab(86); Left(txtInvoiceLoadingSite.text, 17)
     Print #1, Tab(11); txtProfession.text; Tab(86); Left(txtInvoiceDestinationSite.text, 17)
     Print #1, Tab(11); txtAddress.text; Tab(86); Left(txtInvoiceTransportWay.text, 17)
     Print #1, Tab(11); txtCity.text; Tab(86); Left(txtPaymentWayDescription.text, 40)
-    Print #1, Tab(11); txtTaxNo.text; Tab(40); Left(txtPhones.text, 20)
+    Print #1, Tab(11); txtTaxNo.text; Tab(40); Left(txtPhones.text, 20), Tab(86); IIf(blnUseNewInvoiceForm, Left(txtInvoicePlates.text, 16), "")
     
     Print #1, ""
     Print #1, ""

@@ -24,9 +24,9 @@ Begin VB.Form UtilsSettings
       BorderStyle     =   0  'None
       Height          =   6690
       Index           =   2
-      Left            =   9525
+      Left            =   4875
       TabIndex        =   50
-      Top             =   5550
+      Top             =   4800
       Width           =   9165
       Begin UserControls.newText txtPrintHourDescription 
          Height          =   465
@@ -2858,6 +2858,7 @@ Private Function LoadSettings()
         mskExtraChargesVATPercent.text = !ExtraChargesVATPercent
         mskClosedPeriod.text = !ClosedPeriod
         txtBankAccountNo.text = !BankAccountNo
+        txtUseNewInvoiceFormID.text = !UseNewInvoiceForm
         .Close
     End With
 
@@ -3080,7 +3081,7 @@ Private Sub Form_Activate()
     If Me.Tag = "True" Then
         Me.Tag = "False"
         Me.Refresh
-        If MainSeekRecord("CommonDB", "Settings", "ID", 1, True, txtID, txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsID, txtPrintHourID, txtPrintBalanceID, txtRoundSalesID, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckID, txtEAFDSSProcessName, txtTaxNoCheckID, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtUseNewInvoiceForm, txtSender, txtServer, txtUserName, txtPassword) Then
+        If MainSeekRecord("CommonDB", "Settings", "ID", 1, True, txtID, txtLine01, txtLine02, txtLine03, txtLine04, txtLine05, txtLine06, txtLine07, txtLine08, txtLine09, txtLine10, txtPreviewReportsID, txtPrintHourID, txtPrintBalanceID, txtRoundSalesID, mskRoundSalesCents, txtTransportReason, txtTransportWay, txtLoadingSite, txtDestinationSite, txtEAFDSSCheckID, txtEAFDSSProcessName, txtTaxNoCheckID, mskExtraChargesVATPercent, mskClosedPeriod, txtBankAccountNo, txtInvoiceExtraRemarksA, txtInvoiceExtraRemarksB, txtUseNewInvoiceFormID, txtSender, txtServer, txtUserName, txtPassword) Then
             'Προεπισκόπηση αναφορών
             Set tmpRecordset = CheckForMatch("CommonDB", txtPreviewReportsID.text, "YesOrNo", "YesNoID", "Numeric", 0, 1)
             txtPreviewReportsID.text = tmpRecordset.Fields(0)
@@ -3106,7 +3107,7 @@ Private Sub Form_Activate()
             txtTaxNoCheckID.text = tmpRecordset.Fields(0)
             txtTaxNoCheckDescription.text = tmpRecordset.Fields(1)
             'Χρήση νέας φόρμας παραστατικού
-            Set tmpRecordset = CheckForMatch("CommonDB", txtTaxNoCheckID.text, "YesOrNo", "YesNoID", "Numeric", 0, 1)
+            Set tmpRecordset = CheckForMatch("CommonDB", txtUseNewInvoiceFormID.text, "YesOrNo", "YesNoID", "Numeric", 0, 1)
             txtUseNewInvoiceFormID.text = tmpRecordset.Fields(0)
             txtUseNewInvoiceForm.text = tmpRecordset.Fields(1)
             '
@@ -3195,6 +3196,13 @@ Private Function ValidateFields()
     If DisplayMessage(1, 4, 1, "", mskRoundSalesCents.text) Then
         btnPanel_Click 2
         mskRoundSalesCents.SetFocus
+        Exit Function
+    End If
+    
+    'Χρήση νέας φόρμας παραστατικού
+    If DisplayMessage(1, 4, 1, "", txtUseNewInvoiceFormID.text) Then
+        btnPanel_Click 2
+        txtUseNewInvoiceForm.SetFocus
         Exit Function
     End If
     

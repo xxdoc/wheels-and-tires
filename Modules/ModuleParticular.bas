@@ -108,21 +108,21 @@ Function AddHeaders(sheet As Object, grid As iGrid, colCount As Long, ParamArray
     'Excel
     On Error Resume Next
     
-    Dim x As Integer
+    Dim X As Integer
     Dim lngColCount As Long
     lngColCount = UBound(columns) + 1
     
-    x = 0
+    X = 0
     
     With sheet
         .Range("A9:" & Chr(colCount + 64) & "9").WrapText = True
         .Range("A9:" & Chr(colCount + 64) & "9").HorizontalAlignment = 3
         .Range("A9:" & Chr(colCount + 64) & "9").VerticalAlignment = 2
-        For x = 0 To lngColCount Step 2
-            Debug.Print columns(x)
-            Debug.Print grid.ColHeaderText(columns(x + 1))
-            .Range("" & columns(x) & "9").Value = grid.ColHeaderText(columns(x + 1))
-        Next x
+        For X = 0 To lngColCount Step 2
+            Debug.Print columns(X)
+            Debug.Print grid.ColHeaderText(columns(X + 1))
+            .Range("" & columns(X) & "9").Value = grid.ColHeaderText(columns(X + 1))
+        Next X
         .rows("9").RowHeight = 30
     End With
 
@@ -161,13 +161,13 @@ End Function
 
 Function AdjustColumnWidths(sheet As Object, ParamArray columns() As Variant)
 
-    Dim x As Integer
+    Dim X As Integer
     
     'Excel
     With sheet
-        For x = 0 To UBound(columns) - 1 / 2 Step 2
-            .columns(columns(x)).columnWidth = columns(x + 1)
-        Next x
+        For X = 0 To UBound(columns) - 1 / 2 Step 2
+            .columns(columns(X)).columnWidth = columns(X + 1)
+        Next X
     End With
 
 End Function
@@ -629,6 +629,8 @@ Function LoadSettings()
         strPassword = !EmailPassword
         'Τράπεζα
         strBankAccountNo = !BankAccountNo
+        'Νέα φόρμα παραστατικών
+        blnUseNewInvoiceForm = IIf(!UseNewInvoiceForm = "1", True, False)
         'Τέλος
         .Close
     End With

@@ -11,6 +11,7 @@ Global arrMenu() As Integer
 Global strBankAccountNo As String
 Global strInvoiceExtraRemarksA As String
 Global strInvoiceExtraRemarksB As String
+Global blnUseNewInvoiceForm As Boolean
 
 'Databases
 Global strDatabaseName As String
