@@ -3,7 +3,7 @@ Object = "{396F7AC0-A0DD-11D3-93EC-00C0DFE7442A}#1.0#0"; "ImageList.ocx"
 Object = "{55473EAC-7715-4257-B5EF-6E14EBD6A5DD}#1.0#0"; "ProgressBar.ocx"
 Object = "{839D0F5D-B7D7-41B7-A3B4-85D69300B8C1}#98.0#0"; "iGrid300_10Tec.ocx"
 Object = "{FFE4AEB4-0D55-4004-ADF2-3C1C84D17A72}#1.0#0"; "userControls.ocx"
-Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "Buttons.ocx"
+Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "buttons.ocx"
 Begin VB.Form PersonsChecksIndex 
    BackColor       =   &H80000005&
    BorderStyle     =   0  'None
@@ -1233,7 +1233,7 @@ Private Function RefreshList()
     End With
     
     'Αξιόγραφα
-    strSQL = "SELECT CheckID, BankDescription, CheckNo, CheckExpireDate, CheckAmount, CheckIssuedByID, CheckRefersToID, Invoices.InvoiceIssueDate, Invoices.InvoiceNo, InvoiceCodeID, InvoicePersonID, InvoiceTrnID, InvoiceID, InvoiceRefersToID, InvoiceInDate " _
+    strSQL = "SELECT DISTINCT CheckID, BankDescription, CheckNo, CheckExpireDate, CheckAmount, CheckIssuedByID, CheckRefersToID, Invoices.InvoiceIssueDate, Invoices.InvoiceNo, InvoiceCodeID, InvoicePersonID, InvoiceTrnID, InvoiceID, InvoiceRefersToID, InvoiceInDate " _
     & "FROM ((Checks " _
     & "INNER JOIN Banks ON Checks.CheckBankID = Banks.BankID) " _
     & "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) "
@@ -1328,7 +1328,7 @@ Private Function RefreshList()
                 grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionB") = FindPersonDescription(txtOppositeTable.text, "ID", !CheckIssuedByID) 'Εκδότης πληρωτέας
             End If
             If txtRefersTo.text = "4" And !CheckNo <> "" Then
-                Set tmpRecordset = NewCheckForMatch("CommonDB", "CheckNo, Description", "(Checks", "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) INNER JOIN Suppliers ON Invoices.InvoicePersonID = Suppliers.ID", "CheckNo = '" & !CheckNo & "' AND CheckRefersToID = 3", "", "") 'Κάτοχος εισπρακτέας
+                Set tmpRecordset = NewCheckForMatch("CommonDB", "CheckNo, Description", "(Checks", "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) INNER JOIN Suppliers ON Invoices.InvoicePersonID = Suppliers.ID", "CheckNo = '" & !CheckNo & "' AND CheckRefersToID = 3 AND CheckExpireDate = #" & !CheckExpireDate & "#", "", "") 'Κάτοχος εισπρακτέας
                 If Not tmpRecordset.EOF Then
                     grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionB") = tmpRecordset!Description
                 End If
