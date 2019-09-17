@@ -4,7 +4,7 @@ Object = "{55473EAC-7715-4257-B5EF-6E14EBD6A5DD}#1.0#0"; "ProgressBar.ocx"
 Object = "{839D0F5D-B7D7-41B7-A3B4-85D69300B8C1}#98.0#0"; "iGrid300_10Tec.ocx"
 Object = "{158C2A77-1CCD-44C8-AF42-AA199C5DCC6C}#1.0#0"; "dcButton.ocx"
 Object = "{FFE4AEB4-0D55-4004-ADF2-3C1C84D17A72}#1.0#0"; "userControls.ocx"
-Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "Buttons.ocx"
+Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "buttons.ocx"
 Begin VB.Form SalesIncomingVehicles 
    Appearance      =   0  'Flat
    BackColor       =   &H80000005&
@@ -407,13 +407,11 @@ Begin VB.Form SalesIncomingVehicles
             Top             =   1200
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "SalesIncomingVehicles.frx":0038
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -513,7 +511,7 @@ Begin VB.Form SalesIncomingVehicles
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "SalesIncomingVehicles.frx":3748
+            PicNormal       =   "SalesIncomingVehicles.frx":0950
             PicSizeH        =   16
             PicSizeW        =   16
          End

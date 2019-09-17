@@ -295,16 +295,28 @@ Function CalculateDebitCreditAndBalance(myDebitOrCredit, myPerson, myInvoiceGros
         
         'Χρέωση
         If myDebitOrCredit = "Debit" Then
-            'Αγορές με μετρητά
+            'Αγορά με μετρητά
             If myRefersTo = 1 And myCodeSuppliers = "+" And myPaymentWayCreditID = 0 Then
                 CalculateDebitCreditAndBalance = myInvoiceGrossAmount
             End If
-            'Πωλήσεις - Αύξηση τζίρου Ή Προμηθευτές - Μείωση υπολοίπου
-            If myRefersTo = 2 And myCodeCustomers = "+" Or (myRefersTo = 3 And myCodeSuppliers = "-") Then
+            'Πιστωτικό αγοράς με μετρητά - θα μπει μείον μπροστά
+            If myRefersTo = 1 And myCodeSuppliers = "-" And myPaymentWayCreditID = 0 Then
+                CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
+            End If
+            'Κίνηση προμηθευτή - Μείωση υπολοίπου
+            If (myRefersTo = 3 And myCodeSuppliers = "-") Then
                 CalculateDebitCreditAndBalance = myInvoiceGrossAmount
             End If
-            'Πωλήσεις - Μείωση τζίρου  - Με μείον μπροστά Ή Προμηθευτές - Αύξηση υπολοίπου - Με μείον μπροστά
-            If (myRefersTo = 2 And myCodeCustomers = "-") Or (myRefersTo = 3 And myCodeSuppliers = "+") Then
+            'Κίνηση προμηθευτή - Αύξηση υπολοίπου - Με μείον
+            If (myRefersTo = 3 And myCodeSuppliers = "+") Then
+                CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
+            End If
+            'Πώληση
+            If myRefersTo = 2 And myCodeCustomers = "+" Then
+                CalculateDebitCreditAndBalance = myInvoiceGrossAmount
+            End If
+            'Πιστωτικό πώλησης - θα μπει μείον μπροστά
+            If myRefersTo = 2 And myCodeCustomers = "-" Then
                 CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
             End If
             'Επιστροφή
@@ -313,16 +325,28 @@ Function CalculateDebitCreditAndBalance(myDebitOrCredit, myPerson, myInvoiceGros
         
         'Πίστωση
         If myDebitOrCredit = "Credit" Then
-            'Πωλήσεις με μετρητά
+            'Αγορά
+            If myRefersTo = 1 And myCodeSuppliers = "+" Then
+                CalculateDebitCreditAndBalance = myInvoiceGrossAmount
+            End If
+            'Πιστωτικό αγοράς - θα μπει μείον μπροστά
+            If myRefersTo = 1 And myCodeSuppliers = "-" Then
+                CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
+            End If
+            'Πώληση με μετρητά
             If myRefersTo = 2 And myCodeCustomers = "+" And myPaymentWayCreditID = 0 Then
                 CalculateDebitCreditAndBalance = myInvoiceGrossAmount
             End If
-            'Αγορές - Αύξηση τζίρου Ή Πελάτες - Μείωση υπολοίπου
-            If (myRefersTo = 1 And myCodeSuppliers = "+") Or (myRefersTo = 4 And myCodeCustomers = "-") Then
+            'Πιστωτικό πώλησης με μετρητά - θα μπει μείον μπροστά
+            If myRefersTo = 2 And myCodeCustomers = "-" And myPaymentWayCreditID = 0 Then
+                CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
+            End If
+            'Κίνηση πελάτη - Μείωση υπολοίπου
+            If (myRefersTo = 4 And myCodeCustomers = "-") Then
                 CalculateDebitCreditAndBalance = myInvoiceGrossAmount
             End If
-            'Αγορές - Μείωση τζίρου - Με μείον μπροστά Ή Πελάτες - Αύξηση υπολοίπου - Με μείον μπροστά
-            If (myRefersTo = 1 And myCodeSuppliers = "-") Or (myRefersTo = 4 And myCodeCustomers = "+") Then
+            'Κίνηση πελάτη - Αύξηση υπολοίπου - Με μείον
+            If (myRefersTo = 4 And myCodeCustomers = "+") Then
                 CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
             End If
             'Επιστροφή
