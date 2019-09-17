@@ -1183,7 +1183,7 @@ Private Function QuickTransformInvoices()
     
     With grdCommonPendingInvoices
         For lngRow = 1 To .RowCount
-            If .CellIcon(lngRow, "Selected") = 2 Then
+            If .CellIcon(lngRow, "Selected") > 0 Then
                 rsInvoices.Seek "=", Val(.CellText(lngRow, "InvoiceTrnID"))
                 If Not rsInvoices.NoMatch Then
                     rsInvoices.Edit
@@ -1405,7 +1405,7 @@ Private Function ValidateSelectedLines()
     'Ελέγχω για επιλεγμένες γραμμές
     With grdCommonPendingInvoices
         For lngRow = 1 To .RowCount
-            If .CellIcon(lngRow, "Selected") = 2 Then blnSelected = True: Exit For
+            If .CellIcon(lngRow, "Selected") > 0 Then blnSelected = True: Exit For
         Next lngRow
     End With
     If Not blnSelected Then
@@ -1416,7 +1416,7 @@ Private Function ValidateSelectedLines()
     'Ελέγχω για επιλεγμένες γραμμές του ίδιου συναλλασόμενου
     With grdCommonPendingInvoices
         For lngRow = 1 To .RowCount
-            If .CellIcon(lngRow, "Selected") = 2 Then
+            If .CellIcon(lngRow, "Selected") > 0 Then
                 If strPersonDescription = "" Then
                     strPersonDescription = .CellText(lngRow, "PersonDescription")
                 Else
@@ -1989,7 +1989,7 @@ Private Function FindLastNumber(lngRow, strNumber)
     With grdCommonPendingInvoices
         If .CellIcon(lngRow, "Selected") = 0 Then .CellValue(lngRow, "Order") = "": Exit Function
         For lngRow = 1 To .RowCount
-            If .CellIcon(lngRow, "Selected") = 2 And .CellValue(lngRow, "Order") = "" Then intLastNo = intLastNo + 1
+            If .CellIcon(lngRow, "Selected") > 0 And .CellValue(lngRow, "Order") = "" Then intLastNo = intLastNo + 1
         Next lngRow
     End With
 

@@ -1063,7 +1063,7 @@ Function SelectRow(grdGrid, strKeyCode, lngRow, lngCol)
     'Μαρκάρω τη γραμμή
     With grdGrid
         If strKeyCode = 45 Or strKeyCode = 32 Then
-            If .CellIcon(lngRow, "Selected") = "-1" Or .CellIcon(lngRow, "Selected") = "0" Then
+            If .CellIcon(lngRow, "Selected") <= 0 Then
                 SelectRow = 2
             Else
                 SelectRow = 1

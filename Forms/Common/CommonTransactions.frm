@@ -3261,14 +3261,14 @@ Function UpdateArrayWithInvoicesToTransform()
         .Sort ("Order")
         'Φτιάχνω τον πίνακα
         For lngRow = 1 To .RowCount
-            If .CellIcon(lngRow, "Selected") = 2 Then
+            If .CellIcon(lngRow, "Selected") > 0 Then
                 ReDim aInvoicesArray(intUpper, 11)
                 intUpper = intUpper + 1
             End If
         Next lngRow
         'Γεμίζω τον πίνακα
         For lngRow = 1 To .RowCount
-            If .CellIcon(lngRow, "Selected") = 2 Then
+            If .CellIcon(lngRow, "Selected") > 0 Then
                 aInvoicesArray(intArrayindex, 1) = .CellText(lngRow, "InvoiceNo")
                 aInvoicesArray(intArrayindex, 2) = .CellText(lngRow, "InvoiceTrnID")
                 aInvoicesArray(intArrayindex, 3) = .CellText(lngRow, "PersonID")
