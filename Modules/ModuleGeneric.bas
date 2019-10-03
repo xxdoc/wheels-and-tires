@@ -484,6 +484,7 @@ End Function
 Function PrintInvoiceToLaser(myInvoiceTrnID, myPrinterName)
 
     Dim intLoop As Integer
+    Dim pdf As New ARExportPDF
     
     For intLoop = 1 To 2
         rptInvoiceA.Restart
@@ -493,6 +494,11 @@ Function PrintInvoiceToLaser(myInvoiceTrnID, myPrinterName)
         rptInvoiceA.lblIsOriginalOrCopy.Caption = IIf(intLoop = 1, "пяытотупо", "амтицяажо")
         rptInvoiceA.PageSettings.LeftMargin = 500
         rptInvoiceA.PageSettings.RightMargin = 50
+        rptInvoiceA.Run False
+        pdf.AcrobatVersion = 2
+        pdf.SemiDelimitedNeverEmbedFonts = ""
+        pdf.fileName = strReportsPathName & "тилокоцио " & rptInvoiceA.lblIsOriginalOrCopy.Caption & ".pdf"
+        pdf.Export rptInvoiceA.Pages
         If blnPreviewInvoices Then
             rptInvoiceA.Zoom = -2
             rptInvoiceA.Printer.ColorMode = vbPRCMMonochrome
