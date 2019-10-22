@@ -499,15 +499,15 @@ Function PrintInvoiceToLaser(myInvoiceTrnID, myPrinterName)
         pdf.SemiDelimitedNeverEmbedFonts = ""
         pdf.fileName = strReportsPathName & "тилокоцио " & rptInvoiceA.lblIsOriginalOrCopy.Caption & ".pdf"
         pdf.Export rptInvoiceA.Pages
-        If blnPreviewInvoices Then
-            rptInvoiceA.Zoom = -2
-            rptInvoiceA.Printer.ColorMode = vbPRCMMonochrome
-            rptInvoiceA.WindowState = vbMaximized
-            rptInvoiceA.Show 1
-        Else
-            rptInvoiceA.Printer.DeviceName = myPrinterName
-            rptInvoiceA.PrintReport False
-        End If
+        'If blnPreviewInvoices Then
+        '    rptInvoiceA.Zoom = -2
+        '    rptInvoiceA.Printer.ColorMode = vbPRCMMonochrome
+        '    rptInvoiceA.WindowState = vbMaximized
+        '    rptInvoiceA.Show 1
+        'Else
+        '    rptInvoiceA.Printer.DeviceName = myPrinterName
+        '    rptInvoiceA.PrintReport False
+        'End If
     Next intLoop
 
 End Function

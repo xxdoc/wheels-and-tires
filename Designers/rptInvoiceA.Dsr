@@ -123,8 +123,7 @@ Private Sub ActiveReport_FetchData(EOF As Boolean)
         Fields("Phones") = !Phones
         Fields("TaxOfficeDescription") = !TaxOfficeDescription
         
-        Fields("ItemDescription") = !ItemDescription
-        Fields("ManufacturerDescription") = !ManufacturerDescription
+        Fields("ItemDescription") = !ItemDescription & " " & !ManufacturerDescription
         Fields("ItemUnitOfMeasurement") = "TEM"
         Fields("Qty") = !Qty
         Fields("UnitPrice") = !UnitPrice
@@ -224,6 +223,10 @@ Private Function CalculateTotalPages()
     CalculateTotalPages = IIf(intPages = 0, 1, intPages)
     
 End Function
+
+Private Sub Detail_Format()
+
+End Sub
 
 Private Sub PageFooter_Format()
 
