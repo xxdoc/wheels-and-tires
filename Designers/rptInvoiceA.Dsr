@@ -224,10 +224,6 @@ Private Function CalculateTotalPages()
     
 End Function
 
-Private Sub Detail_Format()
-
-End Sub
-
 Private Sub PageFooter_Format()
 
     If Not tmpRecordset.EOF Then

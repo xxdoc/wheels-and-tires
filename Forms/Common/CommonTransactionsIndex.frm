@@ -2061,7 +2061,7 @@ End Function
 
 Private Function RefreshList()
 
-    On Error GoTo ErrTrap
+    'On Error GoTo ErrTrap
     
     'SQL
     Dim intIndex As Byte
@@ -2274,7 +2274,7 @@ Private Function RefreshList()
                 grdCommonTransactionsIndex.CellValue(lngRow, "DeliveryPointDescription") = !DeliveryPointDescription
                 grdCommonTransactionsIndex.CellValue(lngRow, "InvoiceRestAmount") = IIf((!CodeSuppliers = "-" Or !CodeCustomers = "-") And (txtRefersTo.text = "1" Or txtRefersTo.text = "2"), CCur("-" & !InvoiceRestAmount + !InvoiceExtraChargesAmount), !InvoiceRestAmount + !InvoiceExtraChargesAmount)
                 grdCommonTransactionsIndex.CellValue(lngRow, "InvoiceVATAmount") = IIf((!CodeSuppliers = "-" Or !CodeCustomers = "-") And (txtRefersTo.text = "1" Or txtRefersTo.text = "2"), CCur("-" & !InvoiceVATAmount), !InvoiceVATAmount)
-                grdCommonTransactionsIndex.CellValue(lngRow, "InvoiceGrossAmount") = IIf((!CodeSuppliers = "-" Or !CodeCustomers = "-") And (txtRefersTo.text = "1" Or txtRefersTo.text = "2"), CCur("-" & !InvoiceGrossAmount), !InvoiceGrossAmount)
+                grdCommonTransactionsIndex.CellValue(lngRow, "InvoiceGrossAmount") = IIf((!CodeSuppliers = "-" Or !CodeCustomers = "-") And (txtRefersTo.text = "1" Or txtRefersTo.text = "2"), CCur("-" & IIf(!InvoiceGrossAmount < 0, Abs(!InvoiceGrossAmount), !InvoiceGrossAmount)), !InvoiceGrossAmount)
                 grdCommonTransactionsIndex.CellValue(lngRow, "Qty") = 0
             Else
                 grdCommonTransactionsIndex.CellValue(lngRow, "CategoryDescription") = !CategoryDescription
