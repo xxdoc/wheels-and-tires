@@ -559,7 +559,7 @@ Begin VB.Form ItemsTransactions
       _ExtentY        =   820
       ForeColor       =   0
       Text            =   ""
-      BackColor       =   0
+      BackColor       =   4210688
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Ubuntu Condensed"
          Size            =   11.25
@@ -1164,7 +1164,7 @@ Function FindItemsWithTrnID(myInvoiceTrnID)
     End With
     
     'Τελικές ενέργειες
-    mskTotal.text = Format(CalculateColumnTotal(grdItemsTransactions, "Qty"), "#,##0")
+    mskTotal.text = format(CalculateColumnTotal(grdItemsTransactions, "Qty"), "#,##0")
     EnableGrid grdItemsTransactions, True
     FindItemsWithTrnID = True
     
@@ -1424,12 +1424,12 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle)
     'Γεμίζω το πλέγμα
     With rstRecordset
         txtInvoiceTrnID.text = !InvoiceTrnID
-        mskInvoiceIssueDate.text = Format(!InvoiceIssueDate, "dd/mm/yyyy")
+        mskInvoiceIssueDate.text = format(!InvoiceIssueDate, "dd/mm/yyyy")
         txtInvoiceCodeID.text = !InvoiceCodeID
         txtInvoiceNo.text = !InvoiceNo
         txtInvoiceRemarks.text = IIf(IsNull(!InvoiceRemarks), "", !InvoiceRemarks)
-        txtInvoiceInDate.text = Format(!InvoiceInDate, "dd/mm/yy")
-        txtInvoiceInTime.text = Format(!InvoiceInTime, "hh:mm")
+        txtInvoiceInDate.text = format(!InvoiceInDate, "dd/mm/yy")
+        txtInvoiceInTime.text = format(!InvoiceInTime, "hh:mm")
         'Παραστατικό
         Set tmpRecordset = CheckForMatch("CommonDB", txtInvoiceCodeID.text, "Codes", "CodeID", "Numeric", 0, 1)
         txtInvoiceCodeID.text = tmpRecordset.Fields(0)
@@ -1668,12 +1668,12 @@ Private Sub grdItemsTransactions_AfterCommitEdit(ByVal lRow As Long, ByVal lCol 
                     cmdButton(4).Enabled = IIf(CheckForLoadedForm("ItemsLedger"), ChangeEditButtonStatus(grdItemsTransactions, lRow, "ItemID"), 0)
                     MoveToNextColumn grdItemsTransactions, lRow, lCol
                 End If
-                mskTotal.text = Format(CalculateColumnTotal(grdItemsTransactions, "Qty"), "#,##0")
+                mskTotal.text = format(CalculateColumnTotal(grdItemsTransactions, "Qty"), "#,##0")
                 cmdButton(4).Enabled = ChangeEditButtonStatus(grdItemsTransactions, lRow, "ItemID")
             End If
         Case 8
             'Ποσότητα
-            mskTotal.text = Format(CalculateColumnTotal(grdItemsTransactions, "Qty"), "#,##0")
+            mskTotal.text = format(CalculateColumnTotal(grdItemsTransactions, "Qty"), "#,##0")
             If grdItemsTransactions.CellText(lRow, "Qty") <> "" Then
                 MoveToNextColumn grdItemsTransactions, lRow, lCol
             End If
@@ -1820,7 +1820,7 @@ Private Function ValidateFields()
         blnLineIsCorrect = False
         For lngRow = 1 To .RowCount
             blnSomethingIsGiven = False
-            For lngCol = 1 To .ColCount
+            For lngCol = 1 To .colCount
                 If .CellText(lngRow, lngCol) <> "" Then
                     blnSomethingIsGiven = True
                 End If

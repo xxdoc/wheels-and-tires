@@ -593,7 +593,7 @@ Begin VB.Form PersonsTransactions
          _ExtentY        =   820
          ForeColor       =   0
          Text            =   ""
-         BackColor       =   0
+         BackColor       =   4210688
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Ubuntu Condensed"
             Size            =   11.25
@@ -1417,7 +1417,7 @@ Function FindChecksWithTrnID(myInvoiceTrnID, myOppositeTable)
     'Τελικές ενέργειες
     CustomizeGrid grdPersonsTransactionsChecks
     EnableGrid grdPersonsTransactionsChecks, True
-    mskTotalChecks.text = Format(CalculateColumnTotal(grdPersonsTransactionsChecks, "CheckAmount"), "#,##0.00")
+    mskTotalChecks.text = format(CalculateColumnTotal(grdPersonsTransactionsChecks, "CheckAmount"), "#,##0.00")
     FindChecksWithTrnID = True
     
     Exit Function
@@ -1593,12 +1593,12 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle, myTable, myRefersT
     With rstRecordset
         Do While Not .EOF
             txtInvoiceTrnID.text = !InvoiceTrnID
-            mskInvoiceIssueDate.text = Format(!InvoiceIssueDate, "dd/mm/yyyy")
+            mskInvoiceIssueDate.text = format(!InvoiceIssueDate, "dd/mm/yyyy")
             txtInvoiceCodeID.text = !InvoiceCodeID
             txtInvoiceNo.text = !InvoiceNo
             txtInvoiceRemarks.text = IIf(IsNull(!InvoiceRemarks), "", !InvoiceRemarks)
-            txtInvoiceInDate.text = Format(!InvoiceInDate, "dd/mm/yy")
-            txtInvoiceInTime.text = Format(!InvoiceInTime, "hh:mm")
+            txtInvoiceInDate.text = format(!InvoiceInDate, "dd/mm/yy")
+            txtInvoiceInTime.text = format(!InvoiceInTime, "hh:mm")
             'Παραστατικό
             Set tmpRecordset = CheckForMatch("CommonDB", txtInvoiceCodeID.text, "Codes", "CodeID", "Numeric", 0, 1)
             txtInvoiceCodeID.text = tmpRecordset.Fields(0)
@@ -1622,7 +1622,7 @@ Function FindInvoicesWithTrnID(myInvoiceTrnID, myWindowTitle, myTable, myRefersT
     EnableGrid grdPersonsTransactions, True
     ColorizeGrid grdPersonsTransactions, grdPersonsTransactionsChecks
     EnableTabStop grdPersonsTransactions, grdPersonsTransactionsChecks
-    mskTotal.text = Format(CalculateColumnTotal(grdPersonsTransactions, "Amount"), "#,##0.00")
+    mskTotal.text = format(CalculateColumnTotal(grdPersonsTransactions, "Amount"), "#,##0.00")
     UpdateButtons Me, 6, 0, 1, 1, 0, 0, 1, 0
     
     FindInvoicesWithTrnID = True
@@ -1900,7 +1900,7 @@ Private Sub grdPersonsTransactionsChecks_AfterCommitEdit(ByVal lRow As Long, ByV
                         grdPersonsTransactionsChecks.CellValue(lRow, "CheckNo") = tmpTableData.strFourField
                         grdPersonsTransactionsChecks.CellValue(lRow, "CheckExpire") = tmpTableData.strFiveField
                         grdPersonsTransactionsChecks.CellValue(lRow, "CheckAmount") = tmpTableData.strSixField
-                        mskTotalChecks.text = Format(CalculateColumnTotal(grdPersonsTransactionsChecks, "CheckAmount"), "#,##0.00")
+                        mskTotalChecks.text = format(CalculateColumnTotal(grdPersonsTransactionsChecks, "CheckAmount"), "#,##0.00")
                     End If
                 End If
             End If
@@ -1912,7 +1912,7 @@ Private Sub grdPersonsTransactionsChecks_AfterCommitEdit(ByVal lRow As Long, ByV
             If grdPersonsTransactionsChecks.CellValue(lRow, 6) <> "" Then MoveToNextColumn grdPersonsTransactionsChecks, lRow, lCol
         Case 7
             'Ποσό
-            mskTotalChecks.text = Format(CalculateColumnTotal(grdPersonsTransactionsChecks, "CheckAmount"), "#,##0.00")
+            mskTotalChecks.text = format(CalculateColumnTotal(grdPersonsTransactionsChecks, "CheckAmount"), "#,##0.00")
             If grdPersonsTransactionsChecks.CellText(lRow, "CheckAmount") <> "" Then
                 MoveToNextColumn grdPersonsTransactionsChecks, lRow, lCol
             End If
@@ -1937,7 +1937,7 @@ Private Sub grdPersonsTransactionsChecks_KeyDown(KeyCode As Integer, Shift As In
     'Διαγραφή γραμμής CTRL + DEL
     If KeyCode = 46 And CtrlDown = 4 Then
         FillCellWithSomething grdPersonsTransactionsChecks, "", grdPersonsTransactionsChecks.CurRow, "1,2,3,4,5,6,7"
-        mskTotalChecks.text = Format(CalculateColumnTotal(grdPersonsTransactionsChecks, "CheckAmount"), "#,##0.00")
+        mskTotalChecks.text = format(CalculateColumnTotal(grdPersonsTransactionsChecks, "CheckAmount"), "#,##0.00")
     End If
 
 End Sub
@@ -1987,12 +1987,12 @@ Private Sub grdPersonsTransactions_AfterCommitEdit(ByVal lRow As Long, ByVal lCo
                 End If
             Else
                 FillCellWithSomething grdPersonsTransactions, "", grdPersonsTransactions.CurRow, "1"
-                mskTotal.text = Format(CalculateColumnTotal(grdPersonsTransactions, "Amount"), "#,##0.00")
+                mskTotal.text = format(CalculateColumnTotal(grdPersonsTransactions, "Amount"), "#,##0.00")
                 cmdButton(4).Enabled = ChangeEditButtonStatus(grdPersonsTransactions, lRow, "ID")
             End If
         Case 3
             'Ποσό
-            mskTotal.text = Format(CalculateColumnTotal(grdPersonsTransactions, "Amount"), "#,##0.00")
+            mskTotal.text = format(CalculateColumnTotal(grdPersonsTransactions, "Amount"), "#,##0.00")
             If grdPersonsTransactions.CellText(lRow, "Amount") <> "" Then
                 MoveToNextColumn grdPersonsTransactions, lRow, lCol
             End If
@@ -2078,7 +2078,7 @@ Private Sub grdPersonsTransactions_KeyDown(KeyCode As Integer, Shift As Integer,
     'Διαγραφή γραμμής CTRL + DEL
     If KeyCode = 46 And CtrlDown = 4 Then
         FillCellWithSomething grdPersonsTransactions, "", grdPersonsTransactions.CurRow, "1,2,3"
-        mskTotal.text = Format(CalculateColumnTotal(grdPersonsTransactions, "Amount"), "#,##0.00")
+        mskTotal.text = format(CalculateColumnTotal(grdPersonsTransactions, "Amount"), "#,##0.00")
     End If
     
 End Sub
@@ -2168,7 +2168,7 @@ Private Function ValidateFields()
         blnLineIsCorrect = False
         For lngRow = 1 To .RowCount
             blnSomethingIsGiven = False
-            For lngCol = 1 To .ColCount
+            For lngCol = 1 To .colCount
                 If .CellText(lngRow, lngCol) <> "" Then
                     blnSomethingIsGiven = True
                 End If
@@ -2199,7 +2199,7 @@ Private Function ValidateFields()
     With grdPersonsTransactionsChecks
         For lngRow = 1 To .RowCount
             blnSomethingIsGiven = False
-            For lngCol = 1 To .ColCount
+            For lngCol = 1 To .colCount
                 If .CellText(lngRow, lngCol) <> "" Then
                     blnSomethingIsGiven = True
                 End If

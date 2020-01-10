@@ -2097,7 +2097,7 @@ Begin VB.Form CommonTransactions
          Enabled         =   0   'False
          ForeColor       =   0
          Text            =   ""
-         BackColor       =   0
+         BackColor       =   4210688
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Ubuntu Condensed"
             Size            =   11.25
@@ -3125,13 +3125,13 @@ Function DoSharedStuff(myInvoiceTrnID, myWindowTitle, myTable, myRefersTo)
     End If
     
     'Αν το παραστατικό είναι μηχανογραφικό πωλήσεων - η ημερομηνία έκδοσης είναι διαφορετική της σημερινής - γίνεται έλεγχος ημερομηνίας
-    If txtCodeHandID.text = "0" And txtRefersTo.text = "2" And mskInvoiceIssueDate.text <> Str(Date) And txtCodeDateCheckID.text = "1" Then
+    If txtCodeHandID.text = "0" And txtRefersTo.text = "2" And CDate(mskInvoiceIssueDate.text) <> Date And txtCodeDateCheckID.text = "1" Then
         'Τα πάντα απαγορεύονται
         UpdateButtons Me, 5, 0, 0, 0, 0, 0, 1
     End If
     
     'Αν το παραστατικό είναι μηχανογραφικό πωλήσεων - η ημερομηνία έκδοσης είναι ίση με τη σημερινή
-    If txtCodeHandID.text = "0" And txtRefersTo.text = "2" And mskInvoiceIssueDate.text = Date Then
+    If txtCodeHandID.text = "0" And txtRefersTo.text = "2" And CDate(mskInvoiceIssueDate.text) = Date Then
         'Επιτρέπεται η επανεκτύπωση
         UpdateButtons Me, 5, 0, 1, 0, 0, 0, 1
         cmdButton(1).Caption = "Επανεκτύπωση"

@@ -662,7 +662,7 @@ Begin VB.Form CommonPendingInvoices
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   "01/01/2017"
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -683,7 +683,7 @@ Begin VB.Form CommonPendingInvoices
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   "31/12/2017"
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -732,7 +732,7 @@ Begin VB.Form CommonPendingInvoices
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   "01/01/2017"
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -753,7 +753,7 @@ Begin VB.Form CommonPendingInvoices
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   "31/12/2017"
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25

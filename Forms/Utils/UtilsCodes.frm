@@ -820,7 +820,7 @@ Begin VB.Form UtilsCodes
    End
    Begin UserControls.newInteger txtLastNo 
       Height          =   465
-      Left            =   3675
+      Left            =   3600
       TabIndex        =   15
       Top             =   7200
       Width           =   840
@@ -841,14 +841,14 @@ Begin VB.Form UtilsCodes
    End
    Begin UserControls.newDate mskLastDate 
       Height          =   465
-      Left            =   4575
+      Left            =   4500
       TabIndex        =   16
       Top             =   7200
       Width           =   1515
       _ExtentX        =   2672
       _ExtentY        =   820
       Text            =   "01/01/2017"
-      BackColor       =   0
+      BackColor       =   4210688
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Ubuntu Condensed"
          Size            =   11.25
@@ -1437,7 +1437,7 @@ Begin VB.Form UtilsCodes
       FillColor       =   &H00008000&
       Height          =   840
       Index           =   5
-      Left            =   3225
+      Left            =   3150
       Top             =   7125
       Visible         =   0   'False
       Width           =   465
@@ -1458,7 +1458,7 @@ Begin VB.Form UtilsCodes
       ForeColor       =   &H00FFFFFF&
       Height          =   315
       Index           =   18
-      Left            =   525
+      Left            =   450
       TabIndex        =   45
       Top             =   7275
       Width           =   2715
@@ -1480,7 +1480,7 @@ Begin VB.Form UtilsCodes
       ForeColor       =   &H00FFFFFF&
       Height          =   315
       Index           =   10
-      Left            =   4575
+      Left            =   4500
       TabIndex        =   44
       Top             =   6900
       Width           =   1515
@@ -1502,7 +1502,7 @@ Begin VB.Form UtilsCodes
       ForeColor       =   &H00FFFFFF&
       Height          =   315
       Index           =   9
-      Left            =   3675
+      Left            =   3600
       TabIndex        =   43
       Top             =   6900
       Width           =   840

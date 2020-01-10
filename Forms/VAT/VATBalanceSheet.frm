@@ -127,7 +127,7 @@ Begin VB.Form VATBalanceSheet
          _ExtentY        =   820
          ForeColor       =   0
          Text            =   ""
-         BackColor       =   0
+         BackColor       =   4210688
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Ubuntu Condensed"
             Size            =   11.25
@@ -148,7 +148,7 @@ Begin VB.Form VATBalanceSheet
          _ExtentY        =   820
          ForeColor       =   0
          Text            =   ""
-         BackColor       =   0
+         BackColor       =   4210688
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Ubuntu Condensed"
             Size            =   11.25
@@ -652,7 +652,7 @@ Private Function FindRecordsAndPopulateBoxes()
         If RefreshList(1) Then
             If RefreshList(2) Then
                 curVATBalance = mskVATBuys.text - mskVATSales.text
-                mskVATBalance.text = Format(Abs(curVATBalance), "#,##0.00")
+                mskVATBalance.text = format(Abs(curVATBalance), "#,##0.00")
                 ColorizeVATBalance curVATBalance
                 DisableFields mskIssueFrom, mskIssueTo
                 UpdateButtons Me, 2, 0, 1, 0
@@ -839,11 +839,11 @@ Private Function RefreshList(myReferToID)
     'Ενημερώνω τα κουτάκια
     Select Case myReferToID
         Case 1
-            mskNetBuys.text = Format(curNetBuys, "#,##0.00")
-            mskVATBuys.text = Format(curVATBuys, "#,##0.00")
+            mskNetBuys.text = format(curNetBuys, "#,##0.00")
+            mskVATBuys.text = format(curVATBuys, "#,##0.00")
         Case 2
-            mskNetSales.text = Format(curNetSales, "#,##0.00")
-            mskVATSales.text = Format(curVATSales, "#,##0.00")
+            mskNetSales.text = format(curNetSales, "#,##0.00")
+            mskVATSales.text = format(curVATSales, "#,##0.00")
     End Select
     
     'Τελικές ενέργειες
