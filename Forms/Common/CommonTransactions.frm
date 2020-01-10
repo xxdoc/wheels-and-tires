@@ -3112,7 +3112,7 @@ Function DoSharedStuff(myInvoiceTrnID, myWindowTitle, myTable, myRefersTo)
     FindItemsWithTrnID myInvoiceTrnID
     AddGridLines
     
-    If txtCodeHandID.text = "1" Then
+    If txtCodeHandID.text = "1" Or txtCodeDateCheckID.text = "0" Then
         
         EnableFields mskInvoiceIssueDate, txtPersonDescription, txtCodeShortDescription, txtInvoiceNo, txtInvoicePrintExtraRemarks, txtDeliveryPointDescription, txtPaymentWayDescription, txtInvoicePlates, txtInvoiceRemarks, txtInvoiceTransportReason, txtInvoiceTransportWay, txtInvoiceLoadingSite, txtInvoiceDestinationSite
         EnableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5), cmdIndex(6), cmdIndex(7), cmdIndex(8), cmdIndex(9)
@@ -3124,7 +3124,15 @@ Function DoSharedStuff(myInvoiceTrnID, myWindowTitle, myTable, myRefersTo)
             
     End If
     
-    If txtCodeHandID.text = "0" And txtRefersTo.text = "2" Then
+    'Αν το παραστατικό είναι μηχανογραφικό πωλήσεων - η ημερομηνία έκδοσης είναι διαφορετική της σημερινής - γίνεται έλεγχος ημερομηνίας
+    If txtCodeHandID.text = "0" And txtRefersTo.text = "2" And mskInvoiceIssueDate.text <> Str(Date) And txtCodeDateCheckID.text = "1" Then
+        'Τα πάντα απαγορεύονται
+        UpdateButtons Me, 5, 0, 0, 0, 0, 0, 1
+    End If
+    
+    'Αν το παραστατικό είναι μηχανογραφικό πωλήσεων - η ημερομηνία έκδοσης είναι ίση με τη σημερινή
+    If txtCodeHandID.text = "0" And txtRefersTo.text = "2" And mskInvoiceIssueDate.text = Date Then
+        'Επιτρέπεται η επανεκτύπωση
         UpdateButtons Me, 5, 0, 1, 0, 0, 0, 1
         cmdButton(1).Caption = "Επανεκτύπωση"
     End If
@@ -3825,7 +3833,11 @@ Private Function SaveInvoice()
     
     If blnError Then Exit Function
     
-    If txtCodeHandID.text = "1" Or (txtCodeHandID.text = "0" And blnStatus) Then
+    'Αν το παραστατικό είναι χειρόγραφο 'Η
+    'Αν είναι μηχανογραφικό και γίνεται έλεγχος ημερομηνίας και είμαι σε νέα εγγραφή 'Η
+    'Αν είναι μηχανογραφικό και δεν γίνεται έλεγχος ημερομηνίας
+    
+    If txtCodeHandID.text = "1" Or (txtCodeHandID.text = "0" And txtCodeDateCheckID = "1" And blnStatus) Or (txtCodeHandID.text = "0" And txtCodeDateCheckID = "0") Then
         
         lngTrnID = IIf(txtInvoiceTrnID.text = "", AddOneToTheLastRecord, txtInvoiceTrnID.text)
         txtInvoiceTrnID.text = lngTrnID
