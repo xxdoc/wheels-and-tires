@@ -25,14 +25,14 @@ Begin VB.Form UtilsCodes
       BorderStyle     =   0  'None
       Height          =   690
       Left            =   150
-      TabIndex        =   50
-      Top             =   8175
+      TabIndex        =   51
+      Top             =   8700
       Width           =   7515
       Begin GurhanButtonOCX.GurhanButton cmdButton 
          Height          =   690
          Index           =   0
          Left            =   225
-         TabIndex        =   51
+         TabIndex        =   52
          TabStop         =   0   'False
          Top             =   0
          Width           =   1365
@@ -59,7 +59,7 @@ Begin VB.Form UtilsCodes
          Height          =   690
          Index           =   1
          Left            =   1650
-         TabIndex        =   52
+         TabIndex        =   53
          TabStop         =   0   'False
          Top             =   0
          Width           =   1365
@@ -86,7 +86,7 @@ Begin VB.Form UtilsCodes
          Height          =   690
          Index           =   4
          Left            =   5925
-         TabIndex        =   53
+         TabIndex        =   54
          TabStop         =   0   'False
          Top             =   0
          Width           =   1365
@@ -113,7 +113,7 @@ Begin VB.Form UtilsCodes
          Height          =   690
          Index           =   2
          Left            =   3075
-         TabIndex        =   54
+         TabIndex        =   55
          TabStop         =   0   'False
          Top             =   0
          Width           =   1365
@@ -140,7 +140,7 @@ Begin VB.Form UtilsCodes
          Height          =   690
          Index           =   3
          Left            =   4500
-         TabIndex        =   55
+         TabIndex        =   56
          TabStop         =   0   'False
          Top             =   0
          Width           =   1365
@@ -172,7 +172,7 @@ Begin VB.Form UtilsCodes
       ForeColor       =   &H80000008&
       Height          =   3690
       Left            =   9525
-      TabIndex        =   21
+      TabIndex        =   22
       Top             =   3900
       Width           =   4515
       Begin VB.TextBox txtDateCheckID 
@@ -191,7 +191,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   3675
-         TabIndex        =   68
+         TabIndex        =   69
          TabStop         =   0   'False
          Top             =   2325
          Width           =   780
@@ -212,7 +212,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   75
-         TabIndex        =   67
+         TabIndex        =   68
          TabStop         =   0   'False
          Text            =   "Codes.CodeDateCheck"
          Top             =   2325
@@ -234,7 +234,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   75
-         TabIndex        =   61
+         TabIndex        =   62
          TabStop         =   0   'False
          Text            =   "Codes.CodePrinterID"
          Top             =   1950
@@ -256,7 +256,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   3675
-         TabIndex        =   60
+         TabIndex        =   61
          TabStop         =   0   'False
          Top             =   1950
          Width           =   780
@@ -277,7 +277,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   3675
-         TabIndex        =   57
+         TabIndex        =   58
          TabStop         =   0   'False
          Top             =   1575
          Width           =   780
@@ -298,7 +298,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   75
-         TabIndex        =   56
+         TabIndex        =   57
          TabStop         =   0   'False
          Text            =   "Codes.CodeIsPhysicalThingID"
          Top             =   1575
@@ -320,7 +320,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   75
-         TabIndex        =   37
+         TabIndex        =   38
          TabStop         =   0   'False
          Text            =   "Codes.CodeTransformID"
          Top             =   1200
@@ -342,7 +342,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   3675
-         TabIndex        =   36
+         TabIndex        =   37
          TabStop         =   0   'False
          Top             =   1200
          Width           =   780
@@ -363,7 +363,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   75
-         TabIndex        =   35
+         TabIndex        =   36
          TabStop         =   0   'False
          Text            =   "Codes.CodeDetailsID"
          Top             =   450
@@ -385,7 +385,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   3675
-         TabIndex        =   34
+         TabIndex        =   35
          TabStop         =   0   'False
          Top             =   450
          Width           =   780
@@ -406,7 +406,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   3675
-         TabIndex        =   32
+         TabIndex        =   33
          TabStop         =   0   'False
          Top             =   2700
          Width           =   780
@@ -427,7 +427,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   75
-         TabIndex        =   31
+         TabIndex        =   32
          TabStop         =   0   'False
          Text            =   "RefersTo"
          Top             =   2700
@@ -449,7 +449,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   3675
-         TabIndex        =   26
+         TabIndex        =   27
          TabStop         =   0   'False
          Top             =   825
          Width           =   780
@@ -470,7 +470,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   75
-         TabIndex        =   25
+         TabIndex        =   26
          TabStop         =   0   'False
          Text            =   "Codes.CodeHandID"
          Top             =   825
@@ -492,7 +492,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   75
-         TabIndex        =   23
+         TabIndex        =   24
          TabStop         =   0   'False
          Text            =   "Codes.CodeID"
          Top             =   75
@@ -514,7 +514,7 @@ Begin VB.Form UtilsCodes
          ForeColor       =   &H00000000&
          Height          =   315
          Left            =   3675
-         TabIndex        =   22
+         TabIndex        =   23
          TabStop         =   0   'False
          Top             =   75
          Width           =   780
@@ -536,7 +536,7 @@ Begin VB.Form UtilsCodes
    Begin iGrid300_10Tec.iGrid grdUtilsCodes 
       Height          =   6615
       Left            =   9450
-      TabIndex        =   19
+      TabIndex        =   20
       TabStop         =   0   'False
       Top             =   1050
       Width           =   5715
@@ -648,7 +648,7 @@ Begin VB.Form UtilsCodes
       Height          =   465
       Index           =   1
       Left            =   7725
-      TabIndex        =   27
+      TabIndex        =   28
       TabStop         =   0   'False
       Top             =   3225
       Width           =   390
@@ -698,7 +698,7 @@ Begin VB.Form UtilsCodes
       Height          =   465
       Index           =   3
       Left            =   4275
-      TabIndex        =   28
+      TabIndex        =   29
       TabStop         =   0   'False
       Top             =   3750
       Width           =   390
@@ -748,7 +748,7 @@ Begin VB.Form UtilsCodes
       Height          =   465
       Index           =   0
       Left            =   4275
-      TabIndex        =   33
+      TabIndex        =   34
       TabStop         =   0   'False
       Top             =   3225
       Width           =   390
@@ -775,8 +775,8 @@ Begin VB.Form UtilsCodes
    Begin UserControls.newText txtCustomers 
       Height          =   465
       Left            =   3375
-      TabIndex        =   13
-      Top             =   5925
+      TabIndex        =   14
+      Top             =   6450
       Width           =   615
       _ExtentX        =   1085
       _ExtentY        =   820
@@ -798,8 +798,8 @@ Begin VB.Form UtilsCodes
    Begin UserControls.newText txtSuppliers 
       Height          =   465
       Left            =   4350
-      TabIndex        =   14
-      Top             =   5925
+      TabIndex        =   15
+      Top             =   6450
       Width           =   615
       _ExtentX        =   1085
       _ExtentY        =   820
@@ -821,8 +821,8 @@ Begin VB.Form UtilsCodes
    Begin UserControls.newInteger txtLastNo 
       Height          =   465
       Left            =   3600
-      TabIndex        =   15
-      Top             =   7200
+      TabIndex        =   16
+      Top             =   7725
       Width           =   840
       _ExtentX        =   1482
       _ExtentY        =   820
@@ -842,8 +842,8 @@ Begin VB.Form UtilsCodes
    Begin UserControls.newDate mskLastDate 
       Height          =   465
       Left            =   4500
-      TabIndex        =   16
-      Top             =   7200
+      TabIndex        =   17
+      Top             =   7725
       Width           =   1515
       _ExtentX        =   2672
       _ExtentY        =   820
@@ -862,8 +862,8 @@ Begin VB.Form UtilsCodes
    Begin UserControls.newText txtInventoryQty 
       Height          =   465
       Left            =   1050
-      TabIndex        =   11
-      Top             =   5925
+      TabIndex        =   12
+      Top             =   6450
       Width           =   615
       _ExtentX        =   1085
       _ExtentY        =   820
@@ -885,8 +885,8 @@ Begin VB.Form UtilsCodes
    Begin UserControls.newText txtInventoryValue 
       Height          =   465
       Left            =   1950
-      TabIndex        =   12
-      Top             =   5925
+      TabIndex        =   13
+      Top             =   6450
       Width           =   615
       _ExtentX        =   1085
       _ExtentY        =   820
@@ -921,9 +921,9 @@ Begin VB.Form UtilsCodes
       Height          =   2040
       Index           =   3
       Left            =   450
-      TabIndex        =   38
+      TabIndex        =   39
       Tag             =   "SameColorAsBackground"
-      Top             =   4800
+      Top             =   5325
       Width           =   5115
       Begin VB.Shape shpWedge 
          BackColor       =   &H00C0C0FF&
@@ -978,7 +978,7 @@ Begin VB.Form UtilsCodes
          Height          =   315
          Index           =   22
          Left            =   450
-         TabIndex        =   49
+         TabIndex        =   50
          Top             =   750
          Width           =   915
          WordWrap        =   -1  'True
@@ -1000,7 +1000,7 @@ Begin VB.Form UtilsCodes
          Height          =   315
          Index           =   21
          Left            =   2775
-         TabIndex        =   48
+         TabIndex        =   49
          Top             =   750
          Width           =   915
          WordWrap        =   -1  'True
@@ -1022,7 +1022,7 @@ Begin VB.Form UtilsCodes
          Height          =   315
          Index           =   20
          Left            =   3750
-         TabIndex        =   47
+         TabIndex        =   48
          Top             =   750
          Width           =   915
          WordWrap        =   -1  'True
@@ -1044,7 +1044,7 @@ Begin VB.Form UtilsCodes
          Height          =   315
          Index           =   19
          Left            =   1425
-         TabIndex        =   46
+         TabIndex        =   47
          Top             =   750
          Width           =   915
          WordWrap        =   -1  'True
@@ -1066,7 +1066,7 @@ Begin VB.Form UtilsCodes
          Height          =   315
          Index           =   17
          Left            =   2775
-         TabIndex        =   42
+         TabIndex        =   43
          Top             =   450
          Width           =   915
          WordWrap        =   -1  'True
@@ -1088,7 +1088,7 @@ Begin VB.Form UtilsCodes
          Height          =   315
          Index           =   16
          Left            =   3750
-         TabIndex        =   41
+         TabIndex        =   42
          Top             =   450
          Width           =   915
          WordWrap        =   -1  'True
@@ -1110,7 +1110,7 @@ Begin VB.Form UtilsCodes
          Height          =   315
          Index           =   15
          Left            =   1425
-         TabIndex        =   40
+         TabIndex        =   41
          Top             =   450
          Width           =   915
          WordWrap        =   -1  'True
@@ -1132,7 +1132,7 @@ Begin VB.Form UtilsCodes
          Height          =   315
          Index           =   14
          Left            =   450
-         TabIndex        =   39
+         TabIndex        =   40
          Top             =   450
          Width           =   915
          WordWrap        =   -1  'True
@@ -1164,7 +1164,7 @@ Begin VB.Form UtilsCodes
       Height          =   465
       Index           =   4
       Left            =   7725
-      TabIndex        =   58
+      TabIndex        =   59
       TabStop         =   0   'False
       Top             =   3750
       Width           =   390
@@ -1214,7 +1214,7 @@ Begin VB.Form UtilsCodes
       Height          =   465
       Index           =   2
       Left            =   8625
-      TabIndex        =   62
+      TabIndex        =   63
       TabStop         =   0   'False
       Top             =   4275
       Width           =   390
@@ -1285,7 +1285,7 @@ Begin VB.Form UtilsCodes
       Height          =   465
       Index           =   5
       Left            =   4275
-      TabIndex        =   65
+      TabIndex        =   66
       TabStop         =   0   'False
       Top             =   2700
       Width           =   390
@@ -1309,6 +1309,50 @@ Begin VB.Form UtilsCodes
       PicSizeH        =   16
       PicSizeW        =   16
    End
+   Begin UserControls.newText txtCodeDTable 
+      Height          =   465
+      Left            =   3600
+      TabIndex        =   11
+      Top             =   4800
+      Width           =   615
+      _ExtentX        =   1085
+      _ExtentY        =   820
+      Alignment       =   2
+      ForeColor       =   4194304
+      MaxLength       =   3
+      Text            =   "ΑΑΑ"
+      BackColor       =   4210688
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Ubuntu Condensed"
+         Size            =   11.25
+         Charset         =   161
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+   End
+   Begin VB.Label lblLabel 
+      BackColor       =   &H000080FF&
+      Caption         =   "Κωδικός πίνακα Δέλτα"
+      BeginProperty Font 
+         Name            =   "Ubuntu Condensed"
+         Size            =   9.75
+         Charset         =   161
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   315
+      Index           =   12
+      Left            =   450
+      TabIndex        =   70
+      Top             =   4875
+      Width           =   2715
+      WordWrap        =   -1  'True
+   End
    Begin VB.Label lblLabel 
       AutoSize        =   -1  'True
       BackColor       =   &H000080FF&
@@ -1326,7 +1370,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   7
       Left            =   450
-      TabIndex        =   66
+      TabIndex        =   67
       Top             =   2775
       Width           =   2715
       WordWrap        =   -1  'True
@@ -1372,7 +1416,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   6
       Left            =   5100
-      TabIndex        =   64
+      TabIndex        =   65
       Top             =   2775
       Width           =   1515
    End
@@ -1404,7 +1448,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   5
       Left            =   450
-      TabIndex        =   63
+      TabIndex        =   64
       Top             =   4350
       Width           =   2715
       WordWrap        =   -1  'True
@@ -1425,7 +1469,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   0
       Left            =   5100
-      TabIndex        =   59
+      TabIndex        =   60
       Top             =   3825
       Width           =   1515
       WordWrap        =   -1  'True
@@ -1438,7 +1482,7 @@ Begin VB.Form UtilsCodes
       Height          =   840
       Index           =   5
       Left            =   3150
-      Top             =   7125
+      Top             =   7650
       Visible         =   0   'False
       Width           =   465
    End
@@ -1459,8 +1503,8 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   18
       Left            =   450
-      TabIndex        =   45
-      Top             =   7275
+      TabIndex        =   46
+      Top             =   7800
       Width           =   2715
    End
    Begin VB.Label lblLabel 
@@ -1481,8 +1525,8 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   10
       Left            =   4500
-      TabIndex        =   44
-      Top             =   6900
+      TabIndex        =   45
+      Top             =   7425
       Width           =   1515
    End
    Begin VB.Label lblLabel 
@@ -1503,8 +1547,8 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   9
       Left            =   3600
-      TabIndex        =   43
-      Top             =   6900
+      TabIndex        =   44
+      Top             =   7425
       Width           =   840
    End
    Begin VB.Label lblLabel 
@@ -1524,7 +1568,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   11
       Left            =   450
-      TabIndex        =   30
+      TabIndex        =   31
       Top             =   3300
       Width           =   2715
       WordWrap        =   -1  'True
@@ -1545,7 +1589,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   8
       Left            =   450
-      TabIndex        =   29
+      TabIndex        =   30
       Top             =   3825
       Width           =   2715
       WordWrap        =   -1  'True
@@ -1555,8 +1599,8 @@ Begin VB.Form UtilsCodes
       BackStyle       =   1  'Opaque
       BorderStyle     =   0  'Transparent
       Height          =   540
-      Left            =   7500
-      Top             =   7650
+      Left            =   5700
+      Top             =   8175
       Visible         =   0   'False
       Width           =   3165
    End
@@ -1576,7 +1620,7 @@ Begin VB.Form UtilsCodes
       BorderStyle     =   0  'Transparent
       Height          =   390
       Left            =   6525
-      Top             =   8850
+      Top             =   9375
       Visible         =   0   'False
       Width           =   840
    End
@@ -1644,7 +1688,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   4
       Left            =   5100
-      TabIndex        =   24
+      TabIndex        =   25
       Top             =   3300
       Width           =   1515
    End
@@ -1665,7 +1709,7 @@ Begin VB.Form UtilsCodes
       ForeColor       =   &H000080FF&
       Height          =   720
       Left            =   225
-      TabIndex        =   20
+      TabIndex        =   21
       Top             =   75
       Width           =   4815
    End
@@ -1686,7 +1730,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   3
       Left            =   450
-      TabIndex        =   18
+      TabIndex        =   19
       Top             =   2250
       Width           =   2715
    End
@@ -1726,7 +1770,7 @@ Begin VB.Form UtilsCodes
       Height          =   315
       Index           =   2
       Left            =   450
-      TabIndex        =   17
+      TabIndex        =   18
       Top             =   1725
       Width           =   2715
    End
@@ -1774,8 +1818,8 @@ Private Function AbortProcedure(blnStatus)
         If MyMsgBox(3, strAppTitle, strMessages(3), 2) Then
             blnStatus = False
             ClearFields txtID, txtDetailsID, txtHandID, txtTransformID, txtIsPhysicalThingID, txtPrinterID, txtDateCheckID
-            ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
-            DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
+            ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
+            DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
             DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
             grdUtilsCodes.SetFocus
             UpdateButtons Me, 4, 1, 0, 0, 0, 1
@@ -1794,8 +1838,8 @@ Private Function DeleteRecord()
         PopulateGrid
         HighlightRow grdUtilsCodes, 1, "", True
         ClearFields txtID, txtDetailsID, txtHandID, txtTransformID, txtIsPhysicalThingID, txtPrinterID, txtDateCheckID
-        ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
-        DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
+        ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
+        DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
         DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
         UpdateButtons Me, 4, 1, 0, 0, 0, 1
     End If
@@ -1816,8 +1860,8 @@ Private Function NewRecord()
     blnStatus = True
     
     ClearFields txtID, txtDetailsID, txtHandID, txtTransformID, txtIsPhysicalThingID, txtPrinterID, txtDateCheckID
-    ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
-    EnableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
+    ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
+    EnableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
     EnableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
     UpdateButtons Me, 4, 0, 1, 0, 1, 0
     InitializeFields txtLastNo, mskLastDate
@@ -1842,6 +1886,7 @@ Private Function SaveRecord()
         txtDetailsID.text, _
         txtHandID.text, _
         IIf(txtPrinterID.text = "", "0", txtPrinterID.text), _
+        txtCodeDTable.text, _
         txtTransformID.text, _
         txtIsPhysicalThingID.text, _
         txtLastNo.text, _
@@ -1853,8 +1898,8 @@ Private Function SaveRecord()
         PopulateGrid
         HighlightRow grdUtilsCodes, 1, txtID.text, True
         ClearFields txtID, txtDetailsID, txtHandID, txtTransformID, txtIsPhysicalThingID, txtPrinterID, txtDateCheckID
-        ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
-        DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
+        ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
+        DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
         DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
         UpdateButtons Me, 4, 1, 0, 0, 0, 1
     End If
@@ -1873,8 +1918,8 @@ Private Function SeekRecord()
     If grdUtilsCodes.RowCount = 0 Then Exit Function
     
     ClearFields txtID, txtDetailsID, txtHandID, txtTransformID, txtIsPhysicalThingID, txtPrinterID, txtDateCheckID
-    ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
-    DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
+    ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
+    DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
     DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
     blnEnableDelete = SimpleSeek("Invoices", "InvoiceID", grdUtilsCodes.CellValue(grdUtilsCodes.CurRow, 1))
     
@@ -1890,6 +1935,7 @@ Private Function SeekRecord()
         txtDetailsID, _
         txtHandID, _
         txtPrinterID, _
+        txtCodeDTable, _
         txtTransformID, _
         txtIsPhysicalThingID, _
         txtLastNo, _
@@ -1925,7 +1971,7 @@ Private Function SeekRecord()
         '
         blnStatus = False
         
-        EnableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
+        EnableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
         EnableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
         
         UpdateButtons Me, 4, 0, 1, IIf(blnEnableDelete, 1, 0), 1, 0
@@ -1936,7 +1982,7 @@ Private Function SeekRecord()
     
 ErrTrap:
     ClearFields txtID, txtDetailsID, txtHandID, txtTransformID, txtIsPhysicalThingID, txtPrinterID, txtDateCheckID
-    ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
+    ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
 
     UpdateButtons Me, 4, 1, 0, 0, 0, 1
     DisplayErrorMessage True, Err.Description
@@ -2095,8 +2141,8 @@ Private Sub Form_Load()
     PositionControls Me, False: ColorizeControls Me
     SetUpGrid lstIconList, grdUtilsCodes
     ClearFields txtID, txtDetailsID, txtHandID, txtTransformID, txtIsPhysicalThingID, txtPrinterID, txtDateCheckID
-    ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
-    DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription
+    ClearFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
+    DisableFields txtShortDescription, txtDescription, txtBatch, txtDetailsDescription, txtHandDescription, txtTransformDescription, txtIsPhysicalThingDescription, txtInventoryQty, txtInventoryValue, txtCustomers, txtSuppliers, txtLastNo, mskLastDate, txtPrinterDescription, mskDetailLines, txtDateCheckDescription, txtCodeDTable
     DisableFields cmdIndex(0), cmdIndex(1), cmdIndex(2), cmdIndex(3), cmdIndex(4), cmdIndex(5)
     UpdateButtons Me, 4, 1, 0, 0, 0, 1
     
