@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{396F7AC0-A0DD-11D3-93EC-00C0DFE7442A}#1.0#0"; "ImageList.ocx"
 Object = "{158C2A77-1CCD-44C8-AF42-AA199C5DCC6C}#1.0#0"; "dcButton.ocx"
 Object = "{FFE4AEB4-0D55-4004-ADF2-3C1C84D17A72}#1.0#0"; "userControls.ocx"
-Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "Buttons.ocx"
+Object = "{E3F0D4E9-96BB-4A6B-BA7B-D9C806E333BB}#1.0#0"; "buttons.ocx"
 Begin VB.Form Persons 
    Appearance      =   0  'Flat
    BackColor       =   &H00E0E0E0&
@@ -587,13 +587,11 @@ Begin VB.Form Persons
          Top             =   3075
          _ExtentX        =   953
          _ExtentY        =   953
-         IconSizeX       =   26
-         IconSizeY       =   32
-         Size            =   14064
+         Size            =   2296
          Images          =   "Persons.frx":0000
          Version         =   131072
-         KeyCount        =   4
-         Keys            =   "ÿÿÿ"
+         KeyCount        =   2
+         Keys            =   "ÿ"
       End
    End
    Begin UserControls.newText txtDescription 
@@ -831,7 +829,7 @@ Begin VB.Form Persons
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   0
-      PicNormal       =   "Persons.frx":3710
+      PicNormal       =   "Persons.frx":0918
       PicSizeH        =   16
       PicSizeW        =   16
    End
@@ -859,7 +857,7 @@ Begin VB.Form Persons
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   0
-      PicNormal       =   "Persons.frx":3CAA
+      PicNormal       =   "Persons.frx":0EB2
       PicSizeH        =   16
       PicSizeW        =   16
    End
@@ -887,7 +885,7 @@ Begin VB.Form Persons
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   0
-      PicNormal       =   "Persons.frx":4244
+      PicNormal       =   "Persons.frx":144C
       PicSizeH        =   16
       PicSizeW        =   16
    End
@@ -959,7 +957,7 @@ Begin VB.Form Persons
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   0
-      PicNormal       =   "Persons.frx":47DE
+      PicNormal       =   "Persons.frx":19E6
       PicSizeH        =   16
       PicSizeW        =   16
    End
@@ -987,7 +985,7 @@ Begin VB.Form Persons
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   0
-      PicNormal       =   "Persons.frx":4D78
+      PicNormal       =   "Persons.frx":1F80
       PicSizeH        =   16
       PicSizeW        =   16
    End
@@ -1037,7 +1035,7 @@ Begin VB.Form Persons
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   0
-      PicNormal       =   "Persons.frx":5312
+      PicNormal       =   "Persons.frx":251A
       PicSizeH        =   16
       PicSizeW        =   16
    End

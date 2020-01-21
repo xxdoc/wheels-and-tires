@@ -537,13 +537,11 @@ Begin VB.Form PersonsChecksIndex
             Top             =   2325
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "PersonsChecksIndex.frx":0038
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -565,7 +563,7 @@ Begin VB.Form PersonsChecksIndex
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -586,7 +584,7 @@ Begin VB.Form PersonsChecksIndex
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -607,7 +605,7 @@ Begin VB.Form PersonsChecksIndex
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -628,7 +626,7 @@ Begin VB.Form PersonsChecksIndex
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -1233,7 +1231,7 @@ Private Function RefreshList()
     End With
     
     'Αξιόγραφα
-    strSQL = "SELECT CheckID, BankDescription, CheckNo, CheckExpireDate, CheckAmount,  CheckIssuedByID, CheckRefersToID, Invoices.InvoiceIssueDate, Invoices.InvoiceNo, InvoiceCodeID, InvoicePersonID, InvoiceTrnID, InvoiceID, InvoiceRefersToID, InvoiceInDate " _
+    strSQL = "SELECT DISTINCT CheckID, BankDescription, CheckNo, CheckExpireDate, CheckAmount, CheckIssuedByID, CheckRefersToID, Invoices.InvoiceIssueDate, Invoices.InvoiceNo, InvoiceCodeID, InvoicePersonID, InvoiceTrnID, InvoiceID, InvoiceRefersToID, InvoiceInDate " _
     & "FROM ((Checks " _
     & "INNER JOIN Banks ON Checks.CheckBankID = Banks.BankID) " _
     & "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) "
@@ -1323,12 +1321,12 @@ Private Function RefreshList()
             grdPersonsChecksIndex.CellValue(lngRow, "CheckExpireDate") = !CheckExpireDate
             grdPersonsChecksIndex.CellValue(lngRow, "InvoiceIssueDate") = !InvoiceIssueDate
             grdPersonsChecksIndex.CellValue(lngRow, "CheckNo") = !CheckNo
-            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionA") = FindPersonDescription(txtTable.text, "InvoiceTrnID", !InvoiceTrnID) 'Κάτοχος πληρωτέας ή εκδότης εισπρακτέας
+            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionA") = FindPersonDescription(txtTable.text, "ID", !InvoicePersonID) 'Κάτοχος πληρωτέας ή εκδότης εισπρακτέας
             If !CheckIssuedByID <> 0 Then
                 grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionB") = FindPersonDescription(txtOppositeTable.text, "ID", !CheckIssuedByID) 'Εκδότης πληρωτέας
             End If
             If txtRefersTo.text = "4" And !CheckNo <> "" Then
-                Set tmpRecordset = NewCheckForMatch("CommonDB", "CheckNo, Description", "(Checks", "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) INNER JOIN Suppliers ON Invoices.InvoicePersonID = Suppliers.ID", "CheckNo = '" & !CheckNo & "' AND CheckRefersToID = 3", "", "") 'Κάτοχος εισπρακτέας
+                Set tmpRecordset = NewCheckForMatch("CommonDB", "CheckNo, Description", "(Checks", "INNER JOIN Invoices ON Checks.CheckTrnID = Invoices.InvoiceTrnID) INNER JOIN Suppliers ON Invoices.InvoicePersonID = Suppliers.ID", "CheckNo = '" & !CheckNo & "' AND CheckRefersToID = 3 AND CheckExpireDate = #" & !CheckExpireDate & "#", "", "") 'Κάτοχος εισπρακτέας
                 If Not tmpRecordset.EOF Then
                     grdPersonsChecksIndex.CellValue(lngRow, "PersonDescriptionB") = tmpRecordset!Description
                 End If
@@ -1401,11 +1399,11 @@ FindChecks:
             grdPersonsChecksIndex.CellValue(lngRow, "LineType") = "Printable"
             grdPersonsChecksIndex.CellFont(lngRow, "PersonDescription").Name = "Input"
             grdPersonsChecksIndex.CellFont(lngRow, "PersonDescription").Size = "9"
-            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = Format(!CheckExpire, "dd/mm/yyyy")
-            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") & " " & Space(12 - Len(Format(!CheckAmount, "#,##0.00"))) & Format(!CheckAmount, "#,##0.00")
+            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = format(!CheckExpire, "dd/mm/yyyy")
+            grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") & " " & Space(12 - Len(format(!CheckAmount, "#,##0.00"))) & format(!CheckAmount, "#,##0.00")
             grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") & " " & !CheckNo
             grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") = grdPersonsChecksIndex.CellValue(lngRow, "PersonDescription") & " " & !BankDescription
-            For lngCol = 1 To grdPersonsChecksIndex.ColCount
+            For lngCol = 1 To grdPersonsChecksIndex.colCount
                 grdPersonsChecksIndex.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             .MoveNext
@@ -1420,9 +1418,7 @@ Private Function FindPersonDescription(myTable, myFieldName, myFieldValue)
 
     Set tmpRecordset = NewCheckForMatch("CommonDB", "InvoiceTrnID, Description", "Invoices", "INNER JOIN " & myTable & " ON Invoices.InvoicePersonID = " & myTable & ".ID", myFieldName & " = " & myFieldValue, "", "")
     
-    If tmpRecordset.RecordCount = 1 Then
-        FindPersonDescription = tmpRecordset!Description
-    End If
+    If tmpRecordset.RecordCount = 1 Then FindPersonDescription = tmpRecordset!Description
 
 End Function
 

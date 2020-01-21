@@ -405,13 +405,11 @@ Begin VB.Form ItemsIndex
             Top             =   1200
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "ItemsIndex.frx":0038
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -469,7 +467,7 @@ Begin VB.Form ItemsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "ItemsIndex.frx":3748
+            PicNormal       =   "ItemsIndex.frx":0950
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -518,7 +516,7 @@ Begin VB.Form ItemsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "ItemsIndex.frx":3CE2
+            PicNormal       =   "ItemsIndex.frx":0EEA
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -818,7 +816,7 @@ Begin VB.Form ItemsIndex
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H000080FF&
+         ForeColor       =   &H0000FF00&
          Height          =   720
          Left            =   75
          TabIndex        =   7

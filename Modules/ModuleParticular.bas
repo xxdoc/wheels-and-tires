@@ -1,7 +1,6 @@
 Attribute VB_Name = "ModuleParticular"
 Option Explicit
 
-'Μεταβλητές εφαρμογής
 Global lngItemID As Long
 Global blnPrintHour As Boolean
 Global blnPrintBalance As Boolean
@@ -14,7 +13,6 @@ Global strLoadingSite As String
 Global strDestinationSite As String
 Global blnCheckTaxNo As Boolean
 Global curExtraChargesVATPercent As Currency
-Global intSalesInvoiceLines As Integer
 Global blnCheckEAFDSS As Boolean
 Global strEAFDSS As String
 Global datClosedPeriod As Date
@@ -44,6 +42,135 @@ Public Declare Function Process32Next Lib "kernel32.dll" (ByVal hSnapshot As Lon
 Public Declare Function CloseHandle Lib "kernel32.dll" (ByVal hObject As Long) As Long
 Public Const TH32CS_SNAPPROCESS As Long = &H2
 
+
+Function SetFontNameAndSize(sheet As Object, fontName As String, fontSize As Integer)
+
+    'Excel
+    With sheet
+        .Range("A1:Z9999").Font.Name = fontName
+        .Range("A1:Z9999").Font.Size = fontSize
+    End With
+
+End Function
+
+
+
+Function AddCompanyData(sheet As Object, colCount As Long)
+
+    'Excel
+    With sheet
+        .Range("A1:" & Chr(colCount + 64) & "1").MergeCells = True
+        .Range("A2:" & Chr(colCount + 64) & "2").MergeCells = True
+        .Range("A3:" & Chr(colCount + 64) & "3").MergeCells = True
+        .Range("A4:" & Chr(colCount + 64) & "4").MergeCells = True
+        .Range("A1").Value = arrCompanyData(7)
+        .Range("A2").Value = arrCompanyData(8)
+        .Range("A3").Value = arrCompanyData(9)
+        .Range("A4").Value = arrCompanyData(10)
+    End With
+
+End Function
+
+
+Function AddTitle(sheet As Object, title As String, colCount As Long)
+
+    'Excel
+    With sheet
+        .Range("A6:" & Chr(colCount + 64) & "6").MergeCells = True
+        .Range("A6").Value = title
+        .Range("A6").HorizontalAlignment = 3
+        .Range("A6").VerticalAlignment = 2
+        .rows("6").RowHeight = 24
+    End With
+
+End Function
+
+
+
+
+Function AddCriteria(sheet As Object, criteria As String, colCount As Long)
+
+    'Excel
+    With sheet
+        .Range("A7:" & Chr(colCount + 64) & "7").MergeCells = True
+        .Range("A7:" & Chr(colCount + 64) & "7").WrapText = True
+        .Range("A7").Value = criteria
+        .Range("A7").HorizontalAlignment = 3
+        .Range("A7").VerticalAlignment = 2
+        .rows("7").RowHeight = 40
+    End With
+
+End Function
+
+
+Function AddHeaders(sheet As Object, grid As iGrid, colCount As Long, ParamArray columns() As Variant)
+
+    'Excel
+    On Error Resume Next
+    
+    Dim X As Integer
+    Dim lngColCount As Long
+    lngColCount = UBound(columns) + 1
+    
+    X = 0
+    
+    With sheet
+        .Range("A9:" & Chr(colCount + 64) & "9").WrapText = True
+        .Range("A9:" & Chr(colCount + 64) & "9").HorizontalAlignment = 3
+        .Range("A9:" & Chr(colCount + 64) & "9").VerticalAlignment = 2
+        For X = 0 To lngColCount Step 2
+            Debug.Print columns(X)
+            Debug.Print grid.ColHeaderText(columns(X + 1))
+            .Range("" & columns(X) & "9").Value = grid.ColHeaderText(columns(X + 1))
+        Next X
+        .rows("9").RowHeight = 30
+    End With
+
+End Function
+
+
+
+Function AddNumberFormats(sheet As Object, grid As iGrid, format As String, rowOffsetFromTop As Long, ParamArray columns() As Variant)
+
+    Dim column As Long
+    Dim row As Long
+    
+    'Excel
+    With sheet
+        For column = 0 To UBound(columns)
+            Select Case format
+                Case "Floats"
+                    For row = 1 To grid.RowCount
+                        .Range(columns(column) & row + rowOffsetFromTop).NumberFormat = "#,##0.00_);[Red]#,##0.00 "
+                    Next row
+                Case "Integers"
+                    For row = 1 To grid.RowCount
+                        .Range(columns(column) & row + rowOffsetFromTop).NumberFormat = "#,##0_);[Red]#,##0 "
+                    Next row
+                Case "Dates"
+                    For row = 1 To grid.RowCount
+                        .Range(columns(column) & row + rowOffsetFromTop).NumberFormat = "dd-mm-yyyy"
+                    Next row
+            End Select
+        Next column
+    End With
+
+End Function
+
+
+
+Function AdjustColumnWidths(sheet As Object, ParamArray columns() As Variant)
+
+    Dim X As Integer
+    
+    'Excel
+    With sheet
+        For X = 0 To UBound(columns) - 1 / 2 Step 2
+            .columns(columns(X)).columnWidth = columns(X + 1)
+        Next X
+    End With
+
+End Function
 
 Function InitReport(myPrinterType, myEAFDSSString, myInvoiceHeight)
 
@@ -115,13 +242,13 @@ Function FillArray(strArrayName, ParamArray myColumns() As Variant)
     
 End Function
 
-Function DoRunningTotal(strArrayName, ParamArray Columns() As Variant)
+Function DoRunningTotal(strArrayName, ParamArray columns() As Variant)
 
     Dim intLoop As Integer
     
-    For intLoop = 0 To UBound(Columns)
-        If Columns(intLoop) <> "" Then
-            strArrayName(intLoop) = strArrayName(intLoop) + Columns(intLoop)
+    For intLoop = 0 To UBound(columns)
+        If columns(intLoop) <> "" Then
+            strArrayName(intLoop) = strArrayName(intLoop) + columns(intLoop)
         End If
     Next intLoop
     
@@ -168,16 +295,28 @@ Function CalculateDebitCreditAndBalance(myDebitOrCredit, myPerson, myInvoiceGros
         
         'Χρέωση
         If myDebitOrCredit = "Debit" Then
-            'Αγορές με μετρητά
+            'Αγορά με μετρητά
             If myRefersTo = 1 And myCodeSuppliers = "+" And myPaymentWayCreditID = 0 Then
                 CalculateDebitCreditAndBalance = myInvoiceGrossAmount
             End If
-            'Πωλήσεις - Αύξηση τζίρου Ή Προμηθευτές - Μείωση υπολοίπου
-            If myRefersTo = 2 And myCodeCustomers = "+" Or (myRefersTo = 3 And myCodeSuppliers = "-") Then
+            'Πιστωτικό αγοράς με μετρητά - θα μπει μείον μπροστά
+            If myRefersTo = 1 And myCodeSuppliers = "-" And myPaymentWayCreditID = 0 Then
+                CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
+            End If
+            'Κίνηση προμηθευτή - Μείωση υπολοίπου
+            If (myRefersTo = 3 And myCodeSuppliers = "-") Then
                 CalculateDebitCreditAndBalance = myInvoiceGrossAmount
             End If
-            'Πωλήσεις - Μείωση τζίρου  - Με μείον μπροστά Ή Προμηθευτές - Αύξηση υπολοίπου - Με μείον μπροστά
-            If (myRefersTo = 2 And myCodeCustomers = "-") Or (myRefersTo = 3 And myCodeSuppliers = "+") Then
+            'Κίνηση προμηθευτή - Αύξηση υπολοίπου - Με μείον
+            If (myRefersTo = 3 And myCodeSuppliers = "+") Then
+                CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
+            End If
+            'Πώληση
+            If myRefersTo = 2 And myCodeCustomers = "+" Then
+                CalculateDebitCreditAndBalance = myInvoiceGrossAmount
+            End If
+            'Πιστωτικό πώλησης - θα μπει μείον μπροστά
+            If myRefersTo = 2 And myCodeCustomers = "-" Then
                 CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
             End If
             'Επιστροφή
@@ -186,16 +325,28 @@ Function CalculateDebitCreditAndBalance(myDebitOrCredit, myPerson, myInvoiceGros
         
         'Πίστωση
         If myDebitOrCredit = "Credit" Then
-            'Πωλήσεις με μετρητά
+            'Αγορά
+            If myRefersTo = 1 And myCodeSuppliers = "+" Then
+                CalculateDebitCreditAndBalance = myInvoiceGrossAmount
+            End If
+            'Πιστωτικό αγοράς - θα μπει μείον μπροστά
+            If myRefersTo = 1 And myCodeSuppliers = "-" Then
+                CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
+            End If
+            'Πώληση με μετρητά
             If myRefersTo = 2 And myCodeCustomers = "+" And myPaymentWayCreditID = 0 Then
                 CalculateDebitCreditAndBalance = myInvoiceGrossAmount
             End If
-            'Αγορές - Αύξηση τζίρου Ή Πελάτες - Μείωση υπολοίπου
-            If (myRefersTo = 1 And myCodeSuppliers = "+") Or (myRefersTo = 4 And myCodeCustomers = "-") Then
+            'Πιστωτικό πώλησης με μετρητά - θα μπει μείον μπροστά
+            If myRefersTo = 2 And myCodeCustomers = "-" And myPaymentWayCreditID = 0 Then
+                CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
+            End If
+            'Κίνηση πελάτη - Μείωση υπολοίπου
+            If (myRefersTo = 4 And myCodeCustomers = "-") Then
                 CalculateDebitCreditAndBalance = myInvoiceGrossAmount
             End If
-            'Αγορές - Μείωση τζίρου - Με μείον μπροστά Ή Πελάτες - Αύξηση υπολοίπου - Με μείον μπροστά
-            If (myRefersTo = 1 And myCodeSuppliers = "-") Or (myRefersTo = 4 And myCodeCustomers = "+") Then
+            'Κίνηση πελάτη - Αύξηση υπολοίπου - Με μείον
+            If (myRefersTo = 4 And myCodeCustomers = "+") Then
                 CalculateDebitCreditAndBalance = -myInvoiceGrossAmount
             End If
             'Επιστροφή
@@ -232,7 +383,7 @@ Function AddOneToTheLastRecord()
     
     With rsInvoices
         .MoveLast
-        AddOneToTheLastRecord = IIf(.EOF, 1, !invoiceTrnID + 1)
+        AddOneToTheLastRecord = IIf(.EOF, 1, !InvoiceTrnID + 1)
     End With
     
     rsInvoices.Close
@@ -261,14 +412,14 @@ Function CalculatePersonBalance(tmpTable, tmpCode)
     With rstInvoices
         Do While Not .EOF
             If ![CodeRefersTo] = 1 Or ![CodeRefersTo] = 3 Then
-                If ![Column] = "+" Then
+                If ![column] = "+" Then
                     curPreviousBalance = curPreviousBalance + ![InvoiceGross]
                 Else
                     curPreviousBalance = curPreviousBalance - ![InvoiceGross]
                 End If
             End If
             If ![CodeRefersTo] = 0 Or ![CodeRefersTo] = 2 Then
-                If ![Column] = "+" Then
+                If ![column] = "+" Then
                     curPreviousBalance = curPreviousBalance - ![InvoiceGross]
                 Else
                     curPreviousBalance = curPreviousBalance + ![InvoiceGross]
@@ -315,7 +466,7 @@ Function CalculateItemBalance(tmpCode)
         .Close
     End With
     
-    CalculateItemBalance = Format(intBalance, "#,##0")
+    CalculateItemBalance = format(intBalance, "#,##0")
 
 End Function
 
@@ -486,7 +637,8 @@ Function LoadSettings()
         strDestinationSite = !DestinationSite
         blnPrintHour = IIf(!PrintHourID = 1, True, False)
         blnPrintBalance = IIf(!PrintBalanceID = 1, True, False)
-        intSalesInvoiceLines = !SalesInvoiceLines
+        strInvoiceExtraRemarksA = !InvoiceExtraRemarksA
+        strInvoiceExtraRemarksB = !InvoiceExtraRemarksB
         'Συναλλασόμενοι
         blnCheckTaxNo = IIf(!TaxNoCheckID = 1, True, False)
         'ΕΑΦΔΣΣ
@@ -501,6 +653,8 @@ Function LoadSettings()
         strPassword = !EmailPassword
         'Τράπεζα
         strBankAccountNo = !BankAccountNo
+        'Νέα φόρμα παραστατικών
+        blnUseNewInvoiceForm = IIf(!UseNewInvoiceForm = "1", True, False)
         'Τέλος
         .Close
     End With
@@ -607,12 +761,12 @@ Public Function FullNumber(tmpOldNumber)
     aArray(7, 6) = "ΠΕΝΤΑΚΟΣΙΑ "
     aArray(7, 7) = "ΕΞΑΚΟΣΙΑ "
     aArray(7, 8) = "ΕΠΤΑΚΟΣΙΑ "
-    aArray(7, 9) = "ΟΚΤΑΚΟΣΙΑ"
+    aArray(7, 9) = "ΟΚΤΑΚΟΣΙΑ "
     aArray(7, 10) = "ΕΝΝΙΑΚΟΣΙΑ "
     
     aArray(8, 1) = " "
     aArray(8, 2) = "ΔΕΚΑ "
-    aArray(8, 3) = "ΕΙΚΟΣΙ"
+    aArray(8, 3) = "ΕΙΚΟΣΙ "
     aArray(8, 4) = "ΤΡΙΑΝΤΑ "
     aArray(8, 5) = "ΣΑΡΑΝΤΑ "
     aArray(8, 6) = "ΠΕΝΗΝΤΑ "
@@ -730,7 +884,7 @@ Public Function FullNumber(tmpOldNumber)
     Next intLoop
     
     If strFullNumber = "" Then strFullNumber = "ΜΗΔΕΝ "
-    strFullNumber = strFullNumber + "ΕΥΡΩ "
+    strFullNumber = strFullNumber + " ΕΥΡΩ "
     
     bytArrayIndex = 8
     tmpDecNumber = Mid(strTotalGross, 11, 2)

@@ -202,7 +202,6 @@ Sub BuildMenu()
             cItem.TextColor = RGB(96, 150, 207)
             Set cItem = cBar.Items.Add(, "UtilsTablesCheck", Space(5) & " - Ελεγχος αρχείων")
             Set cItem = cBar.Items.Add(, "UtilsUpdateItemQty", Space(5) & " - Ενημέρωση ποσοτήτων")
-            Set cItem = cBar.Items.Add(, "UtilsPrintInvoice", Space(5) & " - Εκτύπωση παραστατικού")
         'Τερματισμός
         Set cBar = .Bars.Add(, "Εξοδος", "  Εξοδος")
         cBar.IsSpecial = True
@@ -662,9 +661,6 @@ Private Sub vbExplorerBar_ItemClick(itm As vbalExplorerBarLib6.cExplorerBarItem)
                 .Tag = "True"
                 .Show 1, Me
             End With
-            
-        Case "UtilsPrintInvoice"
-            PrintInvoiceToLaser 45751, ""
             
         'Εξοδος
         Case "ΕξοδοςΑλλαγήΕταιρίας"

@@ -670,13 +670,11 @@ Begin VB.Form CommonTransactionsIndex
             Top             =   3450
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "CommonTransactionsIndex.frx":0038
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -826,7 +824,7 @@ Begin VB.Form CommonTransactionsIndex
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   "01/01/2017"
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -847,7 +845,7 @@ Begin VB.Form CommonTransactionsIndex
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   "31/12/2017"
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -868,7 +866,7 @@ Begin VB.Form CommonTransactionsIndex
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   "01/01/2017"
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -889,7 +887,7 @@ Begin VB.Form CommonTransactionsIndex
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   "31/12/2017"
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -947,7 +945,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":3748
+            PicNormal       =   "CommonTransactionsIndex.frx":0950
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -975,7 +973,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":3CE2
+            PicNormal       =   "CommonTransactionsIndex.frx":0EEA
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1003,7 +1001,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":427C
+            PicNormal       =   "CommonTransactionsIndex.frx":1484
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1054,7 +1052,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":4816
+            PicNormal       =   "CommonTransactionsIndex.frx":1A1E
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1104,7 +1102,7 @@ Begin VB.Form CommonTransactionsIndex
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "CommonTransactionsIndex.frx":4DB0
+            PicNormal       =   "CommonTransactionsIndex.frx":1FB8
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -2048,7 +2046,8 @@ Private Function AbortProcedure(blnStatus)
     If blnProcessing Then blnProcessing = False: Exit Function
     
     If Not blnStatus Then
-        ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων, lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
+        ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων, frmProgress
+        ClearFields lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
         frmCriteria(0).Visible = True
         mskIssueFrom.SetFocus
         UpdateButtons Me, 5, 1, 0, 0, 0, 0, 1
@@ -2062,7 +2061,7 @@ End Function
 
 Private Function RefreshList()
 
-    On Error GoTo ErrTrap
+    'On Error GoTo ErrTrap
     
     'SQL
     Dim intIndex As Byte
@@ -2275,7 +2274,7 @@ Private Function RefreshList()
                 grdCommonTransactionsIndex.CellValue(lngRow, "DeliveryPointDescription") = !DeliveryPointDescription
                 grdCommonTransactionsIndex.CellValue(lngRow, "InvoiceRestAmount") = IIf((!CodeSuppliers = "-" Or !CodeCustomers = "-") And (txtRefersTo.text = "1" Or txtRefersTo.text = "2"), CCur("-" & !InvoiceRestAmount + !InvoiceExtraChargesAmount), !InvoiceRestAmount + !InvoiceExtraChargesAmount)
                 grdCommonTransactionsIndex.CellValue(lngRow, "InvoiceVATAmount") = IIf((!CodeSuppliers = "-" Or !CodeCustomers = "-") And (txtRefersTo.text = "1" Or txtRefersTo.text = "2"), CCur("-" & !InvoiceVATAmount), !InvoiceVATAmount)
-                grdCommonTransactionsIndex.CellValue(lngRow, "InvoiceGrossAmount") = IIf((!CodeSuppliers = "-" Or !CodeCustomers = "-") And (txtRefersTo.text = "1" Or txtRefersTo.text = "2"), CCur("-" & !InvoiceGrossAmount), !InvoiceGrossAmount)
+                grdCommonTransactionsIndex.CellValue(lngRow, "InvoiceGrossAmount") = IIf((!CodeSuppliers = "-" Or !CodeCustomers = "-") And (txtRefersTo.text = "1" Or txtRefersTo.text = "2"), CCur("-" & IIf(!InvoiceGrossAmount < 0, Abs(!InvoiceGrossAmount), !InvoiceGrossAmount)), !InvoiceGrossAmount)
                 grdCommonTransactionsIndex.CellValue(lngRow, "Qty") = 0
             Else
                 grdCommonTransactionsIndex.CellValue(lngRow, "CategoryDescription") = !CategoryDescription
@@ -2312,7 +2311,7 @@ Private Function RefreshList()
     If Not blnProcessing Then
         blnProcessing = True
         RefreshList = 0
-        ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων
+        ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων, frmProgress
     Else
         RefreshList = rstRecordset.RecordCount
         blnProcessing = False
@@ -2335,6 +2334,7 @@ UpdateSQLString:
     Return
     
 ErrTrap:
+    If Err.Number = 6 Then Err.Description = Err.Description & " ID εγγραφής: " & rstRecordset!InvoiceID
     blnError = True
     ClearFields grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων, frmProgress
     cmdButton(4).Caption = "Νέα αναζήτηση"
@@ -2358,9 +2358,9 @@ FindItems:
             grdCommonTransactionsIndex.CellFont(lngRow, "PersonDescription").Name = "Input"
             grdCommonTransactionsIndex.CellFont(lngRow, "PersonDescription").Size = "11"
             grdCommonTransactionsIndex.CellValue(lngRow, "Qty") = !Qty
-            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & Format(!Qty, "#,##0") & " x " & Format(!TotalNetPostDiscount / !Qty, "#,##0.00") & " = " & Format(!TotalNetPostDiscount, "#,##0.00")
+            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = Trim(!ItemDescription) & IIf(!ManufacturerIsShownID = 1, " " & !ManufacturerDescription & " ", " ") & format(!Qty, "#,##0") & " x " & format(!TotalNetPostDiscount / !Qty, "#,##0.00") & " = " & format(!TotalNetPostDiscount, "#,##0.00")
             grdCommonTransactionsIndex.CellTextFlags(lngRow, "PersonDescription") = igTextNoClip Or igTextLeft
-            For lngCol = 1 To grdCommonTransactionsIndex.ColCount
+            For lngCol = 1 To grdCommonTransactionsIndex.colCount
                 grdCommonTransactionsIndex.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             .MoveNext
@@ -2384,11 +2384,11 @@ FindChecks:
             lngRow = lngRow + 1
             grdCommonTransactionsIndex.CellFont(lngRow, "PersonDescription").Name = "Input"
             grdCommonTransactionsIndex.CellFont(lngRow, "PersonDescription").Size = "11"
-            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = Format(!CheckExpireDate, "dd/mm/yyyy")
-            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") & " " & Space(12 - Len(Format(!CheckAmount, "#,##0.00"))) & Format(!CheckAmount, "#,##0.00")
+            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = format(!CheckExpireDate, "dd/mm/yyyy")
+            grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") & " " & Space(12 - Len(format(!CheckAmount, "#,##0.00"))) & format(!CheckAmount, "#,##0.00")
             grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") & " " & !CheckNo
             grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") = grdCommonTransactionsIndex.CellValue(lngRow, "PersonDescription") & " " & !BankDescription
-            For lngCol = 1 To grdCommonTransactionsIndex.ColCount
+            For lngCol = 1 To grdCommonTransactionsIndex.colCount
                 grdCommonTransactionsIndex.CellForeColor(lngRow, lngCol) = vbCyan
             Next lngCol
             .MoveNext
@@ -2539,7 +2539,13 @@ Private Sub Form_Load()
     SetUpGrid lstIconList, grdCommonTransactionsIndex, grdΣτοιχείαΣυναλλασόμενων
     PositionControls Me, True, grdCommonTransactionsIndex
     ColorizeControls Me, True
-    ClearFields mskIssueFrom, mskIssueTo, mskInFrom, mskInTo, txtPersonID, txtPersonDescription, txtDeliveryPointID, txtDeliveryPointDescription, txtCategoryID, txtCategoryShortDescription, lblCategoryDescription, txtItemID, txtItemDescription, txtCodeID, txtCodeShortDescription, lblCodeDescription, txtInvoiceNo, chkCriteriaItemAnalysis, chkCriteriaChecksAnalysis, chkCriteriaZeroInvoices, chkCriteriaPrintPersonsData, lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
+    
+    ClearFields mskIssueFrom, mskIssueTo, mskInFrom, mskInTo, txtPersonDescription, txtDeliveryPointDescription, txtCategoryShortDescription, txtItemDescription, txtCodeShortDescription, txtInvoiceNo
+    ClearFields chkCriteriaItemAnalysis, chkCriteriaChecksAnalysis, chkCriteriaZeroInvoices, chkCriteriaPrintPersonsData
+    ClearFields lblCategoryDescription, lblCodeDescription
+    ClearFields txtPersonID, txtDeliveryPointID, txtCategoryID, txtItemID, txtCodeID
+    ClearFields lblRecordCount, lblCriteria, lblSelectedGridLines, lblSelectedGridTotals
+    
     UpdateButtons Me, 5, 1, 0, 0, 0, 0, 1
 
 End Sub

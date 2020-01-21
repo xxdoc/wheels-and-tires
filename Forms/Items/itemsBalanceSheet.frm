@@ -406,13 +406,11 @@ Begin VB.Form itemsBalanceSheet
             Top             =   1200
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "itemsBalanceSheet.frx":0038
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -455,7 +453,7 @@ Begin VB.Form itemsBalanceSheet
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -476,7 +474,7 @@ Begin VB.Form itemsBalanceSheet
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -511,7 +509,7 @@ Begin VB.Form itemsBalanceSheet
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "itemsBalanceSheet.frx":3748
+            PicNormal       =   "itemsBalanceSheet.frx":0950
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -561,7 +559,7 @@ Begin VB.Form itemsBalanceSheet
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "itemsBalanceSheet.frx":3CE2
+            PicNormal       =   "itemsBalanceSheet.frx":0EEA
             PicSizeH        =   16
             PicSizeW        =   16
          End

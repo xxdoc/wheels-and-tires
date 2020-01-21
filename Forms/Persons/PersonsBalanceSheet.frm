@@ -450,13 +450,11 @@ Begin VB.Form PersonsBalanceSheet
             Top             =   1575
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "PersonsBalanceSheet.frx":0038
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -499,7 +497,7 @@ Begin VB.Form PersonsBalanceSheet
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -520,7 +518,7 @@ Begin VB.Form PersonsBalanceSheet
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -555,7 +553,7 @@ Begin VB.Form PersonsBalanceSheet
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "PersonsBalanceSheet.frx":3748
+            PicNormal       =   "PersonsBalanceSheet.frx":0950
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -874,14 +872,17 @@ Dim strCriteriaB As String
 Dim curPrevious() As Currency
 Dim curPeriod() As Currency
 
+Dim datLastInvoiceDate As Date
+
 Private Function CalculatePreviousPeriod(myID, myRecordset As Recordset)
 
     If IsDate(mskIssueFrom.text) Then
         With myRecordset
             Do While !InvoiceIssueDate < CDate(mskIssueFrom.text) And myID = !InvoicePersonID
+                GoSub StoreLastInvoiceDate
                 FillArray curPrevious, _
-                    CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text), _
-                    CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text)
+                    CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, !ShowInList), _
+                    CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, !ShowInList)
                 UpdateProgressBar Me
                 .MoveNext
                 DoEvents
@@ -898,6 +899,13 @@ Private Function CalculatePreviousPeriod(myID, myRecordset As Recordset)
             CalculatePreviousPeriod = curPrevious()
         End With
     End If
+    
+    Exit Function
+    
+StoreLastInvoiceDate:
+    datLastInvoiceDate = myRecordset!InvoiceIssueDate
+    
+    Return
 
 End Function
 
@@ -1074,7 +1082,7 @@ End Function
 
 Private Function RefreshList()
 
-    'On Error GoTo ErrTrap
+    On Error GoTo ErrTrap
     
     'SQL
     Dim intIndex As Byte
@@ -1096,7 +1104,6 @@ Private Function RefreshList()
     Dim lngCol As Long
     Dim lngPersonID As Long
     Dim strPersonDescription As String
-    Dim datLastInvoiceDate As Date
     
     'Αρχικές τιμές
     ReDim curPrevious(2)
@@ -1117,20 +1124,20 @@ Private Function RefreshList()
     End With
     
     'Αγορές, πωλήσεις, κινήσεις πελατών και προμηθευτών
-    strSQL = "SELECT InvoiceID, InvoiceIssueDate, InvoiceRefersToID, InvoiceGrossAmount, InvoicePersonID, PaymentWayCreditID, CodeCustomers, CodeSuppliers, Description " _
+    strSQL = "SELECT InvoiceID, InvoiceIssueDate, InvoiceRefersToID, InvoiceGrossAmount, InvoicePersonID, PaymentWayCreditID, CodeCustomers, CodeSuppliers, Description, Codes.ShowInList " _
     & "FROM (((Invoices " _
     & "INNER JOIN " & txtTable.text & " ON Invoices.InvoicePersonID = " & txtTable.text & ".ID) " _
     & "INNER JOIN Codes ON Invoices.InvoiceCodeID = Codes.CodeID) " _
     & "INNER JOIN PaymentWays ON Invoices.InvoicePaymentWayID = PaymentWays.PaymentWayID) "
     
-    'Αγορές = 0, Πωλήσεις = 1
+    'Αγορές = 1, Πωλήσεις = 2
     strThisParameter = "lngRefersToA Long"
     strThisQuery = "(Invoices.InvoiceRefersToID = lngRefersToA"
     strLogic = " AND "
     GoSub UpdateSQLString
     arrQuery(intIndex) = Val(txtRefersTo.text) - 2
     
-    'Προμηθευτές = 2, Πελάτες = 3
+    'Προμηθευτές = 3, Πελάτες = 4
     strThisParameter = "lngRefersToB Long"
     strThisQuery = "Invoices.InvoiceRefersToID = lngRefersToB)"
     strLogic = " OR "
@@ -1201,13 +1208,14 @@ Private Function RefreshList()
     With rstRecordset
         Do While Not .EOF
             If !InvoicePersonID = lngPersonID Then
+                GoSub StoreLastInvoiceDate
                 If !InvoiceIssueDate < CDate(mskIssueFrom.text) Then
                     CalculatePreviousPeriod lngPersonID, rstRecordset
                     If Not blnProcessing Then Exit Do
                 Else
                     FillArray curPeriod, _
-                        CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text), _
-                        CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, txtRefersTo.text)
+                        CalculateDebitCreditAndBalance("Debit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, !ShowInList), _
+                        CalculateDebitCreditAndBalance("Credit", "Persons", !InvoiceGrossAmount, !CodeCustomers, !CodeSuppliers, "", !PaymentWayCreditID, !ShowInList)
                     UpdateProgressBar Me
                     rstRecordset.MoveNext
                     DoEvents
@@ -1215,7 +1223,6 @@ Private Function RefreshList()
                 End If
             Else
                 If txtOptionID.text = "1" Or (txtOptionID.text = "2" And (curPrevious(2) + curPeriod(0) - curPeriod(1) <> 0)) Or (txtOptionID.text = "3" And (curPeriod(0) <> 0 Or curPeriod(1) <> 0)) Then
-                    GoSub StoreLastInvoiceDate
                     GoSub AddLine
                     ColorizeCells grdPersonsBalanceSheet, lngRow, "PreviousBalance", "Debit", "Credit", "Balance"
                     CalculateGrandTotals curPrevious(0), curPrevious(1), curPrevious(2), curPeriod(0), curPeriod(1), curPrevious(2) + curPeriod(0) - curPeriod(1)
@@ -1290,9 +1297,7 @@ UpdateAreas:
     Return
     
 StoreLastInvoiceDate:
-    rstRecordset.MovePrevious
     datLastInvoiceDate = rstRecordset!InvoiceIssueDate
-    rstRecordset.MoveNext
     
     Return
     

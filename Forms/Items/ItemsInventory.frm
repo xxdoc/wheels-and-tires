@@ -168,7 +168,7 @@ Begin VB.Form ItemsInventory
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -1094,16 +1094,14 @@ Begin VB.Form ItemsInventory
          End
          Begin vbalIml6.vbalImageList lstIconList 
             Left            =   75
-            Top             =   3075
+            Top             =   1950
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "ItemsInventory.frx":16A0
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmCriteria 
@@ -1166,7 +1164,7 @@ Begin VB.Form ItemsInventory
             _ExtentY        =   820
             ForeColor       =   0
             Text            =   ""
-            BackColor       =   0
+            BackColor       =   4210688
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Ubuntu Condensed"
                Size            =   11.25
@@ -1201,7 +1199,7 @@ Begin VB.Form ItemsInventory
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "ItemsInventory.frx":4DB0
+            PicNormal       =   "ItemsInventory.frx":1FB8
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1251,7 +1249,7 @@ Begin VB.Form ItemsInventory
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   0
-            PicNormal       =   "ItemsInventory.frx":534A
+            PicNormal       =   "ItemsInventory.frx":2552
             PicSizeH        =   16
             PicSizeW        =   16
          End
@@ -1702,7 +1700,7 @@ Private Function CalculateNewQtyTotalAndNewCostTotal(myGrid As iGrid, myFirstTim
     If Not myFirstTime Then
         For curCurrentTotalCost = curCurrentTotalCost To curNewTotalCost Step intStep
             lngDelay = 0
-            lblTotals(0).Caption = Format(curCurrentTotalCost, "#,##0.00")
+            lblTotals(0).Caption = format(curCurrentTotalCost, "#,##0.00")
             lblTotals(0).Refresh
             While lngDelay < 1000
                 lngDelay = lngDelay + 1
@@ -1711,7 +1709,7 @@ Private Function CalculateNewQtyTotalAndNewCostTotal(myGrid As iGrid, myFirstTim
         Next curCurrentTotalCost
     End If
     
-    lblTotals(0).Caption = Format(curNewTotalCost, "#,##0.00")
+    lblTotals(0).Caption = format(curNewTotalCost, "#,##0.00")
 
 End Function
 

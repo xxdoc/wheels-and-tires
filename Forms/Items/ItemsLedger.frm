@@ -694,13 +694,11 @@ Begin VB.Form ItemsLedger
             Top             =   1575
             _ExtentX        =   953
             _ExtentY        =   953
-            IconSizeX       =   26
-            IconSizeY       =   32
-            Size            =   14064
+            Size            =   2296
             Images          =   "ItemsLedger.frx":1106
             Version         =   131072
-            KeyCount        =   4
-            Keys            =   "ÿÿÿ"
+            KeyCount        =   2
+            Keys            =   "ÿ"
          End
       End
       Begin VB.Frame frmButtonFrame 
@@ -1127,7 +1125,7 @@ Private Function FindRecordsAndPopulateGrid()
         EnableGrid grdItemsLedger, False
         HighlightRow grdItemsLedger, 1, "", True
         blnEnableEdit = CheckToEnableButton(grdItemsLedger, 1, "InvoiceTrnID")
-        UpdateButtons Me, 5, 0, IIf(CheckForLoadedForm("ItemsTransactions"), 0, blnEnableEdit), 1, 1, 1, 0
+        UpdateButtons Me, 5, 0, IIf(CheckForLoadedForm("ItemsTransactions,CommonTransactions"), 0, blnEnableEdit), 1, 1, 1, 0
     Else
         UpdateButtons Me, 5, 1, 0, 0, 0, 0, 1
         If Not blnError Then
@@ -1618,6 +1616,7 @@ End Sub
 Private Sub grdItemsLedger_CurCellChange(ByVal lRow As Long, ByVal lCol As Long)
 
     cmdButton(1).Enabled = CheckToEnableButton(grdItemsLedger, lRow, "InvoiceTrnID")
+    cmdButton(1).Enabled = IIf(CheckForLoadedForm("ItemsTransactions,CommonTransactions"), 0, cmdButton(1).Enabled)
 
 End Sub
 
